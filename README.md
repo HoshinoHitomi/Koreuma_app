@@ -29,9 +29,7 @@
 * 食べたい味が浮かんで、具体的に食べたいものを探したいとき
 
 ## 設計書
-* ER図 (https://drive.google.com/file/d/1MY5RKPUEt222hjOJQFd9x2HiRfoa_0qz/view?usp=sharing)
-* テーブル詳細設計書 (https://docs.google.com/spreadsheets/d/1Q4ZeCuaMwXrEDgO13uo6DnPCJqRG3pXd1csY_0n4Ooc/edit#gid=1243549839)
-* アプリケーション詳細設計書 (https://docs.google.com/spreadsheets/d/1OBWEXa0DOazYVR9TZFA8JGwY_M2so1OX/edit#gid=549108681)
+* https://drive.google.com/drive/folders/1-lnZu0GQOiW-ajezc0OPPMNYODU6y0Ev?usp=sharing
 
 ## チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/18RmAkhidbinMLtjSqjmjhknYSV4tmokbhE6Tt_GMkW4/edit#gid=0
