@@ -1,0 +1,10 @@
+<h1>Admin::Informations#new</h1>
+<p>Find me in app/views/admin/informations/new.html.erb</p>
+<%= form_with model: @information, url: admin_informations_path(@information), local:true do |f| %>
+
+  <%= f.text_field :title %>
+  <%= f.text_area :body %>
+
+  <%= f.submit '投稿する' %>
+
+<% end %>

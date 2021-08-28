@@ -1,0 +1,9 @@
+<h1>Admin::Informations#show</h1>
+<p>Find me in app/views/admin/informations/show.html.erb</p>
+<%= @information.title %>
+
+<%= @information.body %>
+
+<%= link_to '編集する', edit_admin_information_path %>
+
+<%= link_to '削除する', admin_information_path, method: :delete, 'data-confirm' => '本当に削除しますか？' %>

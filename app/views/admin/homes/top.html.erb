@@ -1,0 +1,8 @@
+<h1>Top</h1>
+
+<%= link_to 'お知らせ投稿', new_admin_information_path %>
+
+<% @informations.each do |information| %>
+  <%= link_to information.title, admin_information_path(information) %>
+  <%= information.body.truncate(10) %>
+<% end %>

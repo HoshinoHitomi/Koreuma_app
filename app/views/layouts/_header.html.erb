@@ -1,0 +1,17 @@
+<% if admin_signed_in? %>
+  <li><%= link_to 'お知らせ', admin_root_path %></li>
+  <li><%= link_to 'ジャンル管理', admin_genres_path %></li>
+  <li><%= link_to 'logout', destroy_admin_session_path, method: :delete %></li>
+<% elsif shop_signed_in? %>
+  <li>ヘッダー</li> <!--仮置き-->
+  <li>ヘッダー</li> <!--仮置き-->
+  <li>ヘッダー</li> <!--仮置き-->
+<% elsif user_signed_in? %>
+  <li>ヘッダー</li> <!--仮置き-->
+  <li>ヘッダー</li> <!--仮置き-->
+  <li>ヘッダー</li> <!--仮置き-->
+<% else %>
+  <li>ヘッダー</li> <!--仮置き-->
+  <li>ヘッダー</li> <!--仮置き-->
+  <li>ヘッダー</li> <!--仮置き-->
+<% end %>
