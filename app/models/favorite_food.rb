@@ -1,0 +1,2 @@
+class FavoriteFood < ApplicationRecord
+end

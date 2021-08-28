@@ -1,0 +1,2 @@
+class Helphulness < ApplicationRecord
+end
