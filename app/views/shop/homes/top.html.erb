@@ -1,2 +1,18 @@
 <h1>Shop::Homes#top</h1>
 <p>Find me in app/views/shop/homes/top.html.erb</p>
+
+<%= link_to '編集する', edit_shop_homes_path %>
+
+<%= @shop.name %>
+
+<%= attachment_image_tag @shop, :shop_image, :fill, 60, 60, fallback: "img/no_image.jpg"%>
+
+<%= @shop.introduction %>
+
+<%= @shop.address %>
+
+<%= @shop.phone_number %>
+
+<%= @shop.working_time %>
+
+<h2><%= @shop.name %>の食べ物一覧</h2>

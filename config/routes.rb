@@ -23,6 +23,9 @@ Rails.application.routes.draw do
 
   namespace :shop do
     root to: 'homes#top'
+    resource :homes, only: [:edit, :update]
+    get '/homes/confirm' => 'homes#confirm', as: 'confirm'
+    resources :foods
   end
 
   scope module: :public do

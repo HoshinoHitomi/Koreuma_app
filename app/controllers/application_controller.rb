@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::Base
 
+
+private
+
   def after_sign_in_path_for(resource)
     case resource
 
@@ -7,7 +10,7 @@ class ApplicationController < ActionController::Base
       admin_root_path
 
     when Shop
-      root_path
+      shop_root_path
 
     when User
       root_path
@@ -15,8 +18,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def after_sign_out_path_for(resource)
+  def after_sign_out_path_for(resource_or_scope)
 
+    if resource_or_scope == :adnun
       new_admin_session_path
+
+    else
+      root_path
+
+    end
   end
+
 end

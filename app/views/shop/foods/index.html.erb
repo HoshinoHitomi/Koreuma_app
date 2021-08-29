@@ -1,0 +1,17 @@
+<h1>Shop::Foods#index</h1>
+<p>Find me in app/views/shop/foods/index.html.erb</p>
+
+<%= link_to '食べ物登録をする', new_shop_food_path %>
+
+<% if @foods.empty? %>
+  <p>最初の食べ物を登録しましょう!</p>
+<% else %>
+
+  <% @foods.each do |food| %>
+    <%= link_to food.name, shop_food_path(food) %>
+    <%= attachment_image_tag food, :image, :fill, 60, 60 %>
+    <%= food.status %>
+    <%= food.sale_dates %>
+  <% end %>
+
+<% end %>

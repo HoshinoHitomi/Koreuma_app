@@ -1,0 +1,30 @@
+<h1>Shop::Foods#show</h1>
+<p>Find me in app/views/shop/foods/show.html.erb</p>
+<%= @food.shop.name %>
+
+<%= attachment_image_tag @food.shop, :shop_image, :fill, 30, 30 %>
+
+
+<%= @food.name %>
+
+<%= attachment_image_tag @food, :image, :fill, 60, 60 %>
+
+<%= @food.taste %>
+
+<%= @food.price %>
+
+<%= @food.calorie %>
+
+<%= @food.food_temperature %>
+
+<%= @food.sale_dates %>
+
+<h2>また食べたい味と思ったユーザーの味の好み度統計</h2>
+
+<%= range_field @food, :sweet_like, :disabled => true %>
+<%= range_field @food, :salty_like, :disabled => true %>
+<%= range_field @food, :bitter_like, :disabled => true %>
+<%= range_field @food, :sour_like, :disabled => true %>
+<%= range_field @food, :spicy_like, :disabled => true %>
+
+<h2>レビューと評価</h2>
