@@ -16,3 +16,17 @@
 <%= @shop.working_time %>
 
 <h2><%= @shop.name %>の食べ物一覧</h2>
+
+<% if @foods.empty? %>
+  <p>最初の食べ物を登録しましょう!</p>
+  <%= link_to '食べ物を登録する', new_shop_food_path %>
+<% else %>
+
+  <% @foods.each do |food| %>
+    <%= link_to food.name, shop_food_path(food) %>
+    <%= attachment_image_tag food, :image, :fill, 60, 60 %>
+    <%= food.status %>
+    <%= food.sale_dates %>
+  <% end %>
+
+<% end %>

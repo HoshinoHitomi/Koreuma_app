@@ -1,0 +1,18 @@
+<h1>Admin::Shops#show</h1>
+<p>Find me in app/views/admin/shops/show.html.erb</p>
+
+<%= link_to '編集する', edit_admin_shop_path(@shop) %>
+
+<%= @shop.id %>
+
+<%= @shop.name %>
+
+<%= attachment_image_tag @shop, :shop_image, :fill, 60, 60, fallback: "img/no_image.jpg"%>
+
+<%= @shop.introduction %>
+
+<%= @shop.address %>
+
+<%= @shop.phone_number %>
+
+<%= @shop.working_time %>

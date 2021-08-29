@@ -1,6 +1,7 @@
 class Shop::HomesController < ApplicationController
   def top
     @shop = current_shop
+    @foods = Food.all
   end
 
   def edit
@@ -14,6 +15,13 @@ class Shop::HomesController < ApplicationController
   end
 
   def confirm
+  end
+
+  def withdrawl
+    @shop = Shop.find_by(id: current_shop.id)
+    @shop.update(is_active: false)
+    reset_session
+    redirect_to root_path
   end
 
   private

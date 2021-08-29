@@ -19,12 +19,14 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     resources :informations
     resources :genres, except: [:new, :destroy]
+    resources :shops, except: [:new, :create, :destroy]
   end
 
   namespace :shop do
     root to: 'homes#top'
     resource :homes, only: [:edit, :update]
     get '/homes/confirm' => 'homes#confirm', as: 'confirm'
+    patch '/homes/withdrawl' => 'homes#withdrawl', as: 'withdrawl'
     resources :foods
   end
 

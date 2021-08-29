@@ -1,9 +1,10 @@
 <% if admin_signed_in? %>
   <li><%= link_to 'お知らせ', admin_root_path %></li>
   <li><%= link_to 'ジャンル管理', admin_genres_path %></li>
+  <li><%= link_to 'お店管理', admin_shops_path %></li>
   <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
 <% elsif shop_signed_in? %>
-  <li>ヘッダー</li> <!--仮置き-->
+  <li><%= link_to 'マイページ', shop_root_path %></li>
   <li><%= link_to '食べ物管理', shop_foods_path %></li>
   <li><%= link_to 'ログアウト', destroy_shop_session_path, method: :delete %></li>
 <% elsif user_signed_in? %>

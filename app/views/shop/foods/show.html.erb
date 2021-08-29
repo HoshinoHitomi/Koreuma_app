@@ -1,13 +1,19 @@
 <h1>Shop::Foods#show</h1>
 <p>Find me in app/views/shop/foods/show.html.erb</p>
+<%= link_to '編集する', edit_shop_food_path(@food) %>
+<%= link_to '削除する', shop_food_path, method: :delete, 'data-confirm' => '本当に削除しますか？' %>
+
 <%= @food.shop.name %>
 
 <%= attachment_image_tag @food.shop, :shop_image, :fill, 30, 30 %>
 
-
 <%= @food.name %>
 
 <%= attachment_image_tag @food, :image, :fill, 60, 60 %>
+
+<%= @food.introduction %>
+
+<%= @food.genre.name %>
 
 <%= @food.taste %>
 
@@ -20,6 +26,12 @@
 <%= @food.sale_dates %>
 
 <h2>また食べたい味と思ったユーザーの味の好み度統計</h2>
+
+<%= @sweet_like_average %>
+<%= @salty_like_average %>
+<%= @bitter_like_average %>
+<%= @sour_like_average %>
+<%= @spicy_like_average %>
 
 <%= range_field @food, :sweet_like, :disabled => true %>
 <%= range_field @food, :salty_like, :disabled => true %>

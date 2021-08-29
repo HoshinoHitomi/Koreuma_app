@@ -13,6 +13,9 @@
   <%= f.label :introduction %>
   <%= f.text_area :introduction, placeholder: '食べ物の魅力が伝わる紹介文を書いてください。・こだわった食材や調理法など・おすすめの食べ方など' %>
 
+  <%= f.label :genre %>
+  <%= f.collection_select :genre_id, Genre.all, :id, :name %>
+
   <%= f.label :taste %>
   <%= f.select :taste, Food.tastes.keys.to_a %>
 
