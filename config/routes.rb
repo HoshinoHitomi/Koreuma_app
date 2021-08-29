@@ -20,5 +20,16 @@ Rails.application.routes.draw do
     resources :informations
     resources :genres, except: [:new, :destroy]
   end
+
+  namespace :shop do
+    root to: 'homes#top'
+  end
+
+  scope module: :public do
+    root to: 'homes#top'
+    get '/about' => 'homes#about', as: 'about'
+    get '/which_sign_up' => 'homes#which_sign_up', as: 'which_sign_up'
+    get '/which_sign_in' => 'homes#which_sign_in', as: 'which_sign_in'
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
