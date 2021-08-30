@@ -1,13 +1,12 @@
-<h1>Top</h1>
-
-<%= link_to 'お知らせ投稿', new_admin_information_path %>
+<h1>Public::Informations#index</h1>
+<p>Find me in app/views/public/informations/index.html.erb</p>
 
 <% if @informations.empty? %>
   <p>お知らせがありません。</p>
 <% else %>
   <% @informations.each do |information| %>
     <%= information.created_at %>
-    <%= link_to information.title, admin_information_path(information) %>
+    <%= link_to information.title, information_path(information) %>
     <%= information.body.truncate(10) %>
   <% end %>
 <% end %>
