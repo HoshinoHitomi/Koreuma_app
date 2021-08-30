@@ -1,0 +1,28 @@
+<h1>Public::Shops#show</h1>
+<p>Find me in app/views/public/shops/show.html.erb</p>
+<%= @shop.name %>
+
+<%= attachment_image_tag @shop, :shop_image, :fill, 60, 60, fallback: "img/no_image.jpg"%>
+
+<%= @shop.introduction %>
+
+<%= @shop.address %>
+
+<%= @shop.phone_number %>
+
+<%= @shop.working_time %>
+
+<h2><%= @shop.name %>の食べ物一覧</h2>
+
+<% if @foods.empty? %>
+  <p>食べ物が登録されていません。</p>
+<% else %>
+
+  <% @foods.each do |food| %>
+    <%= link_to food.name, food_path(food) %>
+    <%= attachment_image_tag food, :image, :fill, 60, 60 %>
+    <%= food.status %>
+    <%= food.sale_dates %>
+  <% end %>
+
+<% end %>

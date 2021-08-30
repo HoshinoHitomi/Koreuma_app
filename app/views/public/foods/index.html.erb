@@ -1,0 +1,14 @@
+<h1>Public::Foods#index</h1>
+<p>Find me in app/views/public/foods/index.html.erb</p>
+
+<% if @foods.empty? %>
+  <p>まだ食べ物が登録されていません。</p>
+<% else %>
+  <% @foods.each do |food| %>
+    <%= attachment_image_tag food, :image, :fill, 60, 60 %>
+    <%= link_to food.name, food_path(food) %>
+    <%= attachment_image_tag food.shop, :shop_image, :fill, 60, 60 %>
+    <%= food.shop.name %>
+    <%= food.status %>
+  <% end %>
+<% end %>
