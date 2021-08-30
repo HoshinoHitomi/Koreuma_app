@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_28_202101) do
+ActiveRecord::Schema.define(version: 2021_08_30_175813) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -139,7 +139,7 @@ ActiveRecord::Schema.define(version: 2021_08_28_202101) do
     t.integer "spicy_like", default: 3, null: false
     t.boolean "is_active", default: true, null: false
     t.text "introduction"
-    t.string "plofile_image_id"
+    t.string "profile_image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

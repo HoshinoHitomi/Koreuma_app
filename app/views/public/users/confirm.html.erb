@@ -1,0 +1,9 @@
+<h1>Public::Users#confirm</h1>
+<p>Find me in app/views/public/users/confirm.html.erb</p>
+
+<p>退会するとレビュー投稿やあなたの好みの味表示、お気に入り登録ができなくなります。
+本当に退会しますか?</p>
+
+<%= link_to '退会しない', user_path(current_user.id) %>
+
+<%= link_to '退会する', withdrawl_path, method: :patch %>

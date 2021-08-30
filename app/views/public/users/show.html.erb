@@ -1,0 +1,12 @@
+<h1>Public::Users#show</h1>
+<p>Find me in app/views/public/users/show.html.erb</p>
+
+<%= link_to '編集する', edit_user_path(@user) %>
+<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "img/no_image.jpg"%>
+<%= @user.name %>
+<%= @user.introduction %>
+<%= @user.sweet_like %>
+<%= @user.salty_like %>
+<%= @user.bitter_like %>
+<%= @user.sour_like %>
+<%= @user.spicy_like %>

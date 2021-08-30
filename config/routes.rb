@@ -36,6 +36,9 @@ Rails.application.routes.draw do
     get '/which_sign_up' => 'homes#which_sign_up', as: 'which_sign_up'
     get '/which_sign_in' => 'homes#which_sign_in', as: 'which_sign_in'
     resources :informations, only: [:index, :show]
+    resources :users, except: [:index, :new, :destroy]
+    get '/confirm' => 'users#confirm', as: 'confirm'
+    patch '/withdrawl' => 'users#withdrawl', as: 'withdrawl'
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

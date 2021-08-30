@@ -4,7 +4,12 @@ class Shop < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :foods
+  has_many :foods, dependent: :destroy
 
   attachment :shop_image
+
+  def active_for_authentication?
+    super && (self.is_active == true)
+  end
+
 end
