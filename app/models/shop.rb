@@ -5,6 +5,7 @@ class Shop < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :foods, dependent: :destroy
+  has_many :favorite_shops, dependent: :destroy
 
   attachment :shop_image
 

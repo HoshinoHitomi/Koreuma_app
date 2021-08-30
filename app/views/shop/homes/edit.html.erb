@@ -2,13 +2,13 @@
 <p>Find me in app/views/shop/homes/edit.html.erb</p>
 
 <%= form_with model: @shop, url: shop_homes_path(@shop), local:true do |f| %>
-  <%= f.text_field :name %>
+  <%= f.text_field :name, :disabled => true %>
   <%= f.text_area :introduction %>
   <%= attachment_image_tag @shop, :shop_image, :fill, 60, 60, fallback: "img/no_image.jpg"%>
   <%= f.attachment_field :shop_image %>
-  <%= f.email_field :email %>
-  <%= f.text_field :address %>
-  <%= f.text_field :phone_number %>
+  <%= f.email_field :email, :disabled => true %>
+  <%= f.text_field :address, :disabled => true %>
+  <%= f.text_field :phone_number, :disabled => true %>
   <%= f.text_field :working_time %>
 
   <%= f.submit '編集する' %>

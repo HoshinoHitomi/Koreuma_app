@@ -1,6 +1,11 @@
 class Food < ApplicationRecord
   belongs_to :shop
   belongs_to :genre
+  has_many :favorite_foods, dependent: :destroy
+
+  def food_favorited_by?(user)
+    favorite_foods.where(user_id: user.id).exists?
+  end
 
   attachment :image
 

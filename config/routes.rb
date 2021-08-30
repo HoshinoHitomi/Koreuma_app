@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :informations
     resources :genres, except: [:new, :destroy]
     resources :shops, except: [:new, :create, :destroy]
+    resources :users, except: [:new, :create, :destroy]
   end
 
   namespace :shop do
@@ -39,8 +40,12 @@ Rails.application.routes.draw do
     resources :users, except: [:index, :new, :destroy]
     get '/confirm' => 'users#confirm', as: 'confirm'
     patch '/withdrawl' => 'users#withdrawl', as: 'withdrawl'
-    resources :foods, only: [:index, :show]
-    resources :shops, only: [:index, :show]
+    resources :foods, only: [:index, :show] do
+      resource :favorite_foods, only: [:create, :destroy]
+    end
+    resources :shops, only: [:index, :show] do
+      resource :favorite_shops, only: [:create, :destroy]
+    end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,0 +1,16 @@
+<h1>Admin::Users#edit</h1>
+<p>Find me in app/views/admin/users/edit.html.erb</p>
+
+<%= form_with model: @user, url: admin_user_path(@user), local:true do |f| %>
+  <%= @user.id %>
+  <%= f.text_field :name %>
+  <%= f.email_field :email %>
+
+  <%= f.label :true %>
+  <%= f.radio_button :is_active, :true %>
+
+  <%= f.label :false %>
+  <%= f.radio_button :is_active, :false %>
+
+  <%= f.submit '編集する' %>
+<% end %>

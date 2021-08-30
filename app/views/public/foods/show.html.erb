@@ -1,5 +1,7 @@
 <h1>Public::Foods#show</h1>
 <p>Find me in app/views/public/foods/show.html.erb</p>
+<%= @food.favorite_foods.count %>
+
 <%= @food.shop.name %>
 
 <%= attachment_image_tag @food.shop, :shop_image, :fill, 30, 30 %>
@@ -35,5 +37,21 @@
 <%= range_field @food, :bitter_like, :disabled => true %>
 <%= range_field @food, :sour_like, :disabled => true %>
 <%= range_field @food, :spicy_like, :disabled => true %>
+
+<% if user_signed_in? %>
+  <% if @food.food_favorited_by?(current_user) %>
+    <p>
+      <%= link_to food_favorite_foods_path(@food), method: :delete do %>
+        ♥<%= @food.favorite_foods.count %> いいね
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to food_favorite_foods_path(@food), method: :post do %>
+        ♡<%= @food.favorite_foods.count %> いいね
+      <% end %>
+    </p>
+  <% end %>
+<% end %>
 
 <h2>レビューと評価</h2>

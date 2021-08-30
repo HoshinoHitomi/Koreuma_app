@@ -23,11 +23,8 @@ class Admin::ShopsController < ApplicationController
     params.require(:shop).permit(
       :name,
       :email,
-      :introduction,
-      :shop_image,
       :address,
       :phone_number,
-      :working_time,
       :is_active
     )
   end

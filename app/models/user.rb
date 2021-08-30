@@ -6,6 +6,9 @@ class User < ApplicationRecord
 
   attachment :profile_image
 
+  has_many :favorite_foods, dependent: :destroy
+  has_many :favorite_shops, dependent: :destroy
+
   enum sweet_like: { hate: 1, dislike: 2, like: 3, really_like: 4 }, _prefix: :sweet
   enum salty_like: { hate: 1, dislike: 2, like: 3, really_like: 4 }, _prefix: :salty
   enum bitter_like: { hate: 1, dislike: 2, like: 3, really_like: 4 }, _prefix: :bitter
