@@ -29,6 +29,6 @@ class Admin::ShopsController < ApplicationController
       :phone_number,
       :working_time,
       :is_active
-      )
+    )
   end
 end

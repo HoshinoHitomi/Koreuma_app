@@ -35,6 +35,6 @@ class Shop::HomesController < ApplicationController
       :address,
       :phone_number,
       :working_time
-      )
+    )
   end
 end

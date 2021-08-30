@@ -31,7 +31,6 @@ class Shop::FoodsController < ApplicationController
 
     spicy_like = Food.pluck(:spicy_like)
     @spicy_like_average = spicy_like.sum.fdiv(spicy_like.length)
-
   end
 
   def edit
@@ -66,6 +65,6 @@ class Shop::FoodsController < ApplicationController
       :food_temperature,
       :status,
       :sale_dates
-      )
+    )
   end
 end

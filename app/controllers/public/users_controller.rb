@@ -33,6 +33,6 @@ class Public::UsersController < ApplicationController
       :bitter_like,
       :sour_like,
       :spicy_like
-      )
+    )
   end
 end
