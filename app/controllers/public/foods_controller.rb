@@ -20,5 +20,12 @@ class Public::FoodsController < ApplicationController
 
     spicy_like = Food.pluck(:spicy_like)
     @spicy_like_average = spicy_like.sum.fdiv(spicy_like.length)
+
+    taste_strong = Review.pluck(:taste_strong)
+    @taste_strong_average = taste_strong.sum.fdiv(taste_strong.length)
+
+    @reviews = Review.all
+
+    @review = Review.new
   end
 end

@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   attachment :profile_image
 
+  has_many :reviews, dependent: :destroy
   has_many :favorite_foods, dependent: :destroy
   has_many :favorite_shops, dependent: :destroy
 

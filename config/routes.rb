@@ -47,6 +47,7 @@ Rails.application.routes.draw do
     resources :users, except: [:index, :new, :create, :destroy] do
       resources :favorite_foods, only: [:index]
       resources :favorite_shops, only: [:index]
+      resources :reviews, only: [:index]
     end
     get '/confirm' => 'users#confirm', as: 'confirm'
     patch '/withdrawl' => 'users#withdrawl', as: 'withdrawl'
@@ -54,6 +55,8 @@ Rails.application.routes.draw do
     # 閲覧機能とお気に入り機能関連のルーティング
     resources :foods, only: [:index, :show] do
       resource :favorite_foods, only: [:create, :destroy]
+      # レビュー投稿のルーティング
+      resource :reviews, only: [:create, :destroy]
     end
     resources :shops, only: [:index, :show] do
       resource :favorite_shops, only: [:create, :destroy]

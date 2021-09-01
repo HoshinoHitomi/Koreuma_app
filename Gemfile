@@ -77,3 +77,5 @@ gem 'kaminari', '~> 1.2.1'
 gem 'dotenv-rails'
 
 gem 'rubocop-airbnb'
+
+gem 'jquery-rails'
