@@ -1,5 +1,8 @@
 class Public::UsersController < ApplicationController
   def show
+    # 仮置き
+    @users = User.all
+
     @user = User.find(params[:id])
 
     food_favorites = FavoriteFood.where(user_id: params[:id]).pluck(:food_id)

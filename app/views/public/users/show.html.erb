@@ -1,7 +1,12 @@
 <h1>Public::Users#show</h1>
 <p>Find me in app/views/public/users/show.html.erb</p>
+<!--仮置き-->
+<p>仮置きのユーザー一覧</p>
+<% @users.each do |user| %>
+  <%= link_to user.name, user_path(user.id) %>
+<% end %>
 
-<%= link_to '編集する', edit_user_path(@user) %>
+<%= link_to '編集する', edit_user_path(@user) %><br>
 <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "img/no_image.jpg"%>
 <%= @user.name %>
 <%= @user.introduction %>
