@@ -1,6 +1,9 @@
 class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
+
+    food_favorites = FavoriteFood.where(user_id: params[:id]).pluck(:food_id)
+    @favorite_foods = Food.find(food_favorites).last(4)
   end
 
   def edit

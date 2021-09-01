@@ -1,2 +1,14 @@
 <h1>Public::FavoriteFoods#index</h1>
 <p>Find me in app/views/public/favorite_foods/index.html.erb</p>
+
+<% if @favorite_foods.present? %>
+  <% @favorite_foods.each do |food| %>
+    <%= food.id %>
+    <%= attachment_image_tag food, :image, :fill, 60, 60 %>
+    <%= link_to food.name, food_path(food.id) %>
+    <%= attachment_image_tag food.shop, :shop_image, :fill, 60, 60 %>
+    <%= link_to food.shop.name, shop_path(food.shop.id) %>
+  <% end %>
+<% else %>
+  <p>sasas</p>
+<% end %>

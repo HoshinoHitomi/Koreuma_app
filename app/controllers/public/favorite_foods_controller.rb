@@ -1,5 +1,7 @@
 class Public::FavoriteFoodsController < ApplicationController
   def index
+    favorite_foods = FavoriteFood.where(user_id: params[:user_id]).pluck(:food_id)
+    @favorite_foods = Food.find(favorite_foods)
   end
 
   def create

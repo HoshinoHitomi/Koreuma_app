@@ -37,7 +37,9 @@ Rails.application.routes.draw do
     get '/which_sign_up' => 'homes#which_sign_up', as: 'which_sign_up'
     get '/which_sign_in' => 'homes#which_sign_in', as: 'which_sign_in'
     resources :informations, only: [:index, :show]
-    resources :users, except: [:index, :new, :destroy]
+    resources :users, except: [:index, :new, :create, :destroy] do
+      resources :favorite_foods, only: [:index]
+    end
     get '/confirm' => 'users#confirm', as: 'confirm'
     patch '/withdrawl' => 'users#withdrawl', as: 'withdrawl'
     resources :foods, only: [:index, :show] do

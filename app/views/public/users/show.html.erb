@@ -10,3 +10,11 @@
 <%= @user.bitter_like %>
 <%= @user.sour_like %>
 <%= @user.spicy_like %>
+
+<%= link_to 'お気に入り食べ物一覧', user_favorite_foods_path(current_user) %>
+
+<% if @favorite_foods.present? %>
+  <% @favorite_foods.each do |food| %>
+    <%= food.name %>
+  <% end %>
+<% end %>

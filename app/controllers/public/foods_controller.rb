@@ -4,6 +4,7 @@ class Public::FoodsController < ApplicationController
   end
 
   def show
+    binding.pry
     @food = Food.find(params[:id])
     @shop = Shop.find_by(id: :shop_id)
 

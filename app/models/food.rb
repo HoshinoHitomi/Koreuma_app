@@ -1,6 +1,7 @@
 class Food < ApplicationRecord
   belongs_to :shop
   belongs_to :genre
+  has_many :users, through: :favorite_foods
   has_many :favorite_foods, dependent: :destroy
 
   def food_favorited_by?(user)
