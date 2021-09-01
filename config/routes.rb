@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # deviseのルーティング
   devise_for :admins, controllers: {
     sessions: 'admins/sessions',
     passwords: 'admins/passwords',
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
   }
 
+  # 管理者側のルーティング
   namespace :admin do
     root to: 'homes#top'
     resources :informations
@@ -23,6 +25,7 @@ Rails.application.routes.draw do
     resources :users, except: [:new, :create, :destroy]
   end
 
+  # 店側のルーティング
   namespace :shop do
     root to: 'homes#top'
     resource :homes, only: [:edit, :update]
@@ -31,17 +34,24 @@ Rails.application.routes.draw do
     resources :foods
   end
 
+  # エンドユーザーのルーティング
   scope module: :public do
+    # トップページ
     root to: 'homes#top'
     get '/about' => 'homes#about', as: 'about'
     get '/which_sign_up' => 'homes#which_sign_up', as: 'which_sign_up'
     get '/which_sign_in' => 'homes#which_sign_in', as: 'which_sign_in'
     resources :informations, only: [:index, :show]
+
+    # ユーザーのマイページ関連、お気に入り一覧へのルーティング
     resources :users, except: [:index, :new, :create, :destroy] do
       resources :favorite_foods, only: [:index]
+      resources :favorite_shops, only: [:index]
     end
     get '/confirm' => 'users#confirm', as: 'confirm'
     patch '/withdrawl' => 'users#withdrawl', as: 'withdrawl'
+
+    # 閲覧機能とお気に入り機能関連のルーティング
     resources :foods, only: [:index, :show] do
       resource :favorite_foods, only: [:create, :destroy]
     end

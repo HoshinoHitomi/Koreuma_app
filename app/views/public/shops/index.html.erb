@@ -7,5 +7,6 @@
   <% @shops.each do |shop| %>
     <%= attachment_image_tag shop, :shop_image, :fill, 60, 60 %>
     <%= link_to shop.name, shop_path(shop) %>
+    <%= shop.favorite_shops.count %>
   <% end %>
 <% end %>

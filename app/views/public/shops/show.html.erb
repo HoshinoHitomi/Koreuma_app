@@ -1,5 +1,7 @@
 <h1>Public::Shops#show</h1>
 <p>Find me in app/views/public/shops/show.html.erb</p>
+<%= @shop.favorite_shops.count %>
+
 <%= @shop.name %>
 
 <%= attachment_image_tag @shop, :shop_image, :fill, 60, 60, fallback: "img/no_image.jpg"%>
@@ -11,6 +13,22 @@
 <%= @shop.phone_number %>
 
 <%= @shop.working_time %>
+
+<% if user_signed_in? %>
+  <% if @shop.shop_favorited_by?(current_user) %>
+    <p>
+      <%= link_to shop_favorite_shops_path(@shop), method: :delete do %>
+        ♥<%= @shop.favorite_shops.count %> いいね
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to shop_favorite_shops_path(@shop), method: :post do %>
+        ♡<%= @shop.favorite_shops.count %> いいね
+      <% end %>
+    </p>
+  <% end %>
+<% end %>
 
 <h2><%= @shop.name %>の食べ物一覧</h2>
 

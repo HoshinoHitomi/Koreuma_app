@@ -1,12 +1,12 @@
 class Public::UsersController < ApplicationController
   def show
-    # 仮置き
-    @users = User.all
-
     @user = User.find(params[:id])
 
     food_favorites = FavoriteFood.where(user_id: params[:id]).pluck(:food_id)
     @favorite_foods = Food.find(food_favorites).last(4)
+
+    shop_favorites = FavoriteShop.where(user_id: params[:id]).pluck(:shop_id)
+    @favorite_shops = Shop.find(shop_favorites).last(4)
   end
 
   def edit

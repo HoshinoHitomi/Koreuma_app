@@ -1,12 +1,7 @@
 <h1>Public::Users#show</h1>
 <p>Find me in app/views/public/users/show.html.erb</p>
-<!--仮置き-->
-<p>仮置きのユーザー一覧</p>
-<% @users.each do |user| %>
-  <%= link_to user.name, user_path(user.id) %>
-<% end %>
 
-<%= link_to '編集する', edit_user_path(@user) %><br>
+<%= link_to '編集する', edit_user_path(@user) %>
 <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "img/no_image.jpg"%>
 <%= @user.name %>
 <%= @user.introduction %>
@@ -16,10 +11,20 @@
 <%= @user.sour_like %>
 <%= @user.spicy_like %>
 
-<%= link_to 'お気に入り食べ物一覧', user_favorite_foods_path(current_user) %>
-
 <% if @favorite_foods.present? %>
   <% @favorite_foods.each do |food| %>
     <%= food.name %>
   <% end %>
+  <%= link_to 'お気に入り食べ物一覧へ', user_favorite_foods_path(@user.id) %>
+<% else %>
+  <p>お気に入り登録した食べ物がありません。</p>
+<% end %>
+
+<% if @favorite_shops.present? %>
+  <% @favorite_shops.each do |shop| %>
+    <%= shop.name %>
+  <% end %>
+  <%= link_to 'お気に入りお店一覧へ', user_favorite_shops_path(@user.id) %>
+<% else %>
+  <p>お気に入り登録したお店がありません。</p>
 <% end %>
