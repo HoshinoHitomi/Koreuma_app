@@ -56,7 +56,7 @@ Rails.application.routes.draw do
     resources :foods, only: [:index, :show] do
       resource :favorite_foods, only: [:create, :destroy]
       # レビュー投稿のルーティング
-      resource :reviews, only: [:create, :destroy]
+      resource :reviews, only: [:create, :edit, :update, :destroy]
     end
     resources :shops, only: [:index, :show] do
       resource :favorite_shops, only: [:create, :destroy]

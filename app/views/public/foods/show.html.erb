@@ -83,6 +83,7 @@
     <div id="your-star-raty-<%= review.id %>">
       <%= review.taste_score %>
     </div>
+    <%= link_to '編集する', edit_food_reviews_path(@food.id) %>
         <script>
       $('#your-star-raty-<%= review.id %>').raty({
         size     : 36,

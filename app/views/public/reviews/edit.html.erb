@@ -1,0 +1,34 @@
+<%= form_with model: @review, url: food_reviews_path, local:true do |f| %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :food_id, :value => params[:food_id] %>
+
+    <%= f.text_area :body %>
+
+    <%= f.range_field :smell_strong, in: 0..10 %>
+    <%= f.range_field :taste_strong, in: 0..10 %>
+
+    <%= f.label :repeat %>
+
+    <%= f.radio_button :repeat, true, :chacked => true %>
+    <%= f.radio_button :repeat, false %>
+
+    <div class="field" id="star-rating">
+      <%= f.label :taste_score %>
+      <%= f.hidden_field :taste_score, id: :review_star %>
+    </div>
+
+    <%= f.submit 'レビューを投稿する' %>
+<% end %>
+
+<%= link_to 'レビューを削除する', food_reviews_path(params[:food_id]), method: :delete %>
+
+<script>
+  $('#star-rating').raty({
+    size     : 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf : '<%= asset_path('star-half.png') %>',
+    half: true,
+    scoreName: 'review[taste_score]'
+  });
+</script>
