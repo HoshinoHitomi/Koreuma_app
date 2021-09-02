@@ -53,27 +53,49 @@
 <%= @taste_strong_average.floor(1) %>
 
 <p>レビューする</p>
-<%= form_with model: @review, url: food_reviews_path(@food), method: :post, local:true do |f| %>
 
-  <%= f.hidden_field :user_id, :value => current_user.id %>
-  <%= f.hidden_field :food_id, :value => params[:id] %>
+<% if @your_review.empty? %>
+  <%= form_with model: @review, url: food_reviews_path(@food), method: :post, local:true do |f| %>
 
-  <%= f.text_area :body %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :food_id, :value => params[:id] %>
 
-  <%= f.range_field :smell_strong, in: 0..10 %>
-  <%= f.range_field :taste_strong, in: 0..10 %>
+    <%= f.text_area :body %>
 
-  <%= f.label :repeat %>
+    <%= f.range_field :smell_strong, in: 0..10 %>
+    <%= f.range_field :taste_strong, in: 0..10 %>
 
-  <%= f.radio_button :repeat, true, :chacked => true %>
-  <%= f.radio_button :repeat, false %>
+    <%= f.label :repeat %>
 
-  <div class="field" id="star-rating">
-    <%= f.label :taste_score %>
-    <%= f.hidden_field :taste_score, id: :review_star %>
-  </div>
+    <%= f.radio_button :repeat, true, :chacked => true %>
+    <%= f.radio_button :repeat, false %>
 
-  <%= f.submit 'レビューを投稿する' %>
+    <div class="field" id="star-rating">
+      <%= f.label :taste_score %>
+      <%= f.hidden_field :taste_score, id: :review_star %>
+    </div>
+
+    <%= f.submit 'レビューを投稿する' %>
+  <% end %>
+<% else %>
+  <% @your_review.each do |review| %>
+    <%= review.body %>
+    <div id="your-star-raty-<%= review.id %>">
+      <%= review.taste_score %>
+    </div>
+        <script>
+      $('#your-star-raty-<%= review.id %>').raty({
+        size     : 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf : '<%= asset_path('star-half.png') %>',
+        half: true,
+        readOnly: true,
+        score: '<%= review.taste_score %>'
+      });
+    </script>
+      <%= review.repeat %>
+  <% end %>
 <% end %>
 
 <% if @reviews.empty? %>
