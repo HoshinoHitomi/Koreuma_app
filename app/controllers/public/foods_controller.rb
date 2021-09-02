@@ -6,21 +6,6 @@ class Public::FoodsController < ApplicationController
   def show
     @food = Food.find(params[:id])
 
-    sweet_like = Food.pluck(:sweet_like)
-    @sweet_like_average = sweet_like.sum.fdiv(sweet_like.length)
-
-    salty_like = Food.pluck(:salty_like)
-    @salty_like_average = salty_like.sum.fdiv(salty_like.length)
-
-    bitter_like = Food.pluck(:bitter_like)
-    @bitter_like_average = bitter_like.sum.fdiv(bitter_like.length)
-
-    sour_like = Food.pluck(:sour_like)
-    @sour_like_average = sour_like.sum.fdiv(sour_like.length)
-
-    spicy_like = Food.pluck(:spicy_like)
-    @spicy_like_average = spicy_like.sum.fdiv(spicy_like.length)
-
     taste_strong = Review.pluck(:taste_strong)
     @taste_strong_average = taste_strong.sum.fdiv(taste_strong.length)
 

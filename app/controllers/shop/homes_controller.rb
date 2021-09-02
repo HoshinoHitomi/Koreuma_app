@@ -1,7 +1,7 @@
 class Shop::HomesController < ApplicationController
   def top
     @shop = current_shop
-    @foods = Food.all
+    @foods = @shop.foods.page(params[:page])
   end
 
   def edit

@@ -26,17 +26,11 @@
 
 <h2>また食べたい味と思ったユーザーの味の好み度統計</h2>
 
-<%= @sweet_like_average %>
-<%= @salty_like_average %>
-<%= @bitter_like_average %>
-<%= @sour_like_average %>
-<%= @spicy_like_average %>
-
-<%= range_field @food, :sweet_like, :disabled => true %>
-<%= range_field @food, :salty_like, :disabled => true %>
-<%= range_field @food, :bitter_like, :disabled => true %>
-<%= range_field @food, :sour_like, :disabled => true %>
-<%= range_field @food, :spicy_like, :disabled => true %>
+<%= @food.sweet_like %>
+<%= @food.salty_like %>
+<%= @food.bitter_like %>
+<%= @food.sour_like %>
+<%= @food.spicy_like %>
 
 <% if user_signed_in? %>
   <% if @food.food_favorited_by?(current_user) %>
@@ -71,8 +65,8 @@
 
   <%= f.label :repeat %>
 
-  <%= f.radio_button :repeat, :true %>
-  <%= f.radio_button :repeat, :false %>
+  <%= f.radio_button :repeat, true, :chacked => true %>
+  <%= f.radio_button :repeat, false %>
 
   <div class="field" id="star-rating">
     <%= f.label :taste_score %>

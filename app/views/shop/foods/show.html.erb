@@ -27,11 +27,11 @@
 
 <h2>また食べたい味と思ったユーザーの味の好み度統計</h2>
 
-<%= @sweet_like_average %>
-<%= @salty_like_average %>
-<%= @bitter_like_average %>
-<%= @sour_like_average %>
-<%= @spicy_like_average %>
+<%= @food.sweet_like %>
+<%= @food.salty_like %>
+<%= @food.bitter_like %>
+<%= @food.sour_like %>
+<%= @food.spicy_like %>
 
 <%= range_field @food, :sweet_like, :disabled => true %>
 <%= range_field @food, :salty_like, :disabled => true %>
