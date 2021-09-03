@@ -1,2 +1,8 @@
 <h1>Public::Reviews#index</h1>
 <p>Find me in app/views/public/reviews/index.html.erb</p>
+
+<% @reviews.each do |review| %>
+  <%= attachment_image_tag review.food, :image, :fill, 60, 60 %>
+  <%= link_to review.food.name, food_path(review.food_id) %>
+  <%= review.body %>
+<% end %>

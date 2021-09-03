@@ -7,6 +7,8 @@ class Public::UsersController < ApplicationController
 
     shop_favorites = FavoriteShop.where(user_id: params[:id]).pluck(:shop_id)
     @favorite_shops = Shop.find(shop_favorites).last(4)
+
+    @reviews = @user.reviews
   end
 
   def edit

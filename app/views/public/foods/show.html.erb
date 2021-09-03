@@ -1,6 +1,6 @@
 <h1>Public::Foods#show</h1>
 <p>Find me in app/views/public/foods/show.html.erb</p>
-<%= @food.favorite_foods.count %>
+お気に入り登録数/ <%= @food.favorite_foods.count %>
 
 <%= @food.shop.name %>
 
@@ -26,11 +26,11 @@
 
 <h2>また食べたい味と思ったユーザーの味の好み度統計</h2>
 
-<%= @food.sweet_like %>
-<%= @food.salty_like %>
-<%= @food.bitter_like %>
-<%= @food.sour_like %>
-<%= @food.spicy_like %>
+甘味<%= @food.sweet_like.floor(1) %>
+塩味<%= @food.salty_like.floor(1) %>
+苦味<%= @food.bitter_like.floor(1) %>
+酸味<%= @food.sour_like.floor(1) %>
+辛味<%= @food.spicy_like.floor(1) %>
 
 <% if user_signed_in? %>
   <% if @food.food_favorited_by?(current_user) %>
@@ -50,53 +50,63 @@
 
 <h2>レビューと評価</h2>
 
-<%= @taste_strong_average.floor(1) %>
+香りの強さ<%= @taste_strong_average.floor(1) %>
+味の濃さ<%= @smell_strong_average.floor(1) %>
 
 <p>レビューする</p>
 
-<% if @your_review.empty? %>
-  <%= form_with model: @review, url: food_reviews_path(@food), method: :post, local:true do |f| %>
+<% if user_signed_in? %>
 
-    <%= f.hidden_field :user_id, :value => current_user.id %>
-    <%= f.hidden_field :food_id, :value => params[:id] %>
+  <% if @your_review.empty? %>
+    <%= form_with model: @review, url: food_reviews_path(@food), method: :post, local:true do |f| %>
 
-    <%= f.text_area :body %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.hidden_field :food_id, :value => params[:id] %>
 
-    <%= f.range_field :smell_strong, in: 0..10 %>
-    <%= f.range_field :taste_strong, in: 0..10 %>
+      <%= f.text_area :body %>
 
-    <%= f.label :repeat %>
+      <%= f.label :smell_strong %>
+      <%= f.range_field :smell_strong, in: 0..10 %>
 
-    <%= f.radio_button :repeat, true, :chacked => true %>
-    <%= f.radio_button :repeat, false %>
+      <%= f.label :taste_strong %>
+      <%= f.range_field :taste_strong, in: 0..10 %>
 
-    <div class="field" id="star-rating">
-      <%= f.label :taste_score %>
-      <%= f.hidden_field :taste_score, id: :review_star %>
-    </div>
+      <%= f.label :repeat %>
 
-    <%= f.submit 'レビューを投稿する' %>
+      <%= f.radio_button :repeat, true, :chacked => true %>
+      <%= f.radio_button :repeat, false %>
+
+      <div class="field" id="star-rating">
+        <%= f.label :taste_score %>
+        <%= f.hidden_field :taste_score, id: :review_star %>
+      </div>
+
+      <%= f.submit 'レビューを投稿する' %>
+    <% end %>
+  <% else %>
+    <% @your_review.each do |review| %>
+      <%= review.body %>
+      <div id="your-star-raty-<%= review.id %>">
+        <%= review.taste_score %>
+      </div>
+      <%= link_to '編集する', edit_food_reviews_path(@food.id) %>
+          <script>
+        $('#your-star-raty-<%= review.id %>').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf : '<%= asset_path('star-half.png') %>',
+          half: true,
+          readOnly: true,
+          score: '<%= review.taste_score %>'
+        });
+      </script>
+        <%= review.repeat %>
+    <% end %>
   <% end %>
+
 <% else %>
-  <% @your_review.each do |review| %>
-    <%= review.body %>
-    <div id="your-star-raty-<%= review.id %>">
-      <%= review.taste_score %>
-    </div>
-    <%= link_to '編集する', edit_food_reviews_path(@food.id) %>
-        <script>
-      $('#your-star-raty-<%= review.id %>').raty({
-        size     : 36,
-        starOff:  '<%= asset_path('star-off.png') %>',
-        starOn : '<%= asset_path('star-on.png') %>',
-        starHalf : '<%= asset_path('star-half.png') %>',
-        half: true,
-        readOnly: true,
-        score: '<%= review.taste_score %>'
-      });
-    </script>
-      <%= review.repeat %>
-  <% end %>
+  <p>新規登録 / ログインでレビュー投稿ができます。</p>
 <% end %>
 
 <% if @reviews.empty? %>
@@ -104,11 +114,27 @@
 <% else %>
   <% @reviews.each do |review| %>
       <%= review.body %>
-      <%= review.user.name %>
+      <%= link_to review.user.name, user_path(review.user.id) %>
     <div id="star-raty-<%= review.id %>">
       <%= review.taste_score %>
     </div>
       <%= review.repeat %>
+      <!--<% if user_signed_in? %>-->
+
+      <!--<% if review.helphul_by?(current_user) %>-->
+      <!--  <p>-->
+      <!--    <%= link_to food_reviews_helphulnesses_path(@food.id), method: :delete do %>-->
+      <!--      ♥<%= review.helphulnesses.count %> いいね-->
+      <!--    <% end %>-->
+      <!--  </p>-->
+      <!--  <% else %>-->
+      <!--  <p>-->
+      <!--    <%= link_to food_reviews_helphulnesses_path(@food.id), method: :post do %>-->
+      <!--      ♡<%= review.helphulnesses.count %> いいね-->
+      <!--    <% end %>-->
+      <!--  </p>-->
+      <!--<% end %>-->
+<% end %>
     <script>
       $('#star-raty-<%= review.id %>').raty({
         size     : 36,

@@ -1,5 +1,11 @@
 class Review < ApplicationRecord
   belongs_to :user
+  belongs_to :food
+  has_many :helphulnesses, dependent: :destroy
+
+  def helphul_by?(user)
+    helphulnesses.where(user_id: user.id).exists?
+  end
 
     validates :taste_score, numericality: {
     less_than_or_equal_to: 5,

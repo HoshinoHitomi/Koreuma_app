@@ -1,5 +1,7 @@
 class Public::ReviewsController < ApplicationController
   def index
+    user = User.find(params[:user_id])
+    @reviews = user.reviews
   end
 
   def create

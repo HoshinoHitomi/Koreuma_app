@@ -1,2 +1,35 @@
 <h1>Public::Homes#top</h1>
 <p>Find me in app/views/public/homes/top.html.erb</p>
+
+<% @food_ranks.each.with_index(1) do |food, i| %>
+  <%=  i  %>位
+  <%= attachment_image_tag food, :image, :fill, 60, 60 %>
+  <%= link_to food.name, food_path(food) %>
+  <%= food.status %>
+  <%= food.sale_dates %>
+  <%= food.favorite_foods.count %>
+<% end %>
+
+<% @shop_ranks.each do |shop| %>
+  <%= attachment_image_tag shop, :shop_image, :fill, 60, 60, fallback: 'img/no_image.jpg' %>
+  <%= link_to shop.name, shop_path(shop) %>
+  <%= shop.favorite_shops.count %>
+<% end %>
+
+<% @foods.each do |food| %>
+  <%= attachment_image_tag food, :image, :fill, 60, 60 %>
+  <%= link_to food.name, food_path(food) %>
+  <%= food.status %>
+  <%= food.sale_dates %>
+  <%= food.favorite_foods.count %>
+<% end %>
+
+<%= link_to '食べ物をもっと見る', foods_path %>
+
+<% @shops.each do |shop| %>
+  <%= attachment_image_tag shop, :shop_image, :fill, 60, 60, fallback: 'img/no_image.jpg' %>
+  <%= link_to shop.name, shop_path(shop) %>
+  <%= shop.favorite_shops.count %>
+<% end %>
+
+<%= link_to 'お店をもっと見る', shops_path %>

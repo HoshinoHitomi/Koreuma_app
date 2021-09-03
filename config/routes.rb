@@ -48,6 +48,9 @@ Rails.application.routes.draw do
       resources :favorite_foods, only: [:index]
       resources :favorite_shops, only: [:index]
       resources :reviews, only: [:index]
+      resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
     end
     get '/confirm' => 'users#confirm', as: 'confirm'
     patch '/withdrawl' => 'users#withdrawl', as: 'withdrawl'
@@ -56,7 +59,9 @@ Rails.application.routes.draw do
     resources :foods, only: [:index, :show] do
       resource :favorite_foods, only: [:create, :destroy]
       # レビュー投稿のルーティング
-      resource :reviews, only: [:create, :edit, :update, :destroy]
+      resource :reviews, only: [:create, :edit, :update, :destroy] do
+        resource :helphulnesses, only: [:create, :destroy]
+      end
     end
     resources :shops, only: [:index, :show] do
       resource :favorite_shops, only: [:create, :destroy]

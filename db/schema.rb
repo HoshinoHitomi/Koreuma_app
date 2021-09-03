@@ -58,11 +58,6 @@ ActiveRecord::Schema.define(version: 2021_08_30_175813) do
     t.float "spicy_like", default: 2.5, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["bitter_like"], name: "index_foods_on_bitter_like"
-    t.index ["salty_like"], name: "index_foods_on_salty_like"
-    t.index ["sour_like"], name: "index_foods_on_sour_like"
-    t.index ["spicy_like"], name: "index_foods_on_spicy_like"
-    t.index ["sweet_like"], name: "index_foods_on_sweet_like"
   end
 
   create_table "genres", force: :cascade do |t|
