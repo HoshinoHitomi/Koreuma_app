@@ -15,7 +15,7 @@
 
 <%= link_to @user.followings.count, user_followings_path(@user) %>フォロー
 <%= link_to @user.followers.count, user_followers_path(@user) %>フォロワー
-<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "img/no_image.jpg"%>
+<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
 <%= @user.name %>
 <%= @user.introduction %>
 <%= @user.sweet_like %>

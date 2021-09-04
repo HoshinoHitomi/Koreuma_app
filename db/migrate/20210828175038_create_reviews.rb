@@ -9,6 +9,12 @@ class CreateReviews < ActiveRecord::Migration[5.2]
       t.text    :body
       t.boolean :repeat, null: false, default: true
 
+      t.integer :sweet_like
+      t.integer :salty_like
+      t.integer :bitter_like
+      t.integer :sour_like
+      t.integer :spicy_like
+
       t.timestamps
     end
   end

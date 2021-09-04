@@ -11,7 +11,7 @@
 <% end %>
 
 <% @shop_ranks.each do |shop| %>
-  <%= attachment_image_tag shop, :shop_image, :fill, 60, 60, fallback: 'img/no_image.jpg' %>
+  <%= attachment_image_tag shop, :shop_image, :fill, 60, 60, fallback: 'no_image.jpg' %>
   <%= link_to shop.name, shop_path(shop) %>
   <%= shop.favorite_shops.count %>
 <% end %>
@@ -27,7 +27,7 @@
 <%= link_to '食べ物をもっと見る', foods_path %>
 
 <% @shops.each do |shop| %>
-  <%= attachment_image_tag shop, :shop_image, :fill, 60, 60, fallback: 'img/no_image.jpg' %>
+  <%= attachment_image_tag shop, :shop_image, :fill, 60, 60, fallback: 'no_image.jpg' %>
   <%= link_to shop.name, shop_path(shop) %>
   <%= shop.favorite_shops.count %>
 <% end %>

@@ -12,11 +12,6 @@ class CreateFoods < ActiveRecord::Migration[5.2]
       t.integer :status, null: false, default: 0
       t.date    :sale_dates
       t.integer :food_temperature, null: false, default: 0
-      t.float   :sweet_like,  null: false, default: 2.5
-      t.float   :salty_like,  null: false, default: 2.5
-      t.float   :bitter_like, null: false, default: 2.5
-      t.float   :sour_like,   null: false, default: 2.5
-      t.float   :spicy_like,  null: false, default: 2.5
 
       t.timestamps
     end

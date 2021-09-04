@@ -51,11 +51,6 @@ ActiveRecord::Schema.define(version: 2021_08_30_175813) do
     t.integer "status", default: 0, null: false
     t.date "sale_dates"
     t.integer "food_temperature", default: 0, null: false
-    t.float "sweet_like", default: 2.5, null: false
-    t.float "salty_like", default: 2.5, null: false
-    t.float "bitter_like", default: 2.5, null: false
-    t.float "sour_like", default: 2.5, null: false
-    t.float "spicy_like", default: 2.5, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -102,6 +97,11 @@ ActiveRecord::Schema.define(version: 2021_08_30_175813) do
     t.float "taste_score", null: false
     t.text "body"
     t.boolean "repeat", default: true, null: false
+    t.integer "sweet_like"
+    t.integer "salty_like"
+    t.integer "bitter_like"
+    t.integer "sour_like"
+    t.integer "spicy_like"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

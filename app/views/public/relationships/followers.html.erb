@@ -1,6 +1,6 @@
 <% if @users.exists? %>
   <% @users.each do |user| %>
-    <%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: 'img/no_image.jpg' %>
+    <%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: 'no_image.jpg' %>
     <%= link_to user.name, user_path(user) %>
     <%= user.followings.count %>
     <%= user.followers.count %>
