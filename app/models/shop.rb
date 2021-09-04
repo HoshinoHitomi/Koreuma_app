@@ -16,4 +16,9 @@ class Shop < ApplicationRecord
   def active_for_authentication?
     super && (self.is_active == true)
   end
+
+  def self.seatch(search)
+    return Shop.all unless search
+    Shop.where(['name LIKE ?', "%#{search}%"])
+  end
 end

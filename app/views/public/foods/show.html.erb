@@ -119,22 +119,7 @@
       <%= review.taste_score %>
     </div>
       <%= review.repeat %>
-      <!--<% if user_signed_in? %>-->
 
-      <!--<% if review.helphul_by?(current_user) %>-->
-      <!--  <p>-->
-      <!--    <%= link_to food_reviews_helphulnesses_path(@food.id), method: :delete do %>-->
-      <!--      ♥<%= review.helphulnesses.count %> いいね-->
-      <!--    <% end %>-->
-      <!--  </p>-->
-      <!--  <% else %>-->
-      <!--  <p>-->
-      <!--    <%= link_to food_reviews_helphulnesses_path(@food.id), method: :post do %>-->
-      <!--      ♡<%= review.helphulnesses.count %> いいね-->
-      <!--    <% end %>-->
-      <!--  </p>-->
-      <!--<% end %>-->
-<% end %>
     <script>
       $('#star-raty-<%= review.id %>').raty({
         size     : 36,

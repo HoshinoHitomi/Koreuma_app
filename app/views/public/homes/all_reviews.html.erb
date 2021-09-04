@@ -1,0 +1,10 @@
+<% if @reviews.empty? %>
+  <p>まだ誰もレビュー投稿をしていません</p>
+<% else %>
+  <% @reviews.each do |review| %>
+    <%= attachment_image_tag review.food, :image, :fill, 60, 60 %>
+    <%= link_to review.food.name, food_path(review.food.id) %>
+    <%= review.body %>
+    <%= link_to review.user.name, user_path(review.user.id) %>
+  <% end %>
+<% end %>

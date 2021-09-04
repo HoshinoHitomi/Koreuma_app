@@ -12,6 +12,7 @@
   <li><%= link_to 'マイページ', user_path(current_user.id) %></li>
   <li><%= link_to '食べ物', foods_path %></li>
   <li><%= link_to 'お店', shops_path %></li>
+  <li><%= link_to '全レビュー一覧', all_reviews_path %></li>
   <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
 <% else %>
   <li><%= link_to 'コレうまって？', about_path %></li>
@@ -19,4 +20,5 @@
   <li><%= link_to 'お店', shops_path %></li>
   <li><%= link_to '新規登録', which_sign_up_path %></li>
   <li><%= link_to 'ログイン', which_sign_in_path %></li>
+  <li><%= link_to '全レビュー一覧', all_reviews_path %></li>
 <% end %>

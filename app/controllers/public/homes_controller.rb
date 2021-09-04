@@ -14,4 +14,8 @@ class Public::HomesController < ApplicationController
 
   def which_sign_in
   end
+
+  def all_reviews
+    @reviews = Review.all
+  end
 end

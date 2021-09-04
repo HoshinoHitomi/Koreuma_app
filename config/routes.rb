@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resources :genres, except: [:new, :destroy]
     resources :shops, except: [:new, :create, :destroy]
     resources :users, except: [:new, :create, :destroy]
+    resources :searches, only: [:index]
   end
 
   # 店側のルーティング
@@ -41,6 +42,7 @@ Rails.application.routes.draw do
     get '/about' => 'homes#about', as: 'about'
     get '/which_sign_up' => 'homes#which_sign_up', as: 'which_sign_up'
     get '/which_sign_in' => 'homes#which_sign_in', as: 'which_sign_in'
+    get '/all_reviews' => 'homes#all_reviews', as: 'all_reviews'
     resources :informations, only: [:index, :show]
 
     # ユーザーのマイページ関連、お気に入り一覧へのルーティング
