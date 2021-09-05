@@ -16,6 +16,15 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
   }
 
+  # ゲストログイン関連のルーティング
+  devise_scope :shop do
+    post 'shops/guest_sign_in', to: 'shops/sessions#guest_sign_in'
+  end
+
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end
+
   # 管理者側のルーティング
   namespace :admin do
     root to: 'homes#top'

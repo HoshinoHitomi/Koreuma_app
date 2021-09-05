@@ -10,8 +10,12 @@ class Shop::HomesController < ApplicationController
 
   def update
     @shop = Shop.find_by(id: current_shop.id)
-    @shop.update(shop_params)
-    redirect_to shop_root_path
+    if @shop.email == 'guest@shop'
+      redirect_to shop_root_path
+    else
+      @shop.update(shop_params)
+      redirect_to shop_root_path
+    end
   end
 
   def confirm
@@ -19,9 +23,13 @@ class Shop::HomesController < ApplicationController
 
   def withdrawl
     @shop = Shop.find_by(id: current_shop.id)
-    @shop.update(is_active: false)
-    reset_session
-    redirect_to root_path
+    if @shop.email == 'guest@shop'
+      redirect_to shop_root_path
+    else
+      @shop.update(is_active: false)
+      reset_session
+      redirect_to root_path
+    end
   end
 
   private

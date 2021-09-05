@@ -17,6 +17,16 @@ class Shop < ApplicationRecord
     super && (self.is_active == true)
   end
 
+  def self.guest
+    find_or_create_by!(email: 'guest@shop') do |shop|
+        shop.password = SecureRandom.urlsafe_base64
+        shop.name = 'ゲストさんのお店'
+        shop.address = '東京'
+        shop.phone_number = '1234567'
+        shop.working_time = '年中無休'
+    end
+  end
+
   def self.seatch(search)
     return Shop.all unless search
     Shop.where(['name LIKE ?', "%#{search}%"])

@@ -19,6 +19,12 @@ class Shops::SessionsController < Devise::SessionsController
   #   super
   # end
 
+  def guest_sign_in
+    shop = Shop.guest
+    sign_in shop
+    redirect_to shop_root_path
+  end
+
   protected
 
   def reject_shop
