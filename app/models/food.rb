@@ -16,5 +16,6 @@ class Food < ApplicationRecord
 
   def self.search(search)
     Food.where(['name LIKE ?', "%#{search}%"])
+    Food.where(['introduction LIKE ?', "%#{search}%"])
   end
 end

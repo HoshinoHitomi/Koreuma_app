@@ -1,5 +1,7 @@
 class Public::FoodsController < ApplicationController
   def index
+    @genres = Genre.all
+    @tastes = Food.tastes
     @foods = Food.all
   end
 

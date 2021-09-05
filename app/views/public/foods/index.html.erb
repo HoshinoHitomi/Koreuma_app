@@ -1,6 +1,14 @@
 <h1>Public::Foods#index</h1>
 <p>Find me in app/views/public/foods/index.html.erb</p>
 
+<% @genres.each do |genre| %>
+  <%= link_to genre.name, searches_path(genre_search: genre.id) %>
+<% end %>
+
+<% @tastes.each do |taste| %>
+  <%= link_to taste, searches_path(taste_search: taste) %>
+<% end %>
+
 <% if @foods.empty? %>
   <p>まだ食べ物が登録されていません。</p>
 <% else %>
