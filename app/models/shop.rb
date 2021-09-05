@@ -27,8 +27,7 @@ class Shop < ApplicationRecord
     end
   end
 
-  def self.seatch(search)
-    return Shop.all unless search
+  def self.search(search)
     Shop.where(['name LIKE ?', "%#{search}%"])
   end
 end

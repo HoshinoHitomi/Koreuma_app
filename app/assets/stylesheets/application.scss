@@ -13,3 +13,32 @@
  *= require_tree .
  *= require_self
  */
+
+/* ↓タブを横並び↓ */
+.tab-list {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+/* ↓タブのデザイン↓ */
+.tab {
+  cursor: pointer;
+}
+.tab:first-child {
+  border-left: none;
+}
+/* ↓タブがアクティブになっている時のデザイン↓ */
+.tab-active {
+  transition: all 0.2s ease-in-out;
+}
+/* ↓タブの中身↓ */
+.tabbox {
+  /* ↓タブの中身を最初は非表示↓ */
+  display: none;
+  /* ↓タブの中身の余白↓ */
+  padding: 15px;
+}
+/* ↓このクラスがついている時だけタブの中身を表示↓ */
+.box-show {
+  display: block;
+}

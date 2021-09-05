@@ -4,16 +4,28 @@
   <li><%= link_to 'お店管理', admin_shops_path %></li>
   <li><%= link_to 'ユーザー管理', admin_users_path %></li>
   <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+  <%= form_with url: admin_searches_path, method: :get, local: true do |f| %>
+    <%= f.text_field :search, placeholder: 'キーワードで検索' %>
+    <%= f.submit '検索' %>
+  <% end %>
 <% elsif shop_signed_in? %>
   <li><%= link_to 'マイページ', shop_root_path %></li>
   <li><%= link_to '食べ物管理', shop_foods_path %></li>
   <li><%= link_to 'ログアウト', destroy_shop_session_path, method: :delete %></li>
+  <%= form_with url: shop_searches_path, method: :get, local: true do |f| %>
+    <%= f.text_field :search, placeholder: 'キーワードで検索' %>
+    <%= f.submit '検索' %>
+  <% end %>
 <% elsif user_signed_in? %>
   <li><%= link_to 'マイページ', user_path(current_user.id) %></li>
   <li><%= link_to '食べ物', foods_path %></li>
   <li><%= link_to 'お店', shops_path %></li>
   <li><%= link_to '全レビュー一覧', all_reviews_path %></li>
   <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+  <%= form_with url: searches_path, method: :get, local: true do |f| %>
+    <%= f.text_field :search, placeholder: 'キーワードで検索' %>
+    <%= f.submit '検索' %>
+  <% end %>
 <% else %>
   <li><%= link_to 'コレうまって？', about_path %></li>
   <li><%= link_to '食べ物', foods_path %></li>
@@ -21,4 +33,8 @@
   <li><%= link_to '新規登録', which_sign_up_path %></li>
   <li><%= link_to 'ログイン', which_sign_in_path %></li>
   <li><%= link_to '全レビュー一覧', all_reviews_path %></li>
+  <%= form_with url: searches_path, method: :get, local: true do |f| %>
+    <%= f.text_field :search, placeholder: 'キーワードで検索' %>
+    <%= f.submit '検索' %>
+  <% end %>
 <% end %>

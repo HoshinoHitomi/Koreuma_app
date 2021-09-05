@@ -40,6 +40,10 @@ class User < ApplicationRecord
     followings.include?(user)
   end
 
+  def self.search(search)
+    User.where(['name LIKE ?', "%#{search}%"])
+  end
+
   def self.guest
     find_or_create_by!(email: 'guest@user') do |user|
         user.password = SecureRandom.urlsafe_base64

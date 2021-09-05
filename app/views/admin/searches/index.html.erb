@@ -1,2 +1,50 @@
 <h1>Admin::Searches#index</h1>
 <p>Find me in app/views/admin/searches/index.html.erb</p>
+<h2>「<%= @search %>」の検索結果</h2>
+
+<ul class="tab-list">
+  <li class="tab box-active">ユーザー <%= @users.count %></li>
+  <li class="tab">お店 <%= @shops.count %></li>
+</ul>
+
+<div class="tabbox-contents">
+  <div class="tabbox box-show">
+    <% if @users.empty? %>
+      <p>「<%= @search %>」に該当するユーザーは見つかりませんでした。</p>
+    <% else %>
+      <% @users.each do |user| %>
+        <%= user.created_at %>
+        <%= user.id %>
+        <%= link_to user.name, admin_user_path(user.id) %>
+        <%= user.email %>
+        <%= user.is_active %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="tabbox">
+    <% if @shops.empty? %>
+      <p>「<%= @search %>」に該当するお店は見つかりませんでした。</p>
+    <% else %>
+      <% @shops.each do |shop| %>
+        <%= shop.created_at %>
+        <%= shop.id %>
+        <%= link_to shop.name, admin_shop_path(shop.id) %>
+        <%= shop.email %>
+        <%= shop.is_active %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  $(function() {
+      $('.tab').click(function(){
+          $('.tab-active').removeClass('tab-active');
+          $(this).addClass('tab-active');
+          $('.box-show').removeClass('box-show');
+          const index = $(this).index();
+          $('.tabbox').eq(index).addClass('box-show');
+      });
+  });
+</script>

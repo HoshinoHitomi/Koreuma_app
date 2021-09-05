@@ -1,0 +1,13 @@
+<h1>Shop::Searches#index</h1>
+<p>Find me in app/views/shop/searches/index.html.erb</p>
+
+<h2>「<%= @search %>」の検索結果</h2>
+
+<% if @foods.empty? %>
+  <p>「<%= @search %>」に該当する食べ物は見つかりませんでした。</p>
+<% else %>
+  <% @foods.each do |food| %>
+    <%= food.created_at %>
+    <%= link_to food.name, shop_food_path(food.id) %>
+  <% end %>
+<% end %>

@@ -42,6 +42,7 @@ Rails.application.routes.draw do
     get '/homes/confirm' => 'homes#confirm', as: 'confirm'
     patch '/homes/withdrawl' => 'homes#withdrawl', as: 'withdrawl'
     resources :foods
+    resources :searches, only: [:index]
   end
 
   # エンドユーザーのルーティング
@@ -53,6 +54,7 @@ Rails.application.routes.draw do
     get '/which_sign_in' => 'homes#which_sign_in', as: 'which_sign_in'
     get '/all_reviews' => 'homes#all_reviews', as: 'all_reviews'
     resources :informations, only: [:index, :show]
+    resources :searches, only: [:index]
 
     # ユーザーのマイページ関連、お気に入り一覧へのルーティング
     resources :users, except: [:index, :new, :create, :destroy] do
