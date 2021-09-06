@@ -10,17 +10,32 @@
   </head>
 
   <body>
-    <header>
-      <h1><%= link_to 'コレうま！', root_path %></h1>
+    <header class="shadow">
+      <div class="container-md">
+        <div class="row">
+          <div class="col-md-3">
+            <h1><%= link_to 'コレうま！', root_path %></h1>
 
-      <nav>
-        <ul>
-          <%= render 'layouts/header' %>
-        </ul>
-      </nav>
+          </div>
 
-      <h2>検索box</h2>
+
+          <div class="col-md-9">
+            <nav class="navbar navbar-expand-lg">
+              <ul class="navbar-nav">
+                <%= render 'layouts/header' %>
+              </ul>
+            </nav>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3 offset-md-7 mb-3">
+            <%= render 'layouts/search_form' %>
+          </div>
+        </div>
+      </div>
     </header>
+
     <%= yield %>
 
     <footer>

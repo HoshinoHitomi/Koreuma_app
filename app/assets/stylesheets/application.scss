@@ -13,6 +13,18 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
+header {
+  background-color: #EBAD75;
+}
+
+footer {
+  text-align: center;
+  background-color: #9E7810;
+}
 
 /* ↓タブを横並び↓ */
 .tab-list {

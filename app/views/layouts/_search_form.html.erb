@@ -1,0 +1,42 @@
+<% if admin_signed_in? %>
+  <%= form_with url: admin_searches_path, method: :get, local: true do |f| %>
+    <div class="input-group">
+
+      <%= f.text_field :search, placeholder: 'キーワードで検索', class: "form-control" %>
+
+      <span class="input-btn-group">
+        <%= button_tag type: "submit", class: 'btn btn-success' do %>
+          <i class="fas fa-search"></i>
+        <% end %>
+      </span>
+    </div>
+  <% end %>
+
+<% elsif shop_signed_in? %>
+  <%= form_with url: shop_searches_path, method: :get, local: true do |f| %>
+    <div class="input-group">
+
+      <%= f.text_field :search, placeholder: 'キーワードで検索', class: "form-control" %>
+
+      <span class="input-btn-group">
+        <%= button_tag type: "submit", class: 'btn btn-success' do %>
+          <i class="fas fa-search"></i>
+        <% end %>
+      </span>
+    </div>
+  <% end %>
+
+<% else %>
+    <%= form_with url: searches_path, method: :get, local: true do |f| %>
+      <div class="input-group">
+
+        <%= f.text_field :search, placeholder: 'キーワードで検索', class: "form-control" %>
+
+        <span class="input-btn-group">
+          <%= button_tag type: "submit", class: 'btn btn-success' do %>
+            <i class="fas fa-search"></i>
+          <% end %>
+        </span>
+      </div>
+    <% end %>
+<% end %>
