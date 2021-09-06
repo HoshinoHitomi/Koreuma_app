@@ -1,12 +1,19 @@
-class Admin::InformationsController < ApplicationController
+class Admin::InformationsController < Admin::ApplicationController
+  def index
+    redirect_to admin_root_path
+  end
+
   def new
     @information = Information.new
   end
 
   def create
     @information = Information.new(information_params)
-    @information.save
-    redirect_to admin_root_path
+    if @information.save
+      redirect_to admin_root_path
+    else
+      render :new
+    end
   end
 
   def show
