@@ -1,7 +1,6 @@
-<h1>Admin::Shops#show</h1>
-<p>Find me in app/views/admin/shops/show.html.erb</p>
+<h2><%= @shop.name %>のお店登録情報</h2>
 
-<%= link_to '編集する', edit_admin_shop_path(@shop) %>
+<%= link_to '編集する', edit_admin_shop_path(@shop), class: "btn btn-success" %>
 
 <%= @shop.id %>
 

@@ -26,8 +26,11 @@ class Admin::InformationsController < Admin::ApplicationController
 
   def update
     @information = Information.find(params[:id])
-    @information.update(information_params)
-    redirect_to admin_information_path(@information)
+    if @information.update(information_params)
+      redirect_to admin_information_path(@information)
+    else
+      render :edit
+    end
   end
 
   def destroy

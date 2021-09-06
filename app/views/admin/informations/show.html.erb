@@ -1,9 +1,12 @@
-<h1>Admin::Informations#show</h1>
-<p>Find me in app/views/admin/informations/show.html.erb</p>
-<%= @information.title %>
-<%= @information.body %>
-<%= @information.created_at %>
+<div class="border rounded p-3">
+  <h2><%= @information.title %></h2>
 
-<%= link_to '編集する', edit_admin_information_path %>
+  <p>
+    <%= @information.body %>
+  </p>
+    <%= @information.created_at %>
 
-<%= link_to '削除する', admin_information_path, method: :delete, 'data-confirm' => '本当に削除しますか？' %>
+  <%= link_to '編集する', edit_admin_information_path, class: "btn btn-success" %>
+
+  <%= link_to '削除する', admin_information_path, method: :delete, 'data-confirm' => '本当に削除しますか？', class: "btn btn-danger" %>
+</div>

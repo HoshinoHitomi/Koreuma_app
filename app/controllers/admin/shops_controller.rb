@@ -13,8 +13,11 @@ class Admin::ShopsController < Admin::ApplicationController
 
   def update
     @shop = Shop.find(params[:id])
-    @shop.update(shop_params)
-    redirect_to admin_shop_path(@shop)
+    if @shop.update(shop_params)
+      redirect_to admin_shop_path(@shop)
+    else
+      render :edit
+    end
   end
 
   private

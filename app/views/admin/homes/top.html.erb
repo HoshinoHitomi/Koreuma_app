@@ -1,6 +1,6 @@
 <h2>お知らせ一覧</h2>
 
-<%= link_to 'お知らせ投稿', new_admin_information_path, class: "btn btn-primary" %>
+<%= link_to 'お知らせ投稿', new_admin_information_path, class: "btn btn-primary float-right" %>
 
 <div class="row m-3">
   <% if @informations.empty? %>
@@ -9,16 +9,16 @@
     <table class="table">
 
       <tr>
-        <th>投稿日時</th>
-        <th>タイトル</th>
-        <th>本文</th>
+        <th class="created_at">投稿日時</th>
+        <th class="title">タイトル</th>
+        <th class="body">本文</th>
       </tr>
 
       <% @informations.each do |information| %>
         <tr>
           <td><%= information.created_at %></td>
           <td><%= link_to information.title, admin_information_path(information) %></td>
-          <td><%= information.body.truncate(10) %></td>
+          <td><%= information.body.truncate(25) %></td>
         </tr>
       <% end %>
 
