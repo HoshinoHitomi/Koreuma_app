@@ -1,10 +1,9 @@
 <div class="border rounded p-3">
-  <h2><%= @information.title %></h2>
+  <h2 class="border-bottom"><%= @information.title %></h2>
 
-  <p>
-    <%= @information.body %>
-  </p>
-    <%= @information.created_at %>
+  <p class="mt-3"><%= @information.body %></p>
+
+  <%= @information.created_at %>
 
   <%= link_to '編集する', edit_admin_information_path, class: "btn btn-success" %>
 

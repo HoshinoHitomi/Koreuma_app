@@ -1,17 +1,32 @@
 <h2><%= @shop.name %>のお店登録情報</h2>
 
-<%= link_to '編集する', edit_admin_shop_path(@shop), class: "btn btn-success" %>
+<div class="row mt-3 p-3 border rounded">
+  <div class="col-md-3">
+    <p>ID</p>
 
-<%= @shop.id %>
+    <p>店名</p>
 
-<%= @shop.name %>
+    <p>店メールアドレス</p>
 
-<%= attachment_image_tag @shop, :shop_image, :fill, 60, 60, fallback: "no_image.jpg"%>
+    <p>店住所</p>
 
-<%= @shop.introduction %>
+    <p>店電話番号</p>
 
-<%= @shop.address %>
+    <p>ステータス</p>
+  </div>
+  <div class="col-md-9">
+    <p><%= @shop.id %></p>
 
-<%= @shop.phone_number %>
+    <p><%= @shop.name %></p>
 
-<%= @shop.working_time %>
+    <p><%= @shop.email %></p>
+
+    <p><%= @shop.address %></p>
+
+    <p><%= @shop.phone_number %></p>
+
+    <p><%= @shop.is_active %></p>
+
+    <%= link_to '編集する', edit_admin_shop_path(@shop), class: "btn btn-success" %>
+  </div>
+</div>

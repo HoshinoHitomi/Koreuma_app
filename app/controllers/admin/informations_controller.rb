@@ -17,11 +17,19 @@ class Admin::InformationsController < Admin::ApplicationController
   end
 
   def show
-    @information = Information.find(params[:id])
+    @information = Information.find_by(id: params[:id])
+    if @information.nil?
+      flash[:alert] = "お知らせが見つかりませんでした。"
+      redirect_to admin_informations_path
+    end
   end
 
   def edit
-    @information = Information.find(params[:id])
+    @information = Information.find_by(id: params[:id])
+    if @information.nil?
+      flash[:alert] = "お知らせが見つかりませんでした。"
+      redirect_to admin_informations_path
+    end
   end
 
   def update

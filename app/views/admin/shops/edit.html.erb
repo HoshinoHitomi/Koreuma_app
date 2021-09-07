@@ -1,18 +1,38 @@
-<h1>Admin::Shops#edit</h1>
-<p>Find me in app/views/admin/shops/edit.html.erb</p>
+<h2>お店登録情報編集</h2>
 
-<%= form_with model: @shop, url: admin_shop_path(@shop), local:true do |f| %>
-  <%= @shop.id %>
-  <%= f.text_field :name %>
-  <%= f.email_field :email %>
-  <%= f.text_field :address %>
-  <%= f.text_field :phone_number %>
+<%= render 'layouts/error_messages', model: @shop %>
 
-  <%= f.label :true %>
-  <%= f.radio_button :is_active, :true %>
+<div class="form-forizontal col-md-6 offset-md-3">
+  <%= form_with model: @shop, url: admin_shop_path(@shop), local:true do |f| %>
 
-  <%= f.label :false %>
-  <%= f.radio_button :is_active, :false %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
 
-  <%= f.submit '編集する' %>
-<% end %>
+    <div class="form-group">
+      <%= f.label :email %>
+      <%= f.email_field :email, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :address %>
+      <%= f.text_field :address, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :phone_number %>
+      <%= f.text_field :phone_number, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :true %>
+      <%= f.radio_button :is_active, :true %>
+
+      <%= f.label :false %>
+      <%= f.radio_button :is_active, :false %>
+    </div>
+
+    <%= f.submit '編集する', class: "btn btn-success" %>
+  <% end %>
+</div>

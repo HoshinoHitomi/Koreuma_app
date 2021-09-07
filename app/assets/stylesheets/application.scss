@@ -26,6 +26,10 @@ footer {
   background-color: #9E7810;
 }
 
+p {
+  white-space: pre-wrap;
+}
+
 /* ↓タブを横並び↓ */
 .tab-list {
   display: flex;

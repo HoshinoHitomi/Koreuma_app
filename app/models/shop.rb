@@ -30,4 +30,10 @@ class Shop < ApplicationRecord
   def self.search(search)
     Shop.where(['name LIKE ?', "%#{search}%"])
   end
+
+  validates :name, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
+  validates :address, presence: true
+  validates :working_time, presence: true
+  validates :phone_number, presence: true
 end
