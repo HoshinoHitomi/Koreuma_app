@@ -1,16 +1,30 @@
-<h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+<h2>ユーザー情報編集</h2>
 
-<%= form_with model: @user, url: admin_user_path(@user), local:true do |f| %>
-  <%= @user.id %>
-  <%= f.text_field :name %>
-  <%= f.email_field :email %>
+<%= render 'layouts/error_messages', model: @user %>
 
-  <%= f.label :true %>
-  <%= f.radio_button :is_active, :true %>
+<div class="form-forizontal col-md-6 offset-md-3">
+  <%= form_with model: @user, url: admin_user_path(@user), local:true do |f| %>
 
-  <%= f.label :false %>
-  <%= f.radio_button :is_active, :false %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
 
-  <%= f.submit '編集する' %>
-<% end %>
+    <div class="form-group">
+      <%= f.label :email %>
+      <%= f.email_field :email, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :true %>
+      <%= f.radio_button :is_active, :true %>
+
+      <%= f.label :false %>
+      <%= f.radio_button :is_active, :false %>
+    </div>
+
+    <div class="d-flex align-items-center justify-content-center">
+      <%= f.submit '編集する', class: "btn btn-success" %>
+    </div>
+  <% end %>
+</div>

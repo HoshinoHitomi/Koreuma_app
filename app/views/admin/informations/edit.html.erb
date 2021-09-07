@@ -12,10 +12,11 @@
 
     <div class="form-group">
       <%= f.label :body %>
-      <%= f.text_area :body, placeholder: '本文', class: "form-control", rows: 5 %>
+      <%= f.text_area :body, class: "form-control", rows: 5,
+       placeholder: 'お知らせ本文を記述してください&#13;&#10;・更新情報&#13;&#10;・伝えたいこと'.html_safe %>
     </div>
 
-    <div class="form-group">
+    <div class="d-flex align-items-center justify-content-center">
       <%= f.submit '編集する', class: "btn btn-success" %>
     </div>
 

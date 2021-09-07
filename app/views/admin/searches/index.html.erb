@@ -1,5 +1,3 @@
-<h1>Admin::Searches#index</h1>
-<p>Find me in app/views/admin/searches/index.html.erb</p>
 <h2>「<%= @search %>」の検索結果</h2>
 
 <ul class="tab-list">
@@ -12,13 +10,7 @@
     <% if @users.empty? %>
       <p>「<%= @search %>」に該当するユーザーは見つかりませんでした。</p>
     <% else %>
-      <% @users.each do |user| %>
-        <%= user.created_at %>
-        <%= user.id %>
-        <%= link_to user.name, admin_user_path(user.id) %>
-        <%= user.email %>
-        <%= user.is_active %>
-      <% end %>
+      <%= render 'admin/users', users: @users %>
     <% end %>
   </div>
 
@@ -26,13 +18,7 @@
     <% if @shops.empty? %>
       <p>「<%= @search %>」に該当するお店は見つかりませんでした。</p>
     <% else %>
-      <% @shops.each do |shop| %>
-        <%= shop.created_at %>
-        <%= shop.id %>
-        <%= link_to shop.name, admin_shop_path(shop.id) %>
-        <%= shop.email %>
-        <%= shop.is_active %>
-      <% end %>
+      <%= render 'admin/shops', shops: @shops %>
     <% end %>
   </div>
 </div>

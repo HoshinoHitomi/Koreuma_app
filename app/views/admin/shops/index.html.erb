@@ -1,28 +1,8 @@
 <h2>お店一覧</h2>
 
-<div class="row m-3">
-  <% if @shops.empty? %>
-    <p>お店が登録されていません。</p>
+<% if @shops.empty? %>
+  <p>お店が登録されていません。</p>
 
-  <% else %>
-    <table class="table">
-      <tr>
-        <th class="created_at">登録日時</th>
-        <th class="id">ID</th>
-        <th class="name">店名</th>
-        <th class="email">店メールアドレス</th>
-        <th class="status">ステータス</th>
-      </tr>
-
-        <% @shops.each do |shop| %>
-          <tr>
-            <td><%= shop.created_at %></td>
-            <td><%= shop.id %></td>
-            <td><%= link_to shop.name, admin_shop_path(shop) %></td>
-            <td><%= shop.email %></td>
-            <td><%= shop.is_active %></td>
-          </tr>
-        <% end %>
-    </table>
-  <% end %>
-</div>
+<% else %>
+  <%= render 'admin/shops', shops: @shops %>
+<% end %>

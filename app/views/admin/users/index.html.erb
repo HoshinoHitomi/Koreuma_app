@@ -1,14 +1,8 @@
-<h1>Admin::Users#index</h1>
-<p>Find me in app/views/admin/users/index.html.erb</p>
+<h2>ユーザー一覧</h2>
+
 <% if @users.empty? %>
   <p>ユーザーが登録されていません。</p>
 
 <% else %>
-  <% @users.each do |user| %>
-    <%= user.created_at %>
-    <%= user.id %>
-    <%= link_to user.name, admin_user_path(user) %>
-    <%= user.email %>
-    <%= user.is_active %>
-  <% end %>
+  <%= render 'admin/users', users: @users %>
 <% end %>

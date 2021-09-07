@@ -1,0 +1,23 @@
+<table class="table">
+  <tr>
+    <th class="created_at">登録日時</th>
+    <th class="id">ID</th>
+    <th class="name">店名</th>
+    <th class="email">店メールアドレス</th>
+    <th class="status">ステータス</th>
+  </tr>
+
+    <% @shops.each do |shop| %>
+      <tr>
+        <td><%= shop.created_at %></td>
+        <td><%= shop.id %></td>
+        <td><%= link_to shop.name, admin_shop_path(shop) %></td>
+        <td><%= shop.email %></td>
+        <td><%= shop.is_active %></td>
+      </tr>
+    <% end %>
+</table>
+
+<div class="d-flex align-items-center justify-content-center">
+  <%= paginate @shops %>
+</div>

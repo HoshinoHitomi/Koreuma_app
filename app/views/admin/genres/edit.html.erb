@@ -1,7 +1,16 @@
-<h1>Admin::Genres#edit</h1>
-<p>Find me in app/views/admin/genres/edit.html.erb</p>
-<%= form_with model: @genre, url: admin_genre_path(@genre), local:true do |f| %>
-  <%= f.text_field :name %>
+<h2>ジャンル編集</h2>
 
-  <%= f.submit '登録する' %>
-<% end %>
+<%= render 'layouts/error_messages', model: @genre %>
+
+<div class="form-horizontal col-md-4 mt-3">
+  <%= form_with model: @genre, url: admin_genre_path(@genre), local:true do |f| %>
+
+      <%= f.label :name %>
+
+    <div class="input-group">
+      <%= f.text_field :name, placeholder: 'ジャンル名', class: "form-control" %>
+      <%= f.submit '登録する', class: "input-btn-group btn btn-success" %>
+    </div>
+
+  <% end %>
+</div>
