@@ -7,6 +7,8 @@ class Public::HomesController < ApplicationController
   end
 
   def about
+    @shops = Shop.all
+    @foods = Food.all
   end
 
   def which_sign_up

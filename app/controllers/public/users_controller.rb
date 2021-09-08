@@ -1,24 +1,33 @@
 class Public::UsersController < ApplicationController
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by(id: params[:id])
+    if @user.nil?
+      flash[:alert] = "ユーザーが見つかりませんでした。"
+      redirect_to root_path
+    else
+      food_favorites = FavoriteFood.where(user_id: params[:id]).pluck(:food_id)
+      @favorite_foods = Food.find(food_favorites).last(4)
 
-    food_favorites = FavoriteFood.where(user_id: params[:id]).pluck(:food_id)
-    @favorite_foods = Food.find(food_favorites).last(4)
+      shop_favorites = FavoriteShop.where(user_id: params[:id]).pluck(:shop_id)
+      @favorite_shops = Shop.find(shop_favorites).last(4)
 
-    shop_favorites = FavoriteShop.where(user_id: params[:id]).pluck(:shop_id)
-    @favorite_shops = Shop.find(shop_favorites).last(4)
-
-    @reviews = @user.reviews
+      @reviews = @user.reviews
+    end
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find_by(id: params[:id])
+    if @user.nil?
+      flash[:alert] = "ユーザーが見つかりませんでした。"
+      redirect_to root_path
+    end
   end
 
   def update
     @user = User.find(params[:id])
     if @user.email == 'guest@user'
+      flash[:alert] = "ゲストユーザーは編集できません。"
       redirect_to user_path(@user)
     else
       @user.update(user_params)
@@ -32,10 +41,12 @@ class Public::UsersController < ApplicationController
   def withdrawl
     @user = User.find_by(id: current_user.id)
     if @user.email == 'guest@user'
+      flash[:alert] = "ゲストユーザーは退会できません。"
       redirect_to user_path(@user)
     else
       @user.update(is_active: false)
       reset_session
+      flash[:notice] = "退会しました。"
       redirect_to root_path
     end
   end

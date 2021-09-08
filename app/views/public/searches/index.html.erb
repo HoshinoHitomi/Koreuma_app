@@ -52,7 +52,7 @@
 <div class="tabbox-contents">
   <div class="tabbox box-show">
     <% if @foods.empty? %>
-      <p>「<%= @search %>」に該当するお店は見つかりませんでした。</p>
+      <p>「<%= @search %>」に該当する食べ物は見つかりませんでした。</p>
     <% else %>
       <% @foods.each do |food| %>
         <%= attachment_image_tag food, :image, :fill, 60, 60 %>
@@ -88,17 +88,3 @@
   </div>
 </div>
 <% end %>
-
-
-
-<script>
-  $(function() {
-      $('.tab').click(function(){
-          $('.tab-active').removeClass('tab-active');
-          $(this).addClass('tab-active');
-          $('.box-show').removeClass('box-show');
-          const index = $(this).index();
-          $('.tabbox').eq(index).addClass('box-show');
-      });
-  });
-</script>

@@ -1,13 +1,22 @@
-<h1>Shop::Searches#index</h1>
-<p>Find me in app/views/shop/searches/index.html.erb</p>
-
 <h2>「<%= @search %>」の検索結果</h2>
 
 <% if @foods.empty? %>
   <p>「<%= @search %>」に該当する食べ物は見つかりませんでした。</p>
 <% else %>
-  <% @foods.each do |food| %>
-    <%= food.created_at %>
-    <%= link_to food.name, shop_food_path(food.id) %>
-  <% end %>
+  <div class="d-flex flex-wrap mt-3 align-items-center">
+    <% @foods.each do |food| %>
+            <div class="card m-1">
+                <%= link_to shop_food_path(food) do %>
+                  <%= attachment_image_tag food, :image, class: "card-img-top" %>
+                <% end %>
+                <div class="card-body">
+                  <h6 class="card-title"><%= link_to food.name, shop_food_path(food) %></h6>
+                  <p><i class="fas fa-heart"></i> お気に入り/ <%= food.favorite_foods.count %></p>
+                  <p><i class="far fa-comments"></i> レビュー数/ <%= food.reviews.count %></p>
+                  <p><%= food.status %></p>
+                  <p><%= food.sale_dates %></p>
+                </div>
+            </div>
+    <% end %>
+  </div>
 <% end %>

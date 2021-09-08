@@ -1,28 +1,11 @@
-<h1>Public::Foods#show</h1>
-<p>Find me in app/views/public/foods/show.html.erb</p>
-お気に入り登録数/ <%= @food.favorite_foods.count %>
+  <p><i class="fas fa-heart"></i> お気に入り/ <%= @food.favorite_foods.count %></p>
+  <h1><%= @food.name %></h1>
 
-<%= @food.shop.name %>
+  <%= attachment_image_tag @food, :image, width: '30%' %>
 
-<%= attachment_image_tag @food.shop, :shop_image, :fill, 30, 30, fallback: 'no_image.jpg' %>
-
-<%= @food.name %>
-
-<%= attachment_image_tag @food, :image, :fill, 60, 60 %>
-
-<%= @food.introduction %>
-
-<%= @food.genre.name %>
-
-<%= @food.taste %>
-
-<%= @food.price %>
-
-<%= @food.calorie %>
-
-<%= @food.food_temperature %>
-
-<%= @food.sale_dates %>
+  <div class="row mt-3">
+    <%= render 'layouts/food_info', food: @food %>
+  </div>
 
 <%= render 'layouts/user_like',
   sweet_like_average: @sweet_like_average,

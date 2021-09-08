@@ -1,8 +1,15 @@
-<h1>Public::Homes#about</h1>
-<p>Find me in app/views/public/homes/about.html.erb</p>
+<div class="text-center">
+  <h2>「コレうま！」ってどんなサイト？</h2>
 
-<p>
-  そこに食べ物がなくても想像ができ、おなか一杯になれるようなグルメサイト<br>
-「コレうま！」はあなたのおいしい食べ物を共有して
-新しい「これうまい！」を探していくwebサービスです。
-</p>
+  <p>
+    <strong>そこに食べ物がなくても想像ができ、おなか一杯になれるようなグルメサイト</strong>
+    「コレうま！」はあなたのおいしい食べ物を共有して
+    新しい「これうまい！」を探していくwebサービスです。
+  </p>
+
+  <p>
+    「コレうま！」に現在登録されているお店と食べ物は以下の通りです。
+    <%= @shops.count %>件の<%= link_to 'お店', shops_path %>
+    <%= @foods.count %>件の<%= link_to '食べ物', foods_path %>
+  </p>
+</div>

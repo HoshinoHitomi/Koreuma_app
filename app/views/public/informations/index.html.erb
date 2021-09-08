@@ -1,12 +1,29 @@
-<h1>Public::Informations#index</h1>
-<p>Find me in app/views/public/informations/index.html.erb</p>
+<h2>お知らせ一覧</h2>
 
-<% if @informations.empty? %>
-  <p>お知らせがありません。</p>
-<% else %>
-  <% @informations.each do |information| %>
-    <%= information.created_at %>
-    <%= link_to information.title, information_path(information) %>
-    <%= information.body.truncate(10) %>
+<div class="row mt-3">
+  <% if @informations.empty? %>
+    <p>お知らせがありません。</p>
+  <% else %>
+    <table class="table">
+
+      <tr>
+        <th class="created_at">投稿日時</th>
+        <th class="title">タイトル</th>
+        <th class="body">本文</th>
+      </tr>
+
+      <% @informations.each do |information| %>
+        <tr>
+          <td><%= information.created_at %></td>
+          <td><%= link_to information.title, information_path(information) %></td>
+          <td><%= information.body.truncate(25) %></td>
+        </tr>
+      <% end %>
+
+    </table>
   <% end %>
-<% end %>
+</div>
+
+<div class="d-flex align-items-center justify-content-center">
+  <%= paginate @informations %>
+</div>

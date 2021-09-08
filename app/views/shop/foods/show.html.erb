@@ -6,38 +6,9 @@
   <%= attachment_image_tag @food, :image, width: '30%' %>
 
   <div class="row mt-3">
-    <div class="col-md-6">
-      <p><%= @food.introduction %></p>
-    </div>
-    <div class="col-md-6">
-      <table class="borderless">
-        <tr>
-          <td>ジャンル</td>
-          <td>: <%= @food.genre.name %></td>
-        </tr>
-        <tr>
-          <td>味</td>
-          <td>: <%= @food.taste %></td>
-        </tr>
-        <tr>
-          <td>価格</td>
-          <td>: <%= @food.tax_price.to_s(:delimited) %>円(税込) (<%= @food.price.to_s(:delimited) %>)</td>
-        </tr>
-        <tr>
-          <td>カロリー</td>
-          <td>: <%= @food.calorie %>kcal</td>
-        </tr>
-        <tr>
-          <td>温度</td>
-          <td>: <%= @food.food_temperature %></td>
-        </tr>
-        <tr>
-          <td>販売日</td>
-          <td>: <%= @food.sale_dates %></td>
-        </tr>
-      </table>
-    </div>
+    <%= render 'layouts/food_info', food: @food %>
   </div>
+
       <%= link_to '編集する', edit_shop_food_path(@food), class: "btn btn-success" %>
       <%= link_to '削除する', shop_food_path, method: :delete, 'data-confirm' => '本当に削除しますか？', class: "btn btn-danger" %>
 
@@ -50,9 +21,8 @@
       sour_like_average: @sour_like_average,
       spicy_like_average: @spicy_like_average
     %>
-    <
+
     <%= render 'layouts/review', reviews: @reviews %>
     </div>
   </div>
-
 </div>

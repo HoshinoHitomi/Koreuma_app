@@ -1,0 +1,32 @@
+<div class="col-md-6">
+  <p><%= food.introduction %></p>
+</div>
+
+<div class="col-md-6">
+  <table class="borderless">
+    <tr>
+      <td>ジャンル</td>
+      <td>: <%= food.genre.name %></td>
+    </tr>
+    <tr>
+      <td>味</td>
+      <td>: <%= food.taste %></td>
+    </tr>
+    <tr>
+      <td>価格</td>
+      <td>: <%= food.tax_price.to_s(:delimited) %>円(税込) (<%= food.price.to_s(:delimited) %>)</td>
+    </tr>
+    <tr>
+      <td>カロリー</td>
+      <td>: <%= food.calorie %>kcal</td>
+    </tr>
+    <tr>
+      <td>温度</td>
+      <td>: <%= food.food_temperature %></td>
+    </tr>
+    <tr>
+      <td>販売日</td>
+      <td>: <%= food.sale_dates %></td>
+    </tr>
+  </table>
+</div>

@@ -5,8 +5,11 @@
   <p>レビューがまだありません。</p>
 <% else %>
   <% reviews.each do |review| %>
-    <div class="border rounded m-3">
-        <p><%= link_to review.user.name, user_path(review.user.id) %></p>
+    <div class="border rounded m-3 p-2">
+        <span>
+          <%= attachment_image_tag review.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", class: "rounded-circle" %>
+          <%= link_to review.user.name, user_path(review.user.id) %>
+        </span>
         <p><%= review.body %></p>
       <div id="star-raty-<%= review.id %>">
          <%= review.taste_score %>
