@@ -1,30 +1,58 @@
-<h1>Shop::Foods#show</h1>
-<p>Find me in app/views/shop/foods/show.html.erb</p>
-<%= link_to '編集する', edit_shop_food_path(@food) %>
-<%= link_to '削除する', shop_food_path, method: :delete, 'data-confirm' => '本当に削除しますか？' %>
+<div class="border rounded p-3">
 
-<%= @food.shop.name %>
+  <p><i class="fas fa-heart"></i> お気に入り/ <%= @food.favorite_foods.count %></p>
+  <h1><%= @food.name %></h1>
 
-<%= attachment_image_tag @food.shop, :shop_image, :fill, 30, 30 %>
+  <%= attachment_image_tag @food, :image, width: '30%' %>
 
-<%= @food.name %>
+  <div class="row mt-3">
+    <div class="col-md-6">
+      <p><%= @food.introduction %></p>
+    </div>
+    <div class="col-md-6">
+      <table class="borderless">
+        <tr>
+          <td>ジャンル</td>
+          <td>: <%= @food.genre.name %></td>
+        </tr>
+        <tr>
+          <td>味</td>
+          <td>: <%= @food.taste %></td>
+        </tr>
+        <tr>
+          <td>価格</td>
+          <td>: <%= @food.tax_price.to_s(:delimited) %>円(税込) (<%= @food.price.to_s(:delimited) %>)</td>
+        </tr>
+        <tr>
+          <td>カロリー</td>
+          <td>: <%= @food.calorie %>kcal</td>
+        </tr>
+        <tr>
+          <td>温度</td>
+          <td>: <%= @food.food_temperature %></td>
+        </tr>
+        <tr>
+          <td>販売日</td>
+          <td>: <%= @food.sale_dates %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+      <%= link_to '編集する', edit_shop_food_path(@food), class: "btn btn-success" %>
+      <%= link_to '削除する', shop_food_path, method: :delete, 'data-confirm' => '本当に削除しますか？', class: "btn btn-danger" %>
 
-<%= attachment_image_tag @food, :image, :fill, 60, 60 %>
+  <div class="row">
+    <div class="col-md-12">
+    <%= render 'layouts/user_like',
+      sweet_like_average: @sweet_like_average,
+      salty_like_average: @salty_like_average,
+      bitter_like_average: @bitter_like_average,
+      sour_like_average: @sour_like_average,
+      spicy_like_average: @spicy_like_average
+    %>
+    <
+    <%= render 'layouts/review', reviews: @reviews %>
+    </div>
+  </div>
 
-<%= @food.introduction %>
-
-<%= @food.genre.name %>
-
-<%= @food.taste %>
-
-<%= @food.price %>
-
-<%= @food.calorie %>
-
-<%= @food.food_temperature %>
-
-<%= @food.sale_dates %>
-
-<h2>また食べたい味と思ったユーザーの味の好み度統計</h2>
-
-<h2>レビューと評価</h2>
+</div>

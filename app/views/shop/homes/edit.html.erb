@@ -6,7 +6,7 @@
   <%= form_with model: @shop, url: shop_homes_path(@shop), local:true do |f| %>
 
     <div class="form-group">
-      <%= attachment_image_tag @shop, :shop_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+      <%= attachment_image_tag @shop, :shop_image, :fill, 80, 80, fallback: "no_image.jpg", class: "rounded-circle" %>
       <%= f.attachment_field :shop_image %>
     </div>
 

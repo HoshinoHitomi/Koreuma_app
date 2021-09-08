@@ -1,20 +1,32 @@
-<div class="border rounded">
-  <%= attachment_image_tag @shop, :shop_image, :fill, 80, 80, fallback: "no_image.jpg", class: "rounded-circle" %>
+<div class="border rounded p-3">
+  <p><i class="fas fa-heart"></i> 店お気に入り/ <%= @shop.favorite_shops.count %></p>
 
-  <h1><%= @shop.name %></h1>
+  <h1 class="border-bottom p-2">
+    <%= attachment_image_tag @shop, :shop_image, :fill, 80, 80, fallback: "no_image.jpg", class: "rounded-circle" %>
+    <%= @shop.name %>
+  </h1>
 
-  <%= link_to '編集する', edit_shop_homes_path, class: "btn btn-success" %>
 
     <div class="row">
       <div class="col-md-6">
         <p><%= @shop.introduction %></p>
       </div>
       <div class="col-md-6">
-        <p>住所: <%= @shop.address %></p>
-
-        <p>電話番号: <%= @shop.phone_number %></p>
-
-        <p>営業時間: <%= @shop.working_time %></p>
+        <table>
+          <tr>
+            <td>住所</td>
+            <td> <%= @shop.address %></td>
+          </tr>
+          <tr>
+            <td>電話番号</td>
+            <td> <%= @shop.phone_number %></td>
+          </tr>
+          <tr>
+            <td>営業時間</td>
+            <td> <%= @shop.working_time %></td>
+          </tr>
+        </table>
+        <%= link_to '編集する', edit_shop_homes_path, class: "btn btn-success" %>
       </div>
     </div>
 </div>

@@ -24,14 +24,13 @@
 
 <%= @food.sale_dates %>
 
-<h2>また食べたい味と思ったユーザーの味の好み度統計</h2>
-
-<%= @sweet_like_average %>
-<%= @salty_like_average %>
-<%= @bitter_like_average %>
-<%= @sour_like_average %>
-<%= @spicy_like_average %>
-
+<%= render 'layouts/user_like',
+  sweet_like_average: @sweet_like_average,
+  salty_like_average: @salty_like_average,
+  bitter_like_average: @bitter_like_average,
+  sour_like_average: @sour_like_average,
+  spicy_like_average: @spicy_like_average
+%>
 
 <% if user_signed_in? %>
   <% if @food.food_favorited_by?(current_user) %>
@@ -116,30 +115,7 @@
   <p>新規登録 / ログインでレビュー投稿ができます。</p>
 <% end %>
 
-<% if @reviews.empty? %>
-  <p>レビューがまだありません。</p>
-<% else %>
-  <% @reviews.each do |review| %>
-      <%= review.body %>
-      <%= link_to review.user.name, user_path(review.user.id) %>
-    <div id="star-raty-<%= review.id %>">
-      <%= review.taste_score %>
-    </div>
-      <%= review.repeat %>
-
-    <script>
-      $('#star-raty-<%= review.id %>').raty({
-        size     : 36,
-        starOff:  '<%= asset_path('star-off.png') %>',
-        starOn : '<%= asset_path('star-on.png') %>',
-        starHalf : '<%= asset_path('star-half.png') %>',
-        half: true,
-        readOnly: true,
-        score: '<%= review.taste_score %>'
-      });
-    </script>
-  <% end %>
-<% end %>
+<%= render 'layouts/review', reviews: @reviews %>
 
 <script>
   $('#star-rating').raty({

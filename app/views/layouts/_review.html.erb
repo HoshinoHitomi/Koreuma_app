@@ -1,0 +1,31 @@
+<div class="col-md-12">
+<h2>レビューと評価</h2>
+
+<% if reviews.empty? %>
+  <p>レビューがまだありません。</p>
+<% else %>
+  <% reviews.each do |review| %>
+    <div class="border rounded m-3">
+        <p><%= link_to review.user.name, user_path(review.user.id) %></p>
+        <p><%= review.body %></p>
+      <div id="star-raty-<%= review.id %>">
+         <%= review.taste_score %>
+      </div>
+        <p><%= review.repeat %></p>
+
+      <script>
+        $('#star-raty-<%= review.id %>').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf : '<%= asset_path('star-half.png') %>',
+          half: true,
+          readOnly: true,
+          score: '<%= review.taste_score %>'
+        });
+      </script>
+    </div>
+
+  <% end %>
+<% end %>
+</div>

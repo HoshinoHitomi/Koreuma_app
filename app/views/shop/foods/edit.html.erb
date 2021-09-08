@@ -1,38 +1,62 @@
-<h1>Shop::Foods#edit</h1>
-<p>Find me in app/views/shop/foods/edit.html.erb</p>
+<h2>食べ物編集</h2>
 
-<%= form_with model: @food, url: shop_food_path(@food), local:true do |f| %>
+<%= render 'layouts/error_messages', model: @food %>
 
-  <%= f.hidden_field :shop_id, :value => current_shop.id %>
+<div class="form-horizontal mt-3">
+  <%= form_with model: @food, url: shop_food_path(@food), local:true do |f| %>
 
-  <%= f.attachment_field :image %>
+    <%= f.hidden_field :shop_id, :value => current_shop.id %>
 
-  <%= f.label :name %>
-  <%= f.text_field :name, placeholder: '食べ物名' %>
+    <%= f.attachment_field :image %>
 
-  <%= f.label :introduction %>
-  <%= f.text_area :introduction, placeholder: '食べ物の魅力が伝わる紹介文を書いてください。・こだわった食材や調理法など・おすすめの食べ方など' %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, placeholder: '食べ物名', class: "form-control" %>
+    </div>
 
-  <%= f.label :genre %>
-  <%= f.collection_select :genre_id, Genre.all, :id, :name %>
+    <div class="form-group">
+      <%= f.label :introduction %>
+      <%= f.text_area :introduction, placeholder: '食べ物の魅力が伝わる紹介文を書いてください&#13;&#10;・こだわった食材や調理法など&#13;&#10;・おすすめの食べ方など'.html_safe, rows: 6, class: "form-control" %>
+    </div>
 
-  <%= f.label :taste %>
-  <%= f.select :taste, Food.tastes.keys.to_a %>
+    <div class="form-group">
+      <%= f.label :genre %>
+      <%= f.collection_select :genre_id, Genre.all, :id, :name, class: "form-control" %>
+    </div>
 
-  <%= f.label :price %>
-  <%= f.text_field :price, placeholder: '1000' %>
+    <div class="form-group">
+      <%= f.label :taste %>
+      <%= f.select :taste, Food.tastes.keys.to_a, class: "form-control" %>
+    </div>
 
-  <%= f.label :calorie %>
-  <%= f.text_field :calorie, placeholder: '1000　未設定も可' %>
+    <div class="form-group">
+      <%= f.label :price %>
+      <%= f.text_field :price, placeholder: '1000', class: "form-control" %>
+    </div>
 
-  <%= f.label :food_temperature %>
-  <%= f.select :food_temperature, Food.food_temperatures.keys.to_a %>
+    <div class="form-group">
+      <%= f.label :calorie %>
+      <%= f.text_field :calorie, placeholder: '1000　未設定も可', class: "form-control" %>
+    </div>
 
-  <%= f.label :status %>
-  <%= f.select :status, Food.statuses.keys.to_a %>
+    <div class="form-group">
+      <%= f.label :food_temperature %>
+      <%= f.select :food_temperature, Food.food_temperatures.keys.to_a, class: "form-control" %>
+    </div>
 
-  <%= f.label :sale_dates %>
-  <%= f.date_select :sale_dates %>
+    <div class="form-group">
+      <%= f.label :status %>
+      <%= f.select :status, Food.statuses.keys.to_a, class: "form-control" %>
+    </div>
 
-  <%= f.submit '編集する' %>
-<% end %>
+    <div class="form-group">
+      <%= f.label :sale_dates %>
+      <%= f.date_select :sale_dates, class: "form-control" %>
+    </div>
+
+    <div class="d-flex align-items-center justify-content-center">
+      <%= f.submit '編集する', class: "btn btn-success" %>
+    </div>
+
+  <% end %>
+</div>
