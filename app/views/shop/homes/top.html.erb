@@ -1,9 +1,9 @@
 <div class="border rounded">
   <%= attachment_image_tag @shop, :shop_image, :fill, 80, 80, fallback: "no_image.jpg", class: "rounded-circle" %>
 
-  <%= link_to '編集する', edit_shop_homes_path, class: "btn btn-success" %>
-
   <h1><%= @shop.name %></h1>
+
+  <%= link_to '編集する', edit_shop_homes_path, class: "btn btn-success" %>
 
     <div class="row">
       <div class="col-md-6">
@@ -42,8 +42,9 @@
           </div>
       <% end %>
     </div>
-
-    <%= link_to "食べ物一覧へ", shop_foods_path %>
-
-  <% end %>
 </div>
+
+  <p class="text-right">
+    <%= link_to "食べ物一覧へ", shop_foods_path %>
+  </p>
+<% end %>

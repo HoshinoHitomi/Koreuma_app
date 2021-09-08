@@ -15,6 +15,7 @@ class Shop::HomesController < Shop::ApplicationController
       redirect_to shop_root_path
     else
       @shop.update(shop_params)
+      flash[:notice] = "お店情報を編集しました。"
       redirect_to shop_root_path
     end
   end
@@ -25,10 +26,12 @@ class Shop::HomesController < Shop::ApplicationController
   def withdrawl
     @shop = Shop.find_by(id: current_shop.id)
     if @shop.email == 'guest@shop'
+      flash[:alert] = "ゲストのお店は退会できません。"
       redirect_to shop_root_path
     else
       @shop.update(is_active: false)
       reset_session
+      flash[:notice] = "退会しました。"
       redirect_to root_path
     end
   end

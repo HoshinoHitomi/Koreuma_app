@@ -1,17 +1,50 @@
-<h1>Shop::Homes#edit</h1>
-<p>Find me in app/views/shop/homes/edit.html.erb</p>
+<h2>お店情報編集</h2>
 
-<%= form_with model: @shop, url: shop_homes_path(@shop), local:true do |f| %>
-  <%= f.text_field :name, :disabled => true %>
-  <%= f.text_area :introduction %>
-  <%= attachment_image_tag @shop, :shop_image, :fill, 60, 60, fallback: "no_image.jpg"%>
-  <%= f.attachment_field :shop_image %>
-  <%= f.email_field :email, :disabled => true %>
-  <%= f.text_field :address, :disabled => true %>
-  <%= f.text_field :phone_number, :disabled => true %>
-  <%= f.text_field :working_time %>
+<%= render 'layouts/error_messages', model: @shop %>
 
-  <%= f.submit '編集する' %>
-<% end %>
+<div class="form-forizontal col-md-6 offset-md-3">
+  <%= form_with model: @shop, url: shop_homes_path(@shop), local:true do |f| %>
 
-<%= link_to '退会する', shop_confirm_path %>
+    <div class="form-group">
+      <%= attachment_image_tag @shop, :shop_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+      <%= f.attachment_field :shop_image %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :introduction %>
+      <%= f.text_area :introduction, rows: 7, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :email %>
+      <%= f.email_field :email, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :address %>
+      <%= f.text_field :address, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :phone_number%>
+      <%= f.text_field :phone_number, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :working_time %>
+      <%= f.text_field :working_time, class: "form-control" %>
+    </div>
+
+    <div class="d-flex align-items-center justify-content-center">
+      <%= f.submit '編集する', class: "btn btn-success" %>
+    </div>
+  <% end %>
+
+</div>
+
+  <%= link_to '退会する', shop_confirm_path, class: "btn btn-danger" %>

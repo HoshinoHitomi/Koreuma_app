@@ -16,11 +16,19 @@ class Shop::FoodsController < Shop::ApplicationController
   end
 
   def show
-    @food = Food.find(params[:id])
+    @food = Food.find_by(id: params[:id])
+    if @food.nil?
+      flash[:alert] = "食べ物が見つかりませんでした。"
+      redirect_to shop_foods_path
+    end
   end
 
   def edit
-    @food = Food.find(params[:id])
+    @food = Food.find_by(id: params[:id])
+    if @food.nil?
+      flash[:alert] = "食べ物が見つかりませんでした。"
+      redirect_to shop_foods_path
+    end
     @genres = Genre.all
   end
 

@@ -1,17 +1,26 @@
-<h1>Shop::Foods#index</h1>
-<p>Find me in app/views/shop/foods/index.html.erb</p>
+<h2>食べ物一覧</h2>
 
-<%= link_to '食べ物登録をする', new_shop_food_path %>
+<%= link_to '食べ物登録をする', new_shop_food_path, class: "btn btn-primary float-right" %>
 
 <% if @foods.empty? %>
   <p>最初の食べ物を登録しましょう!</p>
 <% else %>
 
+<div class="d-flex flex-wrap mt-3 align-items-center">
   <% @foods.each do |food| %>
-    <%= link_to food.name, shop_food_path(food) %>
-    <%= attachment_image_tag food, :image, :fill, 60, 60 %>
-    <%= food.status %>
-    <%= food.sale_dates %>
+          <div class="card m-1">
+              <%= link_to shop_food_path(food) do %>
+                <%= attachment_image_tag food, :image, class: "card-img-top" %>
+              <% end %>
+              <div class="card-body">
+                <h6 class="card-title"><%= link_to food.name, shop_food_path(food) %></h6>
+                <p><i class="fas fa-heart"></i> お気に入り/ <%= food.favorite_foods.count %></p>
+                <p><i class="far fa-comments"></i> レビュー数/ <%= food.reviews.count %></p>
+                <p><%= food.status %></p>
+                <p><%= food.sale_dates %></p>
+              </div>
+          </div>
   <% end %>
+</div>
 
 <% end %>
