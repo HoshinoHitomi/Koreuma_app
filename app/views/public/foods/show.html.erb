@@ -54,11 +54,12 @@
 香りの強さ<%= @taste_strong_average.floor(1) %>
 味の濃さ<%= @smell_strong_average.floor(1) %>
 
-<p>レビューする</p>
 
 <% if user_signed_in? %>
 
-  <% if @your_review.empty? %>
+  <% if @your_review.nil? %>
+    <p>レビューする</p>
+
     <%= form_with model: @review, url: food_reviews_path(@food), method: :post, local:true do |f| %>
 
       <%= f.hidden_field :user_id, :value => current_user.id %>
@@ -90,25 +91,25 @@
       <%= f.submit 'レビューを投稿する' %>
     <% end %>
   <% else %>
-    <% @your_review.each do |review| %>
-      <%= review.body %>
-      <div id="your-star-raty-<%= review.id %>">
-        <%= review.taste_score %>
-      </div>
-      <%= link_to '編集する', edit_food_reviews_path(@food.id) %>
-          <script>
-        $('#your-star-raty-<%= review.id %>').raty({
-          size     : 36,
-          starOff:  '<%= asset_path('star-off.png') %>',
-          starOn : '<%= asset_path('star-on.png') %>',
-          starHalf : '<%= asset_path('star-half.png') %>',
-          half: true,
-          readOnly: true,
-          score: '<%= review.taste_score %>'
-        });
-      </script>
-        <%= review.repeat %>
-    <% end %>
+
+  <p>投稿したレビュー</p>
+    <%= @your_review.body %>
+    <div id="your-star-raty-<%= @your_review.id %>">
+      <%= @your_review.taste_score %>
+    </div>
+    <%= link_to '編集する', edit_food_reviews_path(@food.id) %>
+        <script>
+      $('#your-star-raty-<%= @your_review.id %>').raty({
+        size     : 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf : '<%= asset_path('star-half.png') %>',
+        half: true,
+        readOnly: true,
+        score: '<%= @your_review.taste_score %>'
+      });
+    </script>
+      <%= @your_review.repeat %>
   <% end %>
 
 <% else %>

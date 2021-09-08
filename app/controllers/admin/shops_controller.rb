@@ -13,7 +13,10 @@ class Admin::ShopsController < Admin::ApplicationController
 
   def edit
     @shop = Shop.find_by(id: params[:id])
-    if @shop.nil?
+    if @shop.email == 'guest@shop'
+      flash[:alert] = "このお店は編集できません。"
+      redirect_to admin_shop_path(@shop)
+    elsif @shop.nil?
       flash[:alert] = "お店が見つかりませんでした。"
       redirect_to admin_shops_path
     end

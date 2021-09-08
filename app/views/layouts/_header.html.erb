@@ -16,25 +16,20 @@
   </li>
 <% elsif shop_signed_in? %>
   <li>
-    <%= link_to 'マイページ', shop_root_path %>
+    <%= link_to 'マイページ', shop_root_path, class: 'btn btn-outline-success mr-3' %>
   </li>
   <li>
-    <%= link_to '食べ物管理', shop_foods_path %>
+    <%= link_to '食べ物管理', shop_foods_path, class: 'btn btn-outline-success mr-3' %>
   </li>
   <li>
-    <%= link_to 'ログアウト', destroy_shop_session_path, method: :delete %>
+    <%= link_to 'ログアウト', destroy_shop_session_path, method: :delete, class: 'btn btn-outline-success mr-3' %>
   </li>
 <% elsif user_signed_in? %>
-  <li><%= link_to 'マイページ', user_path(current_user.id) %></li>
-  <li><%= link_to '食べ物', foods_path %></li>
-  <li><%= link_to 'お店', shops_path %></li>
-  <li><%= link_to '全レビュー', all_reviews_path %></li>
-  <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-  <div class="row">
-  </div>
-
-  <%= attachment_image_tag current_user, :profile_image, :fill, 20, 20, fallback: 'no_image.jpg' %>
-  <%= current_user.name %>
+  <li><%= link_to 'マイページ', user_path(current_user.id), class: 'btn btn-outline-success mr-3' %></li>
+  <li><%= link_to '食べ物', foods_path, class: 'btn btn-outline-success mr-3' %></li>
+  <li><%= link_to 'お店', shops_path, class: 'btn btn-outline-success mr-3' %></li>
+  <li><%= link_to '全レビュー', all_reviews_path, class: 'btn btn-outline-success mr-3' %></li>
+  <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn btn-outline-success mr-3' %></li>
 <% else %>
   <li class="nav-item">
     <%= link_to 'コレうまって？', about_path, class: 'btn btn-outline-success mr-3' %>

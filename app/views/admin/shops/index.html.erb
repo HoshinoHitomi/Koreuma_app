@@ -1,8 +1,10 @@
 <h2>お店一覧</h2>
 
-<% if @shops.empty? %>
-  <p>お店が登録されていません。</p>
+<div class="row mt-3">
+  <% if @shops.empty? %>
+    <p>お店が登録されていません。</p>
 
-<% else %>
-  <%= render 'admin/shops', shops: @shops %>
-<% end %>
+  <% else %>
+    <%= render 'admin/shops', shops: @shops %>
+  <% end %>
+</div>

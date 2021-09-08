@@ -11,37 +11,33 @@
 
   <body>
     <header class="shadow">
-      <div class="container-md">
+      <div class="container-md pb-3">
         <div class="row">
-          <div class="col-md-3">
-            <h1><%= link_to 'コレうま！', root_path %></h1>
+            <div class="col-md-4">
+              <h1><%= link_to 'コレうま！', root_path %></h1>
+                <%= render 'layouts/search_form' %>
+            </div>
 
-          </div>
-
-
-          <div class="col-md-9">
-            <nav class="navbar navbar-expand-lg">
-              <ul class="navbar-nav">
-                <%= render 'layouts/header' %>
-              </ul>
-            </nav>
-          </div>
+            <div class="col-md-8">
+              <nav class="navbar navbar-expand-lg">
+                <ul class="navbar-nav">
+                  <%= render 'layouts/header' %>
+                </ul>
+              </nav>
+            </div>
         </div>
 
-        <div class="row">
-          <div class="col-md-3 offset-md-7 mb-3">
-            <%= render 'layouts/search_form' %>
-          </div>
-        </div>
       </div>
     </header>
+
+    <%= flash[:alert] %>
     <div class="container-md mt-3 mb-3">
       <%= yield %>
     </div>
 
     <footer>
       <%= link_to 'お知らせ', informations_path %>
-      <p>©グルメレビューサイト コレうま！</p>
+      <p>©コレうま！</p>
     </footer>
   </body>
 </html>

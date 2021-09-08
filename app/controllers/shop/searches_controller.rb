@@ -1,4 +1,4 @@
-class Shop::SearchesController < ApplicationController
+class Shop::SearchesController < Shop::ApplicationController
   def index
     @search = params[:search]
 

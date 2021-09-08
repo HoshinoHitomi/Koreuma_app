@@ -1,4 +1,4 @@
-class Shop::FoodsController < ApplicationController
+class Shop::FoodsController < Shop::ApplicationController
   def index
     @shop = current_shop
     @foods = @shop.foods.page(params[:page])

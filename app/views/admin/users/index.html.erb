@@ -1,8 +1,10 @@
 <h2>ユーザー一覧</h2>
 
-<% if @users.empty? %>
-  <p>ユーザーが登録されていません。</p>
+<div class="row mt-3">
+  <% if @users.empty? %>
+    <p>ユーザーが登録されていません。</p>
 
-<% else %>
-  <%= render 'admin/users', users: @users %>
-<% end %>
+  <% else %>
+    <%= render 'admin/users', users: @users %>
+  <% end %>
+</div>

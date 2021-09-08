@@ -13,7 +13,10 @@ class Admin::UsersController < Admin::ApplicationController
 
   def edit
     @user = User.find_by(id: params[:id])
-    if @user.nil?
+    if @user.email == 'guest@user'
+      flash[:alert] = "このユーザーは編集できません。"
+      redirect_to admin_user_path(@user)
+    elsif @user.nil?
       flash[:alert] = "ユーザーが見つかりませんでした。"
       redirect_to admin_users_path
     end

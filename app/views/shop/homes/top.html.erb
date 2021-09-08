@@ -1,29 +1,49 @@
-<%= @shop.name %>
+<div class="border rounded">
+  <%= attachment_image_tag @shop, :shop_image, :fill, 80, 80, fallback: "no_image.jpg", class: "rounded-circle" %>
 
-<%= link_to '編集する', edit_shop_homes_path %>
+  <%= link_to '編集する', edit_shop_homes_path, class: "btn btn-success" %>
 
-<%= attachment_image_tag @shop, :shop_image, :fill, 60, 60, fallback: "no_image.jpg"%>
+  <h1><%= @shop.name %></h1>
 
-<%= @shop.introduction %>
+    <div class="row">
+      <div class="col-md-6">
+        <p><%= @shop.introduction %></p>
+      </div>
+      <div class="col-md-6">
+        <p>住所: <%= @shop.address %></p>
 
-<%= @shop.address %>
+        <p>電話番号: <%= @shop.phone_number %></p>
 
-<%= @shop.phone_number %>
+        <p>営業時間: <%= @shop.working_time %></p>
+      </div>
+    </div>
+</div>
 
-<%= @shop.working_time %>
+<div class="row">
+  <h2><%= @shop.name %>の新着食べ物一覧</h2>
+  <% if @foods.empty? %>
+    <p>最初の食べ物を登録しましょう!</p>
+    <%= link_to '食べ物を登録する', new_shop_food_path %>
+  <% else %>
 
-<h2><%= @shop.name %>の食べ物一覧</h2>
+    <div class="card-deck mt-3">
+      <% @foods.each do |food| %>
+          <div class="card">
+              <%= link_to shop_food_path(food) do %>
+                <%= attachment_image_tag food, :image, class: "card-img-top" %>
+              <% end %>
+              <div class="card-body">
+                <h6 class="card-title"><%= link_to food.name, shop_food_path(food) %></h6>
+                <p><i class="fas fa-heart"></i> お気に入り/ <%= food.favorite_foods.count %></p>
+                <p><i class="far fa-comments"></i> レビュー数/ <%= food.reviews.count %></p>
+                <p><%= food.status %></p>
+                <p><%= food.sale_dates %></p>
+              </div>
+          </div>
+      <% end %>
+    </div>
 
-<% if @foods.empty? %>
-  <p>最初の食べ物を登録しましょう!</p>
-  <%= link_to '食べ物を登録する', new_shop_food_path %>
-<% else %>
+    <%= link_to "食べ物一覧へ", shop_foods_path %>
 
-  <% @foods.each do |food| %>
-    <%= link_to food.name, shop_food_path(food) %>
-    <%= attachment_image_tag food, :image, :fill, 60, 60 %>
-    <%= food.status %>
-    <%= food.sale_dates %>
   <% end %>
-
-<% end %>
+</div>

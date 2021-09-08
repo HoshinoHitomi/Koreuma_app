@@ -30,6 +30,14 @@ p {
   white-space: pre-wrap;
 }
 
+.card {
+  width: 25%;
+}
+
+.fa-heart {
+  color: red;
+}
+
 /* ↓タブを横並び↓ */
 .tab-list {
   display: flex;

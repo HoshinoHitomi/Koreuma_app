@@ -28,9 +28,7 @@ class Public::FoodsController < ApplicationController
     spicy_like = @food.reviews.where(repeat: true).pluck(:spicy_like)
     @spicy_like_average = spicy_like.sum.fdiv(spicy_like.length)
 
-
-    your_review = Review.where(user_id: current_user, food_id: params[:id]).ids
-    @your_review = Review.find(your_review)
+    @your_review = Review.find_by(user_id: current_user, food_id: params[:id])
 
     @review = Review.new
 

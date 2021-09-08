@@ -1,7 +1,7 @@
-class Shop::HomesController < ApplicationController
+class Shop::HomesController < Shop::ApplicationController
   def top
     @shop = current_shop
-    @foods = @shop.foods.page(params[:page])
+    @foods = @shop.foods.last(4).reverse
   end
 
   def edit
@@ -11,6 +11,7 @@ class Shop::HomesController < ApplicationController
   def update
     @shop = Shop.find_by(id: current_shop.id)
     if @shop.email == 'guest@shop'
+      flash[:alert] = "ゲストのお店は編集できません。"
       redirect_to shop_root_path
     else
       @shop.update(shop_params)
