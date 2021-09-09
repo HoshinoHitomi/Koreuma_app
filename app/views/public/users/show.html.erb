@@ -1,28 +1,27 @@
-<h1>Public::Users#show</h1>
-<p>Find me in app/views/public/users/show.html.erb</p>
-
-<% if user_signed_in? %>
-  <% if @user.id == current_user.id %>
-    <%= link_to '編集する', edit_user_path(@user) %>
-  <% else %>
-    <% if current_user.following?(@user) %>
-      <%= link_to 'Unfollow', user_relationships_path(@user.id), method: :delete %>
+<h1 class="border-bottom p-2">
+  <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg", class: "rounded-circle" %>
+  <%= @user.name %>
+  <% if user_signed_in? %>
+    <% if @user.id == current_user.id %>
+      <%= link_to '編集する', edit_user_path(@user.id), class: "btn btn-primary float-right" %>
     <% else %>
-      <%= link_to 'follow', user_relationships_path(@user.id), method: :post %>
+      <% if current_user.following?(@user) %>
+        <%= link_to 'フォロー解除', user_relationships_path(@user.id), method: :delete, class: "btn btn-outline-primary rounded-pill float-right" %>
+      <% else %>
+        <%= link_to 'フォローする', user_relationships_path(@user.id), method: :post, class: "btn btn-primary rounded-pill float-right" %>
+      <% end %>
     <% end %>
   <% end %>
-<% end %>
-
-<%= link_to @user.followings.count, user_followings_path(@user) %>フォロー
-<%= link_to @user.followers.count, user_followers_path(@user) %>フォロワー
-<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
-<%= @user.name %>
+</h1>
 <%= @user.introduction %>
 <%= @user.sweet_like %>
 <%= @user.salty_like %>
 <%= @user.bitter_like %>
 <%= @user.sour_like %>
 <%= @user.spicy_like %>
+
+<%= link_to @user.followings.count, user_followings_path(@user) %>フォロー
+<%= link_to @user.followers.count, user_followers_path(@user) %>フォロワー
 
 <% if @favorite_foods.present? %>
   <% @favorite_foods.each do |food| %>
@@ -42,11 +41,35 @@
   <p>お気に入り登録したお店がありません。</p>
 <% end %>
 
-<% if @reviews.present? %>
+<h2><%= @user.name %>さんのレビュー</h2>
+
+<% if @reviews.empty? %>
+  <p>レビューがありません。</p>
+<% else %>
   <% @reviews.each do |review| %>
     <%= attachment_image_tag review.food, :image, :fill, 60, 60 %>
     <%= link_to review.food.name, food_path(review.food_id) %>
     <%= review.body %>
+        <div class="border rounded m-3 p-2">
+        <p><%= review.body %></p>
+      <div id="star-raty-<%= review.id %>">
+         <%= review.taste_score %>
+      </div>
+        <p><%= review.repeat %></p>
+
+      <script>
+        $('#star-raty-<%= review.id %>').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf : '<%= asset_path('star-half.png') %>',
+          half: true,
+          readOnly: true,
+          score: '<%= review.taste_score %>'
+        });
+      </script>
+    </div>
+
   <% end %>
 
   <%= link_to 'レビュー一覧へ', user_reviews_path(@user) %>

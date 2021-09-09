@@ -2,7 +2,7 @@
   <p><i class="fas fa-heart"></i> 店お気に入り/ <%= @shop.favorite_shops.count %></p>
 
   <h1 class="border-bottom p-2">
-    <%= attachment_image_tag @shop, :shop_image, :fill, 80, 80, fallback: "no_image.jpg", class: "rounded-circle" %>
+    <%= attachment_image_tag @shop, :shop_image, :fill, 100, 100, fallback: "no_image.jpg", class: "rounded-circle" %>
     <%= @shop.name %>
   </h1>
 
