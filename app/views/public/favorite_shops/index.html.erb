@@ -1,12 +1,9 @@
 <h2><%= @user.name %>のお気に入りお店一覧</h2>
 
 <% if @favorite_shops.present? %>
-  <% @favorite_shops.each do |shop| %>
-    <%= shop.id %>
-    <%= attachment_image_tag shop, :shop_image, :fill, 60, 60 %>
-    <%= link_to shop.name, shop_path(shop.id) %>
-    <%= shop.favorite_shops.count %>
-  <% end %>
+  <div class="d-flex flex-wrap mt-3 align-items-center">
+    <%= render 'layouts/shop/shops', shops: @favorite_shops %>
+  </div>
 <% else %>
   <p>お気に入り登録したお店がありません。</p>
 <% end %>
