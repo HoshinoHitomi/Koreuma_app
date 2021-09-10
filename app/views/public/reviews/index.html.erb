@@ -1,8 +1,56 @@
-<h1>Public::Reviews#index</h1>
-<p>Find me in app/views/public/reviews/index.html.erb</p>
+<h2><%= @user.name %>のレビュー (<%= @reviews.count %>件)</h2>
 
-<% @reviews.each do |review| %>
-  <%= attachment_image_tag review.food, :image, :fill, 60, 60 %>
-  <%= link_to review.food.name, food_path(review.food_id) %>
-  <%= review.body %>
+<% if @reviews.empty? %>
+  <p>レビューがありません。</p>
+<% else %>
+
+  <div class="m-3">
+    <% @reviews.each do |review| %>
+        <div class="card p-3 mb-2">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <%= link_to food_path(review.food.id) do %>
+                      <%= attachment_image_tag review.food, :image, class: "card-img-top" %>
+                    <% end %>
+                    <div class="card-body">
+                      <h6><%= link_to review.food.name, food_path(review.food_id) %></h6>
+                      <p><i class="fas fa-heart"></i> お気に入り/ <%= review.food.favorite_foods.count %></p>
+                      <p><i class="far fa-comments"></i> レビュー数/ <%= review.food.reviews.count %></p>
+                      <p><%= review.food.status %></p>
+                      <p>販売日 <%= review.food.sale_dates %></p>
+                    </div>
+                </div>
+
+                <div class="col-md-7 offset-md-1">
+                    <div class="border-bottom">
+                      <%= attachment_image_tag review.user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg", class: "rounded-circle" %>
+                      <%= review.user.name %>
+                    </div>
+                    <p><%= review.body %></p>
+                      <div id="star-raty-<%= review.id %>">
+                         <%= review.taste_score %>
+                      </div>
+                    <p><%= review.repeat %></p>
+                    <p><%= review.updated_at %></p>
+                </div>
+            </div>
+      </div>
+
+      <script>
+        $('#star-raty-<%= review.id %>').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf : '<%= asset_path('star-half.png') %>',
+          half: true,
+          readOnly: true,
+          score: '<%= review.taste_score %>'
+        });
+      </script>
+    <% end %>
+  </div>
+
+  <div class="d-flex align-items-center justify-content-center">
+    <%= paginate @reviews %>
+  </div>
 <% end %>

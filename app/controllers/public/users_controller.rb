@@ -18,6 +18,8 @@ class Public::UsersController < ApplicationController
     elsif @user.nil?
       flash[:alert] = "ユーザーが見つかりませんでした。"
       redirect_to root_path
+    elsif @user.id != current_user.id
+      redirect_to root_path
     end
   end
 

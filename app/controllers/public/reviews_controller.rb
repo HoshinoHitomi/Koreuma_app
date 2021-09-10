@@ -1,11 +1,11 @@
 class Public::ReviewsController < ApplicationController
   def index
-    user = User.find_by(id: params[:user_id])
-    if user.nil?
+    @user = User.find_by(id: params[:user_id])
+    if @user.nil?
       flash[:alert] = "ユーザーが見つかりませんでした。"
       redirect_to root_path
     else
-      @reviews = user.reviews
+      @reviews = @user.reviews.page(params[:pade]).per(10).order(updated_at: :DESC)
     end
   end
 

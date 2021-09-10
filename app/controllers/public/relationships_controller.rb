@@ -10,12 +10,22 @@ class Public::RelationshipsController < ApplicationController
   end
 
   def followings
-    user = User.find(params[:user_id])
-    @users = user.followings
+    user = User.find_by(id: params[:user_id])
+    if user.nil?
+      flash[:alert] = "ユーザーが見つかりませんでした。"
+      redirect_to root_path
+    else
+      @users = user.followings
+    end
   end
 
   def followers
-    user = User.find(params[:user_id])
-    @users = user.followers
+    user = User.find_by(id: params[:user_id])
+    if user.nil?
+      flash[:alert] = "ユーザーが見つかりませんでした。"
+      redirect_to root_path
+    else
+      @users = user.followers
+    end
   end
 end
