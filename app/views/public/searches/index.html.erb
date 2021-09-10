@@ -1,90 +1,80 @@
 <h1>Public::Searches#index</h1>
 <p>Find me in app/views/public/searches/index.html.erb</p>
 
-<% if @genre_search.present? %>
-  <h2>「<%= Genre.find(@genre_search).name %>」の検索結果</h2>
-  <ul class="tab-list">
-    <li class="tab box-active">食べ物 <%= @foods.count %></li>
-  </ul>
-  <div class="tabbox-contents">
-    <div class="tabbox box-show">
-      <% if @foods.empty? %>
-        <p>「<%= @search %>」に該当するお店は見つかりませんでした。</p>
-      <% else %>
-        <% @foods.each do |food| %>
-          <%= attachment_image_tag food, :image, :fill, 60, 60 %>
-          <%= link_to food.name, food_path(food.id) %>
-          <%= attachment_image_tag food.shop, :shop_image, :fill, 60, 60 %>
-          <%= food.shop.name %>
-          <%= food.status %>
-          <%= food.favorite_foods.count %>
+<div class="row">
+  <% if @genre_search.present? %>
+    <h2>「<%= Genre.find(@genre_search).name %>」の検索結果</h2>
+      <div class="col-md-9">
+        <% if @foods.empty? %>
+          <p>「<%= @genre_search %>」に該当する食べ物は見つかりませんでした。</p>
+        <% else %>
+          <div class="d-flex flex-wrap mt-3 align-items-center">
+            <%= render 'layouts/food/foods', foods: @foods %>
+          </div>
         <% end %>
-      <% end %>
-    </div>
-<% elsif @taste_search.present? %>
-  <h2>「<%= @taste_search %>」の検索結果</h2>
-  <ul class="tab-list">
-    <li class="tab box-active">食べ物 <%= @foods.count %></li>
-  </ul>
-  <div class="tabbox-contents">
-    <div class="tabbox box-show">
-      <% if @foods.empty? %>
-        <p>「<%= @search %>」に該当するお店は見つかりませんでした。</p>
-      <% else %>
-        <% @foods.each do |food| %>
-          <%= attachment_image_tag food, :image, :fill, 60, 60 %>
-          <%= link_to food.name, food_path(food.id) %>
-          <%= attachment_image_tag food.shop, :shop_image, :fill, 60, 60 %>
-          <%= food.shop.name %>
-          <%= food.status %>
-          <%= food.favorite_foods.count %>
+      </div>
+
+      <div class="col-md-3">
+        <%= render 'public/genre_taste_search', genres: @genres, tastes: @tastes %>
+      </div>
+  <% elsif @taste_search.present? %>
+    <h2>「<%= @taste_search %>」の検索結果</h2>
+
+      <div class="col-md-9">
+        <% if @foods.empty? %>
+          <p>「<%= @taste_search %>」に該当する食べ物は見つかりませんでした。</p>
+        <% else %>
+          <div class="d-flex flex-wrap mt-3 align-items-center">
+            <%= render 'layouts/food/foods', foods: @foods %>
+          </div>
         <% end %>
-      <% end %>
+      </div>
+
+      <div class="col-md-3">
+        <%= render 'public/genre_taste_search', genres: @genres, tastes: @tastes %>
+      </div>
+    <% else %>
+      <h2>「<%= @search %>」の検索結果</h2>
+
+    <div class="col-md-12">
+          <ul class="tab-list">
+            <li class="tab box-active">食べ物 <%= @foods.count %></li>
+            <li class="tab">お店 <%= @shops.count %></li>
+            <li class="tab">ユーザー <%= @users.count %></li>
+          </ul>
+        <div class="tabbox-contents">
+          <div class="tabbox box-show">
+            <% if @foods.empty? %>
+              <p>「<%= @search %>」に該当する食べ物は見つかりませんでした。</p>
+            <% else %>
+              <div class="d-flex flex-wrap mt-3 align-items-center">
+                <%= render 'layouts/food/foods', foods: @foods %>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="tabbox">
+            <% if @shops.empty? %>
+              <p>「<%= @search %>」に該当するお店は見つかりませんでした。</p>
+            <% else %>
+              <% @shops.each do |shop| %>
+                <%= attachment_image_tag shop, :shop_image, :fill, 60, 60 %>
+                <%= link_to shop.name, shop_path(shop.id) %>
+              <% end %>
+            <% end %>
+          </div>
+
+          <div class="tabbox">
+            <% if @users.empty? %>
+              <p>「<%= @search %>」に該当するユーザーは見つかりませんでした。</p>
+            <% else %>
+              <% @users.each do |user| %>
+                <%= attachment_image_tag user, :profile_image, :fill, 60, 60 %>
+                <%= link_to user.name, user_path(user.id) %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
     </div>
-<% else %>
-  <h2>「<%= @search %>」の検索結果</h2>
-
-  <ul class="tab-list">
-    <li class="tab box-active">食べ物 <%= @foods.count %></li>
-    <li class="tab">お店 <%= @shops.count %></li>
-    <li class="tab">ユーザー <%= @users.count %></li>
-  </ul>
-<div class="tabbox-contents">
-  <div class="tabbox box-show">
-    <% if @foods.empty? %>
-      <p>「<%= @search %>」に該当する食べ物は見つかりませんでした。</p>
-    <% else %>
-      <% @foods.each do |food| %>
-        <%= attachment_image_tag food, :image, :fill, 60, 60 %>
-        <%= link_to food.name, food_path(food.id) %>
-        <%= attachment_image_tag food.shop, :shop_image, :fill, 60, 60 %>
-        <%= food.shop.name %>
-        <%= food.status %>
-        <%= food.favorite_foods.count %>
-      <% end %>
-    <% end %>
-  </div>
-
-  <div class="tabbox">
-    <% if @shops.empty? %>
-      <p>「<%= @search %>」に該当するお店は見つかりませんでした。</p>
-    <% else %>
-      <% @shops.each do |shop| %>
-        <%= attachment_image_tag shop, :shop_image, :fill, 60, 60 %>
-        <%= link_to shop.name, shop_path(shop.id) %>
-      <% end %>
-    <% end %>
-  </div>
-
-  <div class="tabbox">
-    <% if @users.empty? %>
-      <p>「<%= @search %>」に該当するユーザーは見つかりませんでした。</p>
-    <% else %>
-      <% @users.each do |user| %>
-        <%= attachment_image_tag user, :profile_image, :fill, 60, 60 %>
-        <%= link_to user.name, user_path(user.id) %>
-      <% end %>
-    <% end %>
-  </div>
+  <% end %>
 </div>
-<% end %>

@@ -1,8 +1,13 @@
 class Public::FavoriteShopsController < ApplicationController
   def index
-    @user = User.find(params[:user_id])
-    favorite_shop = FavoriteShop.where(user_id: @user).pluck(:shop_id)
-    @favorite_shops = Shop.find(favorite_shop)
+    @user = User.find_by(id: params[:user_id])
+    if @user.nil?
+      flash[:alert] = "ユーザーが見つかりませんでした。"
+      redirect_to root_path
+    else
+      favorite_shop = FavoriteShop.where(user_id: @user).pluck(:shop_id)
+      @favorite_shops = Shop.find(favorite_shop)
+    end
   end
 
   def create

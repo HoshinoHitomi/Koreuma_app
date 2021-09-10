@@ -7,20 +7,7 @@
 <% else %>
 
 <div class="d-flex flex-wrap mt-3 align-items-center">
-  <% @foods.each do |food| %>
-          <div class="card m-1">
-              <%= link_to shop_food_path(food) do %>
-                <%= attachment_image_tag food, :image, class: "card-img-top" %>
-              <% end %>
-              <div class="card-body">
-                <h6 class="card-title"><%= link_to food.name, shop_food_path(food) %></h6>
-                <p><i class="fas fa-heart"></i> お気に入り/ <%= food.favorite_foods.count %></p>
-                <p><i class="far fa-comments"></i> レビュー数/ <%= food.reviews.count %></p>
-                <p><%= food.status %></p>
-                <p><%= food.sale_dates %></p>
-              </div>
-          </div>
-  <% end %>
+  <%= render 'layouts/food/shop_foods', foods: @foods %>
 </div>
 
 <%= paginate @foods %>

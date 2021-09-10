@@ -1,23 +1,22 @@
-<h1>Public::Foods#index</h1>
-<p>Find me in app/views/public/foods/index.html.erb</p>
+<h2>食べ物一覧</h2>
 
-<% @genres.each do |genre| %>
-  <%= link_to genre.name, searches_path(genre_search: genre.id) %>
-<% end %>
+<div class="row">
+  <div class="col-md-9">
 
-<% @tastes.each do |taste| %>
-  <%= link_to taste, searches_path(taste_search: taste) %>
-<% end %>
+    <% if @foods.empty? %>
+      <p>まだ食べ物が登録されていません。</p>
+    <% else %>
 
-<% if @foods.empty? %>
-  <p>まだ食べ物が登録されていません。</p>
-<% else %>
-  <% @foods.each do |food| %>
-    <%= attachment_image_tag food, :image, :fill, 60, 60 %>
-    <%= link_to food.name, food_path(food) %>
-    <%= food.favorite_foods.count %>
-    <%= attachment_image_tag food.shop, :shop_image, :fill, 60, 60 %>
-    <%= food.shop.name %>
-    <%= food.status %>
-  <% end %>
-<% end %>
+      <div class="d-flex flex-wrap mt-3 align-items-center">
+        <%= render 'layouts/food/foods', foods: @foods %>
+      </div>
+
+      <%= paginate @foods %>
+
+    <% end %>
+  </div>
+
+  <div class="col-md-3">
+    <%= render 'public/genre_taste_search', genres: @genres, tastes: @tastes %>
+  </div>
+</div>

@@ -1,10 +1,15 @@
 class Public::ShopsController < ApplicationController
   def index
-    @shops = Shop.all
+    @shops = Shop.page(params[:page]).per(9)
   end
 
   def show
-    @shop = Shop.find(params[:id])
-    @foods = @shop.foods.page(params[:page])
+    @shop = Shop.find_by(id: params[:id])
+    if @shop.nil?
+      flash[:alert] = "お店が見つかりませんでした。"
+      redirect_to root_path
+    else
+      @foods = @shop.foods.page(params[:page])
+    end
   end
 end

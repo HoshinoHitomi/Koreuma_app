@@ -1,8 +1,13 @@
 class Public::FavoriteFoodsController < ApplicationController
   def index
-    @user = User.find(params[:user_id])
-    favorite_food = FavoriteFood.where(user_id: @user).pluck(:food_id)
-    @favorite_foods = Food.find(favorite_food)
+    @user = User.find_by(id: params[:user_id])
+    if @user.nil?
+      flash[:alert] = "ユーザーが見つかりませんでした。"
+      redirect_to root_path
+    else
+      favorite_food = FavoriteFood.where(user_id: @user).pluck(:food_id)
+      @favorite_foods = Food.find(favorite_food)
+    end
   end
 
   def create

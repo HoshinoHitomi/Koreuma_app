@@ -1,5 +1,4 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<h2>「コレうま！」お気に入り数ランキング(食べ物)</h2>
 
 <% @food_ranks.each.with_index(1) do |food, i| %>
   <%=  i  %>位
@@ -16,20 +15,18 @@
   <%= shop.favorite_shops.count %>
 <% end %>
 
-<% @foods.each do |food| %>
-  <%= attachment_image_tag food, :image, :fill, 60, 60 %>
-  <%= link_to food.name, food_path(food) %>
-  <%= food.status %>
-  <%= food.sale_dates %>
-  <%= food.favorite_foods.count %>
-<% end %>
+<div class="row">
+  <h2>新着食べ物</h2>
+  <div class="card-deck mt-3">
+    <%= render 'layouts/food/foods', foods: @foods %>
+  </div>
+  <%= link_to '食べ物をもっと見る', foods_path %>
+</div>
 
-<%= link_to '食べ物をもっと見る', foods_path %>
-
-<% @shops.each do |shop| %>
-  <%= attachment_image_tag shop, :shop_image, :fill, 60, 60, fallback: 'no_image.jpg' %>
-  <%= link_to shop.name, shop_path(shop) %>
-  <%= shop.favorite_shops.count %>
-<% end %>
-
-<%= link_to 'お店をもっと見る', shops_path %>
+<div class="row">
+  <h2>新着お店</h2>
+  <div class="card-deck mt-3">
+    <%= render 'layouts/shop/shops', shops: @shops %>
+  </div>
+  <%= link_to 'お店をもっと見る', shops_path %>
+</div>

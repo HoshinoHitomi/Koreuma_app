@@ -1,7 +1,7 @@
 class Shop::FoodsController < Shop::ApplicationController
   def index
     @shop = current_shop
-    @foods = @shop.foods.page(params[:page]).per(8)
+    @foods = @shop.foods.page(params[:page]).per(6)
   end
 
   def new

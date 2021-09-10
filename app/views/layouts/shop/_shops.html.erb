@@ -1,0 +1,11 @@
+<% shops.each do |shop| %>
+  <div class="card m-1">
+      <%= link_to shop_path(shop) do %>
+        <%= attachment_image_tag shop, :shop_image, fallback: 'no_image.jpg', class: "card-img-top" %>
+      <% end %>
+      <div class="card-body">
+        <h6 class="card-title"><%= link_to shop.name, shop_path(shop) %></h6>
+        <p><i class="fas fa-thumbs-up"></i>  店お気に入り/ <%= shop.favorite_shops.count %></p>
+      </div>
+  </div>
+<% end %>

@@ -6,6 +6,8 @@ class Public::SearchesController < ApplicationController
 
     @shops = Shop.search(@search)
     @users = User.search(@search)
+    @genres = Genre.all
+    @tastes = Food.tastes
 
     if @genre_search.present?
       @foods = Food.where(genre_id: @genre_search)

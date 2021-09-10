@@ -1,12 +1,9 @@
-<h1>Public::Shops#index</h1>
-<p>Find me in app/views/public/shops/index.html.erb</p>
+<h2>お店一覧</h2>
 
 <% if @shops.empty? %>
   <p>まだお店が登録されていません。</p>
 <% else %>
-  <% @shops.each do |shop| %>
-    <%= attachment_image_tag shop, :shop_image, :fill, 60, 60, fallback: 'no_image.jpg' %>
-    <%= link_to shop.name, shop_path(shop) %>
-    <%= shop.favorite_shops.count %>
-  <% end %>
+  <div class="d-flex flex-wrap mt-3 align-items-center">
+    <%= render 'layouts/shop/shops', shops: @shops %>
+  </div>
 <% end %>

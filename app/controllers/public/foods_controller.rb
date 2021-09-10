@@ -2,7 +2,10 @@ class Public::FoodsController < ApplicationController
   def index
     @genres = Genre.all
     @tastes = Food.tastes
-    @foods = Food.all
+    @foods = Food.page(params[:page]).per(9)
+
+    @genre_search = params[:genre_search]
+    @taste_search = params[:taste_search]
   end
 
   def show
