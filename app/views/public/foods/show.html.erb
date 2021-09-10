@@ -8,11 +8,11 @@
   </div>
 
 <%= render 'layouts/user_like',
-  sweet_like_average: @sweet_like_average,
-  salty_like_average: @salty_like_average,
-  bitter_like_average: @bitter_like_average,
-  sour_like_average: @sour_like_average,
-  spicy_like_average: @spicy_like_average
+  sweet_like_average: @food.sweet_like_average,
+  salty_like_average: @food.salty_like_average,
+  bitter_like_average: @food.bitter_like_average,
+  sour_like_average: @food.sour_like_average,
+  spicy_like_average: @food.spicy_like_average
 %>
 
 <% if user_signed_in? %>
@@ -33,8 +33,8 @@
 
 <h2>レビューと評価</h2>
 
-香りの強さ<%= @taste_strong_average.floor(1) %>
-味の濃さ<%= @smell_strong_average.floor(1) %>
+香りの強さ<%= @food.taste_strong_average.floor(1) %>
+味の濃さ<%= @food.smell_strong_average.floor(1) %>
 
 
 <% if user_signed_in? %>

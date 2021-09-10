@@ -1,10 +1,22 @@
+<h2>フォロー</h2>
+
 <% if @users.exists? %>
-  <% @users.each do |user| %>
-    <%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: 'no_image.jpg' %>
-    <%= link_to user.name, user_path(user) %>
-    <%= user.followings.count %>
-    <%= user.followers.count %>
-  <% end %>
+  <table class="table mt-3">
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: 'no_image.jpg', class: "rounded-circle" %></td>
+        <td>
+          <% if user.following?(current_user) %>
+            <p><i class="fas fa-user"></i> フォローされています。</p>
+          <% else %>
+            <p></p>
+          <% end %>
+          <%= link_to user.name, user_path(user) %>
+        </td>
+        <td><%= user.introduction %></td>
+      </tr>
+    <% end %>
+  </table>
 <% else %>
-  <p>誰もフォローしていません。</p>
+  <p>まだ誰もフォローしていません。</p>
 <% end %>

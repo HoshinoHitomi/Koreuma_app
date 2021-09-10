@@ -1,18 +1,34 @@
 class Public::ReviewsController < ApplicationController
   def index
-    user = User.find(params[:user_id])
-    @reviews = user.reviews
+    user = User.find_by(id: params[:user_id])
+    if user.nil?
+      flash[:alert] = "ユーザーが見つかりませんでした。"
+      redirect_to root_path
+    else
+      @reviews = user.reviews
+    end
   end
 
   def create
     @review = Review.new(review_params)
-    @review.save
-    redirect_to food_path(params[:food_id])
+    if @review.save
+      flash[:notice] = "レビューを投稿しました。"
+      redirect_to food_path(params[:food_id])
+    else
+      flash[:alert] = "おいしさ評価を入力してください"
+      redirect_to food_path(params[:food_id])
+    end
   end
 
   def edit
-    review = Review.where(user_id: current_user.id, food_id: params[:food_id]).ids
-    @review = Review.find(review)
+    food = Food.find_by(id: params[:food_id])
+    if food.nil?
+      flash[:alert] = "レビューが見つかりませんでした。"
+      redirect_to root_path
+    else
+      review = Review.where(user_id: current_user.id, food_id: food).ids
+      @review = Review.find(review)
+    end
   end
 
   def update
