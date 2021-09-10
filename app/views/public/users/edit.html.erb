@@ -1,39 +1,78 @@
-<h1>Public::Users#edit</h1>
-<p>Find me in app/views/public/users/edit.html.erb</p>
-<%= link_to '退会する', confirm_path %>
+<h2>ユーザー情報編集</h2>
 
-<%= form_with model: @user, url: user_path(@user), local:true do |f| %>
+<%= render 'layouts/error_messages', model: @user %>
 
-  <%= f.attachment_field :profile_image %>
+<div class="form-forizontal col-md-6 offset-md-3">
+  <%= form_with model: @user, url: user_path(@user), local:true do |f| %>
+    <div class="form-group">
+      <%= attachment_image_tag @user, :profile_image, :fill, 80, 80, fallback: "no_image.jpg", class: "rounded-circle" %>
+      <%= f.attachment_field :profile_image %>
+    </div>
 
-  <%= f.text_field :name, placeholder: 'コレうま子' %>
-  <%= f.text_area :introduction, placeholder: '自己紹介をしましょう！・好きな食べ物は？・どんなジャンルの食べ物が好きですか？' %>
-  <%= f.email_field :email %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, placeholder: 'コレうま子', class: "form-control" %>
+    </div>
 
-  <%= f.label :sweet_like %>
-  <%= f.collection_radio_buttons :sweet_like, User.sweet_likes_i18n, :first, :last do |b| %>
-    <%= b.label(class: "radio_button") { b.radio_button(class: "radio_button") + b.text } %><br>
+    <div class="form-group">
+      <%= f.label :introduction %>
+      <%= f.text_area :introduction, rows: 7, placeholder: '自己紹介をしましょう！&#13;&#10;・好きな食べ物は？&#13;&#10;・どんなジャンルの食べ物が好きですか？'.html_safe, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :email %>
+      <%= f.email_field :email, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :sweet_like %>
+      <div class="form-check form-check-inline">
+        <%= f.collection_radio_buttons :sweet_like, User.sweet_likes_i18n, :first, :last do |b| %>
+          <%= b.label(class: "radio_button mr-5") { b.radio_button(class: "radio_button m-2") + b.text } %><br>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :salty_like %>
+      <div class="form-check form-check-inline">
+        <%= f.collection_radio_buttons :salty_like, User.salty_likes_i18n, :first, :last do |b| %>
+          <%= b.label(class: "radio_button mr-5") { b.radio_button(class: "radio_button m-2") + b.text } %><br>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :bitter_like %>
+      <div class="form-check form-check-inline">
+        <%= f.collection_radio_buttons :bitter_like, User.bitter_likes_i18n, :first, :last do |b| %>
+          <%= b.label(class: "radio_button mr-5") { b.radio_button(class: "radio_button m-2") + b.text } %><br>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :sour_like %>
+      <div class="form-check form-check-inline">
+        <%= f.collection_radio_buttons :sour_like, User.sour_likes_i18n, :first, :last do |b| %>
+          <%= b.label(class: "radio_button mr-5") { b.radio_button(class: "radio_button m-2") + b.text } %><br>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :spicy_like %>
+      <div class="form-check form-check-inline">
+        <%= f.collection_radio_buttons :spicy_like, User.spicy_likes_i18n, :first, :last do |b| %>
+          <%= b.label(class: "radio_button mr-5") { b.radio_button(class: "radio_button m-2") + b.text } %><br>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="d-flex align-items-center justify-content-center">
+      <%= f.submit '編集する', class: "btn btn-success" %>
+    </div>
   <% end %>
+</div>
 
-  <%= f.label :salty_like %>
-  <%= f.collection_radio_buttons :salty_like, User.salty_likes_i18n, :first, :last do |b| %>
-    <%= b.label(class: "radio_button") { b.radio_button(class: "radio_button") + b.text } %><br>
-  <% end %>
-
-  <%= f.label :bitter_like %>
-  <%= f.collection_radio_buttons :bitter_like, User.bitter_likes_i18n, :first, :last do |b| %>
-    <%= b.label(class: "radio_button") { b.radio_button(class: "radio_button") + b.text } %><br>
-  <% end %>
-
-  <%= f.label :sour_like %>
-  <%= f.collection_radio_buttons :sour_like, User.sour_likes_i18n, :first, :last do |b| %>
-    <%= b.label(class: "radio_button") { b.radio_button(class: "radio_button") + b.text } %><br>
-  <% end %>
-
-  <%= f.label :spicy_like %>
-  <%= f.collection_radio_buttons :spicy_like, User.spicy_likes_i18n, :first, :last do |b| %>
-    <%= b.label(class: "radio_button") { b.radio_button(class: "radio_button") + b.text } %><br>
-  <% end %>
-
-  <%= f.submit '編集する' %>
-<% end %>
+<%= link_to '退会する', confirm_path, class: "btn btn-danger" %>

@@ -3,7 +3,7 @@
   <%= @user.name %>
   <% if user_signed_in? %>
     <% if @user.id == current_user.id %>
-      <%= link_to '編集する', edit_user_path(@user.id), class: "btn btn-primary float-right" %>
+      <%= link_to '編集する', edit_user_path(@user.id), class: "btn btn-primary rounded-pill float-right" %>
     <% else %>
       <% if current_user.following?(@user) %>
         <%= link_to 'フォロー解除', user_relationships_path(@user.id), method: :delete, class: "btn btn-outline-primary rounded-pill float-right" %>
@@ -13,64 +13,119 @@
     <% end %>
   <% end %>
 </h1>
-<%= @user.introduction %>
-<%= @user.sweet_like %>
-<%= @user.salty_like %>
-<%= @user.bitter_like %>
-<%= @user.sour_like %>
-<%= @user.spicy_like %>
 
-<%= link_to @user.followings.count, user_followings_path(@user) %>フォロー
-<%= link_to @user.followers.count, user_followers_path(@user) %>フォロワー
-
-<% if @favorite_foods.present? %>
-  <% @favorite_foods.each do |food| %>
-    <%= food.name %>
-  <% end %>
-  <%= link_to 'お気に入り食べ物一覧へ', user_favorite_foods_path(@user.id) %>
-<% else %>
-  <p>お気に入り登録した食べ物がありません。</p>
+<%= link_to user_followings_path(@user), class: "mr-4" do %>
+ <%= @user.followings.count %> フォロー
 <% end %>
 
-<% if @favorite_shops.present? %>
-  <% @favorite_shops.each do |shop| %>
-    <%= shop.name %>
-  <% end %>
-  <%= link_to 'お気に入りお店一覧へ', user_favorite_shops_path(@user.id) %>
-<% else %>
-  <p>お気に入り登録したお店がありません。</p>
+<%= link_to  user_followers_path(@user), class: "mr-4" do %>
+ <%= @user.followers.count %> フォロワー
 <% end %>
 
-<h2><%= @user.name %>さんのレビュー</h2>
+<%= link_to user_reviews_path(@user) do %>
+ <%= @user.reviews.count %> レビュー
+<% end %>
 
-<% if @reviews.empty? %>
+<div class="row border rounded m-3">
+  <p class="p-3"><%= @user.introduction %></p>
+</div>
+
+<div class="p-3">
+  <h2>味の好み</h2>
+
+  <span class="float-right">
+    <%= link_to user_favorite_foods_path(@user.id), class: "btn btn-primary" do %>
+      <i class="fas fa-utensils"></i>　お気に入り食べ物
+    <% end %>
+
+    <%= link_to user_favorite_shops_path(@user.id), class: "btn btn-primary" do %>
+      <i class="fas fa-store"></i>　お気に入りお店
+    <% end %>
+  </span>
+
+  <table class="table col-md-3">
+    <tr>
+      <td width=30><i class="fas fa-ice-cream"></i></td>
+      <td>甘味</td>
+      <td><%= @user.sweet_like %></td>
+    </tr>
+
+    <tr>
+      <td><i class="fas fa-bacon"></i></td>
+      <td>塩味</td>
+      <td><%= @user.salty_like %></td>
+    </tr>
+
+    <tr>
+      <td><i class="fas fa-seedling"></i></td>
+      <td>苦味</td>
+      <td><%= @user.bitter_like %></td>
+    </tr>
+
+    <tr>
+      <td><i class="fas fa-lemon"></i></td>
+      <td>酸味</td>
+      <td><%= @user.sour_like %></td>
+    </tr>
+
+    <tr>
+      <td><i class="fas fa-pepper-hot"></i></td>
+      <td>辛味</td>
+      <td><%= @user.spicy_like %></td>
+    </tr>
+  </table>
+</div>
+
+<h2><%= @user.name %>の最新レビュー</h2>
+
+<% if @review.nil? %>
   <p>レビューがありません。</p>
 <% else %>
-  <% @reviews.each do |review| %>
-    <%= attachment_image_tag review.food, :image, :fill, 60, 60 %>
-    <%= link_to review.food.name, food_path(review.food_id) %>
-    <%= review.body %>
-        <div class="border rounded m-3 p-2">
-        <p><%= review.body %></p>
-      <div id="star-raty-<%= review.id %>">
-         <%= review.taste_score %>
+
+<%= link_to 'レビュー一覧へ', user_reviews_path(@user), class: "btn btn-primary float-right" %>
+
+<div class="m-3">
+  <div class="card p-3">
+      <div class="row no-gutters">
+          <div class="col-md-4">
+              <%= link_to food_path(@review.food.id) do %>
+                <%= attachment_image_tag @review.food, :image, class: "card-img-top" %>
+              <% end %>
+              <div class="card-body">
+                <h6><%= link_to @review.food.name, food_path(@review.food_id) %></h6>
+                <p><i class="fas fa-heart"></i> お気に入り/ <%= @review.food.favorite_foods.count %></p>
+                <p><i class="far fa-comments"></i> レビュー数/ <%= @review.food.reviews.count %></p>
+                <p><%= @review.food.status %></p>
+                <p>販売日 <%= @review.food.sale_dates %></p>
+              </div>
+          </div>
+
+          <div class="col-md-7 offset-md-1">
+              <div class="border-bottom">
+                <%= attachment_image_tag @review.user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg", class: "rounded-circle" %>
+                <%= @review.user.name %>
+              </div>
+              <p><%= @review.body %></p>
+                <div id="star-raty-<%= @review.id %>">
+                   <%= @review.taste_score %>
+                </div>
+              <p><%= @review.repeat %></p>
+              <p><%= @review.updated_at %></p>
+          </div>
       </div>
-        <p><%= review.repeat %></p>
+  </div>
 
-      <script>
-        $('#star-raty-<%= review.id %>').raty({
-          size     : 36,
-          starOff:  '<%= asset_path('star-off.png') %>',
-          starOn : '<%= asset_path('star-on.png') %>',
-          starHalf : '<%= asset_path('star-half.png') %>',
-          half: true,
-          readOnly: true,
-          score: '<%= review.taste_score %>'
-        });
-      </script>
-    </div>
+  <script>
+    $('#star-raty-<%= @review.id %>').raty({
+      size     : 36,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      starHalf : '<%= asset_path('star-half.png') %>',
+      half: true,
+      readOnly: true,
+      score: '<%= @review.taste_score %>'
+    });
+  </script>
+</div>
 
-  <% end %>
-
-  <%= link_to 'レビュー一覧へ', user_reviews_path(@user) %>
 <% end %>

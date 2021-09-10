@@ -6,19 +6,16 @@ class Public::UsersController < ApplicationController
       flash[:alert] = "ユーザーが見つかりませんでした。"
       redirect_to root_path
     else
-      food_favorites = FavoriteFood.where(user_id: params[:id]).pluck(:food_id)
-      @favorite_foods = Food.find(food_favorites).last(4)
-
-      shop_favorites = FavoriteShop.where(user_id: params[:id]).pluck(:shop_id)
-      @favorite_shops = Shop.find(shop_favorites).last(4)
-
-      @reviews = @user.reviews
+      @review = @user.reviews.last
     end
   end
 
   def edit
     @user = User.find_by(id: params[:id])
-    if @user.nil?
+    if @user.email == 'guest@user'
+      flash[:alert] = "ゲストユーザーは編集できません。"
+      redirect_to user_path(@user)
+    elsif @user.nil?
       flash[:alert] = "ユーザーが見つかりませんでした。"
       redirect_to root_path
     end
@@ -26,12 +23,11 @@ class Public::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.email == 'guest@user'
-      flash[:alert] = "ゲストユーザーは編集できません。"
+    if @user.update(user_params)
+      flash[:notice] = "ユーザー情報を編集しました。"
       redirect_to user_path(@user)
     else
-      @user.update(user_params)
-      redirect_to user_path(@user)
+      render :edit
     end
   end
 
