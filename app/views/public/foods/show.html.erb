@@ -49,8 +49,8 @@
     <span><i class="far fa-comment"></i> レビューする</span>
   </button>
 
-  <!--<div class="collapse" id="review-form">-->
-    <div class="form-horizontal">
+  <div class="collapse border p-3" id="review-form">
+    <div class="form-horizontal col-md-10 offset-md-1">
       <%= form_with model: @review, url: food_reviews_path(@food), method: :post, local:true do |f| %>
 
         <%= f.hidden_field :user_id, :value => current_user.id %>
@@ -89,10 +89,10 @@
           <%= f.text_area :body, placeholder: "レビューを書き込んでください(任意)", rows: 4, class: "form-control" %>
         </div>
 
-        <%= f.submit 'レビューを投稿する' %>
+        <%= f.submit 'レビューを投稿する', class: "btn btn-success" %>
       <% end %>
     </div>
-  <!--</div>-->
+  </div>
   <% else %>
 
   <h4 class="ml-3">投稿したレビュー</h4>
@@ -123,7 +123,7 @@
   <% end %>
 
 <% else %>
-  <p>新規登録 / ログインでレビュー投稿ができます。</p>
+  <p class="text-center border rounded">新規登録 / ログインでレビュー投稿ができます。</p>
 <% end %>
 
 <%= render 'layouts/review', reviews: @reviews %>
