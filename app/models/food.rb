@@ -23,6 +23,15 @@ class Food < ApplicationRecord
     (self.price * 1.08).round
   end
 
+  def taste_score_average
+    taste_score = reviews.pluck(:taste_score)
+    if taste_score == []
+     "- -"
+    else
+     taste_score.sum.fdiv(taste_score.length)
+    end
+  end
+
   def taste_strong_average
     taste_strong = reviews.pluck(:taste_strong)
     if taste_strong == []
