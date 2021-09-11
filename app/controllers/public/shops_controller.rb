@@ -9,7 +9,7 @@ class Public::ShopsController < ApplicationController
       flash[:alert] = "お店が見つかりませんでした。"
       redirect_to root_path
     else
-      @foods = @shop.foods.page(params[:page])
+      @foods = @shop.foods.last(4).reverse
     end
   end
 end

@@ -1,46 +1,72 @@
-<h1>Public::Shops#show</h1>
-<p>Find me in app/views/public/shops/show.html.erb</p>
-<%= @shop.favorite_shops.count %>
+<div class="border rounded p-3">
+  <p><i class="fas fa-thumbs-up"></i> 店お気に入り/ <%= @shop.favorite_shops.count %></p>
 
-<%= @shop.name %>
-
-<%= attachment_image_tag @shop, :shop_image, :fill, 60, 60, fallback: "no_image.jpg" %>
-
-<%= @shop.introduction %>
-
-<%= @shop.address %>
-
-<%= @shop.phone_number %>
-
-<%= @shop.working_time %>
-
-<% if user_signed_in? %>
-  <% if @shop.shop_favorited_by?(current_user) %>
-    <p>
-      <%= link_to shop_favorite_shops_path(@shop), method: :delete do %>
-        ♥<%= @shop.favorite_shops.count %> いいね
+  <div class="float-right">
+    <% if user_signed_in? %>
+      <% if @shop.shop_favorited_by?(current_user) %>
+          <%= link_to shop_favorite_shops_path(@shop), class: "btn btn-outline-primary", method: :delete do %>
+            <i class="fas fa-thumbs-up"></i> お気に入り解除
+          <% end %>
+        <% else %>
+          <%= link_to shop_favorite_shops_path(@shop), class: "btn btn-primary", method: :post do %>
+            <i class="far fa-thumbs-up"></i> お気に入り登録
+          <% end %>
       <% end %>
-    </p>
-    <% else %>
-    <p>
-      <%= link_to shop_favorite_shops_path(@shop), method: :post do %>
-        ♡<%= @shop.favorite_shops.count %> いいね
-      <% end %>
-    </p>
-  <% end %>
-<% end %>
+    <% end %>
+  </div>
 
-<h2><%= @shop.name %>の食べ物一覧</h2>
+  <h1 class="border-bottom p-2">
+    <%= attachment_image_tag @shop, :shop_image, :fill, 100, 100, fallback: "no_image.jpg", class: "rounded-circle" %>
+    <%= @shop.name %>
+  </h1>
+
+
+    <div class="row">
+      <div class="col-md-6">
+        <p><%= @shop.introduction %></p>
+      </div>
+      <div class="col-md-6">
+        <table>
+          <tr>
+            <td>住所</td>
+            <td> <%= @shop.address %></td>
+          </tr>
+          <tr>
+            <td>電話番号</td>
+            <td> <%= @shop.phone_number %></td>
+          </tr>
+          <tr>
+            <td>営業時間</td>
+            <td> <%= @shop.working_time %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+</div>
+
+<h2><%= @shop.name %>の新着食べ物一覧</h2>
 
 <% if @foods.empty? %>
   <p>食べ物が登録されていません。</p>
 <% else %>
 
+<div class="card-deck mt-3">
   <% @foods.each do |food| %>
-    <%= link_to food.name, food_path(food) %>
-    <%= attachment_image_tag food, :image, :fill, 60, 60 %>
-    <%= food.status %>
-    <%= food.sale_dates %>
+      <div class="card">
+          <%= link_to food_path(food) do %>
+            <%= attachment_image_tag food, :image, class: "card-img-top" %>
+          <% end %>
+          <div class="card-body">
+            <h6 class="card-title"><%= link_to food.name, shop_food_path(food) %></h6>
+            <p><i class="fas fa-heart"></i> お気に入り/ <%= food.favorite_foods.count %></p>
+            <p><i class="far fa-comments"></i> レビュー数/ <%= food.reviews.count %></p>
+            <p><%= food.status %></p>
+            <p><%= food.sale_dates %></p>
+          </div>
+      </div>
   <% end %>
-
+</div>
+<p class="text-right">
+  <%= link_to "食べ物一覧へ", foods_path(shop: 'shop') %>
+</p>
 <% end %>

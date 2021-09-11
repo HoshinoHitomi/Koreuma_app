@@ -1,4 +1,8 @@
-<h2>食べ物一覧</h2>
+<% if @shop.nil? %>
+  <h2>食べ物一覧 (全<%= @foods.count %>件)</h2>
+<% else %>
+  <h2><%= @shop.name %>の食べ物一覧　(全<%= @foods.count %>件)</h2>
+<% end %>
 
 <div class="row">
   <div class="col-md-9">

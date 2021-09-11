@@ -30,13 +30,18 @@ p {
   white-space: pre-wrap;
 }
 
-.foods, .homes, .searches, .shops, .favorite_foods, .favorite_shops {
+.foods, .searches, .shops, .favorite_foods, .favorite_shops {
 
   .card {
     width: 30%;
   }
 }
 
+.food_show {
+  width: 100%;
+  height: 30vw;
+  object-fit: cover;
+}
 
 .card-img-top {
   width: 100%;
