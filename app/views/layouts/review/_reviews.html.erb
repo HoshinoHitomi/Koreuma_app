@@ -14,7 +14,7 @@
                       <h6><%= link_to review.food.name, food_path(review.food_id) %></h6>
                       <p><i class="fas fa-heart"></i> お気に入り/ <%= review.food.favorite_foods.count %></p>
                       <p><i class="far fa-comments"></i> レビュー数/ <%= review.food.reviews.count %></p>
-                      <p><%= review.food.status %></p>
+                      <p><%= review.food.status_i18n %></p>
                       <p>販売日 <%= review.food.sale_dates %></p>
                     </div>
                 </div>

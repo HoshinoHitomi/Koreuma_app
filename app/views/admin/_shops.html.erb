@@ -13,7 +13,7 @@
         <td><%= shop.id %></td>
         <td><%= link_to shop.name, admin_shop_path(shop) %></td>
         <td><%= shop.email %></td>
-        <td><%= shop.is_active %></td>
+        <td><%= shop.is_active ? '有効' : '退会済み' %></td>
       </tr>
     <% end %>
 </table>

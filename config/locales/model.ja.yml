@@ -1,0 +1,62 @@
+ja:
+  activerecord:
+    models:
+      admin: 管理者
+      favorite_food: お気に入り食べ物
+      favorite_shop: お気に入りお店
+      food: 食べ物
+      shop: お店
+      genre: ジャンル
+      information: お知らせ
+      relationship: フォロー
+      review: レビュー
+      user: ユーザー
+    attributes:
+      admin:
+        email: メールアドレス
+        password: パスワード
+      food:
+        name: 食べ物名
+        taste: 大まかな味
+        introduction: 食べ物紹介文
+        price: 価格
+        calorie: カロリー
+        status: 販売状況
+        sale_dates: 販売日
+        food_temperature: 温度
+      shop:
+        email: メールアドレス
+        password: パスワード
+        name: 店名
+        address: 店住所
+        phone_number: 店電話番号
+        working_time: 営業時間
+        introduction: 店紹介文
+      genre:
+        name: ジャンル名
+      information:
+        title: タイトル
+        body: 本文
+      review:
+        smell_strong: 香りの強さ
+        taste_strong: 味の強さ
+        taste_score: おいしさ評価
+        body: 本文
+        sweet_like: 甘味好み度
+        salty_like: 塩味好み度
+        bitter_like: 苦味好み度
+        sour_like: 酸味好み度
+        spicy_like: 辛味好み度
+      user:
+        name: ニックネーム
+        password: パスワード
+        email: メールアドレス
+        introduction: 自己紹介文
+        sweet_like: 甘味好み度
+        salty_like: 塩味好み度
+        bitter_like: 苦味好み度
+        sour_like: 酸味好み度
+        spicy_like: 辛味好み度
+  attributes:
+    created_at: 作成日
+    updated_at: 更新日

@@ -13,7 +13,7 @@
       <td><%= user.id %></td>
       <td><%= link_to user.name, admin_user_path(user) %></td>
       <td><%= user.email %></td>
-      <td><%= user.is_active %></td>
+      <td><%= user.is_active ? '有効' : '退会済み' %></td>
     </tr>
   <% end %>
 </table>

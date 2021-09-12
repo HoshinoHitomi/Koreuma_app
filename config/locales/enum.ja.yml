@@ -1,0 +1,45 @@
+ja:
+  enums:
+    food:
+      taste:
+        nothing: なし
+        sweet: 甘い
+        salty: しょっぱい
+        bitter: 苦い
+        sour: すっぱい
+        spicy: 辛い
+      food_temperature:
+        tepid: 常温
+        hot: 温かい
+        cold: 冷たい
+      status:
+        before: 販売前
+        on_sale: 販売中
+        stop: 販売停止中
+        finish: 販売終了
+    user:
+      sweet_like:
+        hate: 大嫌い
+        dislike: 嫌い
+        like: 好き
+        really_like: 大好き
+      salty_like:
+        hate: 大嫌い
+        dislike: 嫌い
+        like: 好き
+        really_like: 大好き
+      bitter_like:
+        hate: 大嫌い
+        dislike: 嫌い
+        like: 好き
+        really_like: 大好き
+      sour_like:
+        hate: 大嫌い
+        dislike: 嫌い
+        like: 好き
+        really_like: 大好き
+      spicy_like:
+        hate: 大嫌い
+        dislike: 嫌い
+        like: 好き
+        really_like: 大好き

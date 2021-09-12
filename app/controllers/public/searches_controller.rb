@@ -13,6 +13,12 @@ class Public::SearchesController < ApplicationController
       @foods = Food.where(genre_id: @genre_search)
     elsif @taste_search.present?
       @foods = Food.where(taste: @taste_search)
+      food = Food.where(taste: @taste_search).last
+      if food.nil?
+        @taste_search_word = "選択した味"
+      else
+        @taste_search_word = food.taste_i18n
+      end
     else
       @foods = Food.search(@search)
     end

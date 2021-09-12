@@ -1,8 +1,8 @@
 <table class="table border">
   <th>おおまかな味</th>
-    <% tastes.each do |taste| %>
+    <% Food.tastes_i18n.each do |taste| %>
       <tr>
-        <td><%= link_to taste, searches_path(taste_search: taste) %></td>
+        <td><%= link_to taste.pop, searches_path(taste_search: taste.shift) %></td>
       </tr>
     <% end %>
 </table>

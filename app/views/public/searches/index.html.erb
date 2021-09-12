@@ -15,11 +15,11 @@
         <%= render 'public/genre_taste_search', genres: @genres, tastes: @tastes %>
       </div>
   <% elsif @taste_search.present? %>
-    <h2>「<%= @taste_search %>」の検索結果</h2>
+    <h2>「<%= @taste_search_word %>」の検索結果</h2>
 
       <div class="col-md-9">
         <% if @foods.empty? %>
-          <p>「<%= @taste_search %>」に該当する食べ物は見つかりませんでした。</p>
+          <p>「<%= @taste_search_word %>」に該当する食べ物は見つかりませんでした。</p>
         <% else %>
           <div class="d-flex flex-wrap mt-3 align-items-center">
             <%= render 'layouts/food/foods', foods: @foods %>

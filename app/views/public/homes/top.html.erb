@@ -13,7 +13,7 @@
           <h6 class="card-title"><%= link_to food.name, food_path(food) %></h6>
           <p><i class="fas fa-heart"></i> お気に入り/ <%= food.favorite_foods.count %></p>
           <p><i class="far fa-comments"></i> レビュー数/ <%= food.reviews.count %></p>
-          <p><%= food.status %></p>
+          <p><%= food.status_i18n %></p>
           <p><%= food.sale_dates %></p>
         </div>
     </div>

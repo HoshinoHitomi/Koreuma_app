@@ -26,11 +26,11 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :true %>
       <%= f.radio_button :is_active, :true %>
+      <%= f.label :true, '有効' %>
 
-      <%= f.label :false %>
       <%= f.radio_button :is_active, :false %>
+      <%= f.label :false, '退会済み' %>
     </div>
 
     <div class="d-flex align-items-center justify-content-center">

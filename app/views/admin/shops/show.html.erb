@@ -25,7 +25,7 @@
 
     <p><%= @shop.phone_number %></p>
 
-    <p><%= @shop.is_active %></p>
+    <p><%= @shop.is_active ? '有効' : '退会済み' %></p>
 
     <%= link_to '編集する', edit_admin_shop_path(@shop), class: "btn btn-success" %>
   </div>
