@@ -1,128 +1,126 @@
-  <div class="row mt-3 p-3 border rounded">
-    <div class="col-md-12 p-3">
+<div class="row mt-3 p-3 border rounded">
+  <div class="col-md-12 p-3">
     <h1><%= @food.name %></h1>
-        <i class="fas fa-star"></i> <%= @food.taste_score_average %>
-      <div id="favorite_food_buttons_<%= @food.id %>">
-       <%= render'public/favorite_foods/favorite_food', food: @food %>
-      </div>
+      <i class="fas fa-star"></i> <%= @food.taste_score_average %>
+    <div id="favorite_food_buttons_<%= @food.id %>">
+     <%= render'public/favorite_foods/favorite_food', food: @food %>
     </div>
-
-    <%= attachment_image_tag @food, :image, class: 'food_show' %>
-
-    <div class="col-md-12 p-3">
-      <%= attachment_image_tag @food.shop, :shop_image, :fill, 80, 80, fallback: "no_image.jpg", class: "rounded-circle" %>
-      <%= link_to @food.shop.name, shop_path(@food.shop.id) %>
-    </div>
-
-    <%= render 'layouts/food/food_info', food: @food %>
   </div>
 
-<%= render 'layouts/user_like',
-  sweet_like_average: @food.sweet_like_average,
-  salty_like_average: @food.salty_like_average,
-  bitter_like_average: @food.bitter_like_average,
-  sour_like_average: @food.sour_like_average,
-  spicy_like_average: @food.spicy_like_average
-%>
+  <%= attachment_image_tag @food, :image, class: 'food_show' %>
+
+  <div class="col-md-12 p-3">
+    <%= attachment_image_tag @food.shop, :shop_image, :fill, 80, 80, fallback: "no_image.jpg", class: "rounded-circle" %>
+    <%= link_to @food.shop.name, shop_path(@food.shop.id) %>
+  </div>
+
+  <%= render 'layouts/food/food_info', food: @food %>
+</div>
+
+<h2>また食べたい味と思ったユーザーの味の好み度統計</h2>
+
+<div class="row p-3">
+  <%= render 'layouts/user_like',
+    sweet_like_average: @food.sweet_like_average,
+    salty_like_average: @food.salty_like_average,
+    bitter_like_average: @food.bitter_like_average,
+    sour_like_average: @food.sour_like_average,
+    spicy_like_average: @food.spicy_like_average,
+    data: @data
+  %>
+</div>
 
 <h2>レビューと評価</h2>
 
-<table class="borderless">
-  <tr>
-    <td>香りの強さ</td>
-    <td><%= @food.taste_strong_average.floor(1) %></td>
-  </tr>
-  <tr>
-    <td>味の濃さ</td>
-    <td><%= @food.smell_strong_average.floor(1) %></td>
-  </tr>
-</table>
+<div class="col-md-12 mt-3">
+  <% if user_signed_in? %>
 
-<% if user_signed_in? %>
+    <% if @your_review.nil? %>
+    <button class="btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#review-form" aria-controls="review-form" aria-expanded="false">
+      <span><i class="far fa-comment"></i> レビューする</span>
+    </button>
 
-  <% if @your_review.nil? %>
-  <button class="btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#review-form" aria-controls="review-form" aria-expanded="false">
-    <span><i class="far fa-comment"></i> レビューする</span>
-  </button>
+    <div class="collapse border p-3" id="review-form">
+      <div class="form-horizontal col-md-10 offset-md-1">
+        <%= form_with model: @review, url: food_reviews_path(@food), method: :post, local:true do |f| %>
 
-  <div class="collapse border p-3" id="review-form">
-    <div class="form-horizontal col-md-10 offset-md-1">
-      <%= form_with model: @review, url: food_reviews_path(@food), method: :post, local:true do |f| %>
+          <%= f.hidden_field :user_id, :value => current_user.id %>
+          <%= f.hidden_field :food_id, :value => params[:id] %>
+          <%= f.hidden_field :sweet_like, :value => current_user.sweet_like_before_type_cast %>
+          <%= f.hidden_field :salty_like, :value => current_user.salty_like_before_type_cast %>
+          <%= f.hidden_field :bitter_like, :value => current_user.bitter_like_before_type_cast %>
+          <%= f.hidden_field :sour_like, :value => current_user.sour_like_before_type_cast %>
+          <%= f.hidden_field :spicy_like, :value => current_user.spicy_like_before_type_cast %>
 
-        <%= f.hidden_field :user_id, :value => current_user.id %>
-        <%= f.hidden_field :food_id, :value => params[:id] %>
-        <%= f.hidden_field :sweet_like, :value => current_user.sweet_like_before_type_cast %>
-        <%= f.hidden_field :salty_like, :value => current_user.salty_like_before_type_cast %>
-        <%= f.hidden_field :bitter_like, :value => current_user.bitter_like_before_type_cast %>
-        <%= f.hidden_field :sour_like, :value => current_user.sour_like_before_type_cast %>
-        <%= f.hidden_field :spicy_like, :value => current_user.spicy_like_before_type_cast %>
+          <div class="form-group">
+            <%= f.label :smell_strong %>
+            弱い<%= f.range_field :smell_strong, in: 0..10 %>強い
+          </div>
 
-        <div class="form-group">
-          <%= f.label :smell_strong %>
-          弱い<%= f.range_field :smell_strong, in: 0..10 %>強い
-        </div>
+          <div class="form-group">
+            <%= f.label :taste_strong %>
+            弱い<%= f.range_field :taste_strong, in: 0..10 %>強い
+          </div>
 
-        <div class="form-group">
-          <%= f.label :taste_strong %>
-          弱い<%= f.range_field :taste_strong, in: 0..10 %>強い
-        </div>
+          <div class="field" id="star-rating">
+            <%= f.label :taste_score %>
+            <%= f.hidden_field :taste_score, id: :review_star %>
+          </div>
 
-        <div class="field" id="star-rating">
-          <%= f.label :taste_score %>
-          <%= f.hidden_field :taste_score, id: :review_star %>
-        </div>
+          <div class="form-group">
+            <%= f.label :repeat %><br>
 
-        <div class="form-group">
-          <%= f.label :repeat %><br>
+            <%= f.radio_button :repeat, true, :chacked => true %>
+            <%= f.label :true %>
+            <%= f.radio_button :repeat, false %>
+            <%= f.label :false %>
+          </div>
 
-          <%= f.radio_button :repeat, true, :chacked => true %>
-          <%= f.label :true %>
-          <%= f.radio_button :repeat, false %>
-          <%= f.label :false %>
-        </div>
+          <div class="form-group">
+            <%= f.text_area :body, placeholder: "レビューを書き込んでください(任意)", rows: 4, class: "form-control" %>
+          </div>
 
-        <div class="form-group">
-          <%= f.text_area :body, placeholder: "レビューを書き込んでください(任意)", rows: 4, class: "form-control" %>
-        </div>
-
-        <%= f.submit 'レビューを投稿する', class: "btn btn-success" %>
-      <% end %>
+          <%= f.submit 'レビューを投稿する', class: "btn btn-success" %>
+        <% end %>
+      </div>
     </div>
-  </div>
+    <% else %>
+
+    <h4 class="ml-3">投稿したレビュー</h4>
+        <div class="border rounded m-3 p-2">
+          <span>
+            <%= attachment_image_tag @your_review.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", class: "rounded-circle" %>
+            <%= @your_review.user.name %>
+            <%= link_to '編集する', edit_food_reviews_path(@food.id), class: "btn btn-success float-right" %>
+          </span>
+          <p><%= @your_review.body %></p>
+        <div id="your-star-raty-<%= @your_review.id %>">
+           <%= @your_review.taste_score %>
+        </div>
+          <p><%= @your_review.repeat %></p>
+          <p><%= @your_review.updated_at %></p>
+        </div>
+      <script>
+        $('#your-star-raty-<%= @your_review.id %>').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf : '<%= asset_path('star-half.png') %>',
+          half: true,
+          readOnly: true,
+          score: '<%= @your_review.taste_score %>'
+        });
+      </script>
+    <% end %>
+
   <% else %>
-
-  <h4 class="ml-3">投稿したレビュー</h4>
-      <div class="border rounded m-3 p-2">
-        <span>
-          <%= attachment_image_tag @your_review.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", class: "rounded-circle" %>
-          <%= @your_review.user.name %>
-          <%= link_to '編集する', edit_food_reviews_path(@food.id), class: "btn btn-success float-right" %>
-        </span>
-        <p><%= @your_review.body %></p>
-      <div id="your-star-raty-<%= @your_review.id %>">
-         <%= @your_review.taste_score %>
-      </div>
-        <p><%= @your_review.repeat %></p>
-        <p><%= @your_review.updated_at %></p>
-      </div>
-    <script>
-      $('#your-star-raty-<%= @your_review.id %>').raty({
-        size     : 36,
-        starOff:  '<%= asset_path('star-off.png') %>',
-        starOn : '<%= asset_path('star-on.png') %>',
-        starHalf : '<%= asset_path('star-half.png') %>',
-        half: true,
-        readOnly: true,
-        score: '<%= @your_review.taste_score %>'
-      });
-    </script>
+    <p class="text-center border rounded">新規登録 / ログインでレビュー投稿ができます。</p>
   <% end %>
+</div>
 
-<% else %>
-  <p class="text-center border rounded">新規登録 / ログインでレビュー投稿ができます。</p>
-<% end %>
-
-<%= render 'layouts/review', reviews: @reviews %>
+<div class="row mb-5 mt-3">
+  <%= render 'layouts/review', food: @food, review_data: @review_data, reviews: @reviews %>
+</div>
 
 <script>
   $('#star-rating').raty({

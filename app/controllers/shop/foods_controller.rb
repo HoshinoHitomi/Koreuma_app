@@ -25,21 +25,21 @@ class Shop::FoodsController < Shop::ApplicationController
       flash[:alert] = "食べ物が見つかりませんでした。"
       redirect_to shop_foods_path
     end
-    @taste_strong_average = @food.taste_strong_average
-
-    @smell_strong_average =  @food.smell_strong_average
-
-    @sweet_like_average = @food.sweet_like_average
-
-    @salty_like_average = @food.salty_like_average
-
-    @bitter_like_average = @food.bitter_like_average
-
-    @sour_like_average = @food.sour_like_average
-
-    @spicy_like_average = @food.spicy_like_average
-
     @reviews = @food.reviews
+
+    @data = [
+      ['甘味', @food.sweet_like_average],
+      ['塩味', @food.salty_like_average],
+      ['苦味', @food.bitter_like_average],
+      ['酸味', @food.sour_like_average],
+      ['辛味', @food.spicy_like_average],
+    ]
+
+    @review_data = [
+      ['香りの強さ', @food.smell_strong_average],
+      ['味の強さ', @food.taste_strong_average],
+    ]
+
   end
 
   def edit

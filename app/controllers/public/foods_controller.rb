@@ -29,5 +29,18 @@ class Public::FoodsController < ApplicationController
 
     @reviews = @food.reviews
 
+    @data = [
+      ['甘味', @food.sweet_like_average],
+      ['塩味', @food.salty_like_average],
+      ['苦味', @food.bitter_like_average],
+      ['酸味', @food.sour_like_average],
+      ['辛味', @food.spicy_like_average],
+    ]
+
+    @review_data = [
+      ['香りの強さ', @food.smell_strong_average],
+      ['味の強さ', @food.taste_strong_average],
+    ]
+
   end
 end

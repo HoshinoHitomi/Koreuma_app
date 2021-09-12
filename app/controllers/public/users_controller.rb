@@ -12,10 +12,7 @@ class Public::UsersController < ApplicationController
 
   def edit
     @user = User.find_by(id: params[:id])
-    if @user.email == 'guest@user'
-      flash[:alert] = "ゲストユーザーは編集できません。"
-      redirect_to user_path(@user)
-    elsif @user.nil?
+    if @user.nil?
       flash[:alert] = "ユーザーが見つかりませんでした。"
       redirect_to root_path
     elsif @user.id != current_user.id
@@ -25,7 +22,10 @@ class Public::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
+    if @user.email == 'guest@user'
+      flash[:alert] = "ゲストユーザーは編集できません。"
+      redirect_to user_path(@user)
+    elsif @user.update(user_params)
       flash[:notice] = "ユーザー情報を編集しました。"
       redirect_to user_path(@user)
     else

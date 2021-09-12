@@ -1,35 +1,54 @@
+<div class="col-md-4">
+  <table class="borderless mt-3 table">
+    <tr>
+      <td width="120">香りの強さ</td>
+      <td><%= food.smell_strong_average %></td>
+    </tr>
+    <tr>
+      <td>味の濃さ</td>
+      <td><%= food.taste_strong_average %></td>
+    </tr>
+    <tr>
+      <td>おいしさ評価</td>
+      <td><i class="fas fa-star"></i><%= food.taste_score_average %></td>
+    </tr>
+  </table>
+</div>
+
+<div class="col-md-8">
+  <%= bar_chart review_data, min: 0, max: 10, height: 30 %>
+</div>
+
 <div class="col-md-12">
-<h2>レビューと評価</h2>
+  <% if reviews.empty? %>
+    <p class="text-center p-3">レビューがまだありません。</p>
+  <% else %>
+    <% reviews.each do |review| %>
+      <div class="border rounded m-3 p-2">
+          <span>
+            <%= attachment_image_tag review.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", class: "rounded-circle" %>
+            <%= link_to review.user.name, user_path(review.user.id) %>
+          </span>
+          <p><%= review.body %></p>
+        <div id="star-raty-<%= review.id %>">
+           <%= review.taste_score %>
+        </div>
+          <p><%= review.repeat %></p>
+          <p><%= review.updated_at %></p>
 
-<% if reviews.empty? %>
-  <p>レビューがまだありません。</p>
-<% else %>
-  <% reviews.each do |review| %>
-    <div class="border rounded m-3 p-2">
-        <span>
-          <%= attachment_image_tag review.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", class: "rounded-circle" %>
-          <%= link_to review.user.name, user_path(review.user.id) %>
-        </span>
-        <p><%= review.body %></p>
-      <div id="star-raty-<%= review.id %>">
-         <%= review.taste_score %>
+        <script>
+          $('#star-raty-<%= review.id %>').raty({
+            size     : 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf : '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: '<%= review.taste_score %>'
+          });
+        </script>
       </div>
-        <p><%= review.repeat %></p>
-        <p><%= review.updated_at %></p>
 
-      <script>
-        $('#star-raty-<%= review.id %>').raty({
-          size     : 36,
-          starOff:  '<%= asset_path('star-off.png') %>',
-          starOn : '<%= asset_path('star-on.png') %>',
-          starHalf : '<%= asset_path('star-half.png') %>',
-          half: true,
-          readOnly: true,
-          score: '<%= review.taste_score %>'
-        });
-      </script>
-    </div>
-
+    <% end %>
   <% end %>
-<% end %>
 </div>

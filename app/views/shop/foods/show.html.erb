@@ -1,28 +1,37 @@
 <div class="border rounded p-3">
-
-  <p><i class="fas fa-heart"></i> お気に入り/ <%= @food.favorite_foods.count %></p>
-  <h1><%= @food.name %></h1>
-
-  <%= attachment_image_tag @food, :image, width: '30%' %>
-
-  <div class="row mt-3">
-    <%= render 'layouts/food_info', food: @food %>
+  <div class="col-md-12 p-3">
+    <i class="fas fa-star"></i> <%= @food.taste_score_average %><br>
+    <i class="fas fa-heart"></i> お気に入り/ <%= @food.favorite_foods.count %>
   </div>
 
+  <h1>
+    <%= @food.name %>
+    <div class="float-right">
       <%= link_to '編集する', edit_shop_food_path(@food), class: "btn btn-success" %>
-      <%= link_to '削除する', shop_food_path, method: :delete, 'data-confirm' => '本当に削除しますか？', class: "btn btn-danger" %>
-
-  <div class="row">
-    <div class="col-md-12">
-    <%= render 'layouts/user_like',
-      sweet_like_average: @sweet_like_average,
-      salty_like_average: @salty_like_average,
-      bitter_like_average: @bitter_like_average,
-      sour_like_average: @sour_like_average,
-      spicy_like_average: @spicy_like_average
-    %>
-
-    <%= render 'layouts/review', reviews: @reviews %>
     </div>
+  </h1>
+
+  <%= attachment_image_tag @food, :image, class: "food_show" %>
+
+  <div class="row mt-3 mb-5 p-3">
+    <%= render 'layouts/food/food_info', food: @food %>
+  </div>
+
+  <h2>また食べたい味と思ったユーザーの味の好み度統計</h2>
+
+  <div class="row mb-5 mt-3">
+    <%= render 'layouts/user_like',
+      sweet_like_average: @food.sweet_like_average,
+      salty_like_average: @food.salty_like_average,
+      bitter_like_average: @food.bitter_like_average,
+      sour_like_average: @food.sour_like_average,
+      spicy_like_average: @food.spicy_like_average,
+      data: @data
+    %>
+  </div>
+
+  <h2>レビューと評価</h2>
+  <div class="row mb-5 mt-3">
+      <%= render 'layouts/review', food: @food, review_data: @review_data, reviews: @reviews %>
   </div>
 </div>

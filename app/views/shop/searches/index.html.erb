@@ -4,6 +4,6 @@
   <p>「<%= @search %>」に該当する食べ物は見つかりませんでした。</p>
 <% else %>
   <div class="d-flex flex-wrap mt-3 align-items-center">
-    <%= render 'layouts/food/shop_foods', foods: @foods %>
+    <%= render 'layouts/shop_foods', foods: @foods %>
   </div>
 <% end %>
