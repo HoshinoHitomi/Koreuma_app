@@ -5,11 +5,9 @@
     <% if @user.id == current_user.id %>
       <%= link_to '編集する', edit_user_path(@user.id), class: "btn btn-primary rounded-pill float-right" %>
     <% else %>
-      <% if current_user.following?(@user) %>
-        <%= link_to 'フォロー解除', user_relationships_path(@user.id), method: :delete, class: "btn btn-outline-primary rounded-pill float-right" %>
-      <% else %>
-        <%= link_to 'フォローする', user_relationships_path(@user.id), method: :post, class: "btn btn-primary rounded-pill float-right" %>
-      <% end %>
+      <div class="float-right" id="relationship_buttons_<%= @user.id %>">
+        <%= render 'public/relationships/relationship', user: @user %>
+      </div>
     <% end %>
   <% end %>
 </h1>

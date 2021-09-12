@@ -11,16 +11,14 @@ class Public::FavoriteShopsController < ApplicationController
   end
 
   def create
-    shop = Shop.find(params[:shop_id])
-    favorite_shop = current_user.favorite_shops.new(shop_id: shop.id)
+    @shop = Shop.find(params[:shop_id])
+    favorite_shop = current_user.favorite_shops.new(shop_id: @shop.id)
     favorite_shop.save
-    redirect_to shop_path(shop)
   end
 
   def destroy
-    shop = Shop.find(params[:shop_id])
-    favorite_shop = current_user.favorite_shops.find_by(shop_id: shop.id)
+    @shop = Shop.find(params[:shop_id])
+    favorite_shop = current_user.favorite_shops.find_by(shop_id: @shop.id)
     favorite_shop.destroy
-    redirect_to shop_path(shop)
   end
 end

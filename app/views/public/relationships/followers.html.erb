@@ -3,29 +3,25 @@
 <% if @users.exists? %>
   <table class="table mt-3">
     <% @users.each do |user| %>
-        <% if current_user.following?(user) %>
           <tr>
             <td><%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: 'no_image.jpg', class: "rounded-circle" %></td>
             <td>
+              <% if current_user.following?(user) %>
+                <p><i class="fas fa-user"></i> フォローしています。</p>
+              <% else %>
+                <p></p>
+              <% end %>
               <%= link_to user.name, user_path(user) %>
             </td>
             <td><%= user.introduction %></td>
-            <td>
-              <%= link_to 'フォロー解除', user_relationships_path(user.id), method: :delete, class: "btn btn-outline-primary rounded-pill float-right" %>
-            </td>
+            <% if user.id != current_user.id %>
+              <td>
+                <div id="relationship_buttons_<%= user.id %>">
+                    <%= render 'public/relationships/relationship', user: user %>
+                </div>
+              </td>
+            <% end %>
           </tr>
-        <% else %>
-          <tr>
-            <td><%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: 'no_image.jpg', class: "rounded-circle" %></td>
-            <td>
-              <%= link_to user.name, user_path(user) %>
-            </td>
-            <td><%= user.introduction %></td>
-            <td>
-              <%= link_to 'フォローする', user_relationships_path(user.id), method: :post, class: "btn btn-primary rounded-pill float-right" %>
-            </td>
-          </tr>
-        <% end %>
     <% end %>
   </table>
 <% else %>

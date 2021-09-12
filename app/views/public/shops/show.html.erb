@@ -1,18 +1,7 @@
 <div class="border rounded p-3">
-  <p><i class="fas fa-thumbs-up"></i> 店お気に入り/ <%= @shop.favorite_shops.count %></p>
 
-  <div class="float-right">
-    <% if user_signed_in? %>
-      <% if @shop.shop_favorited_by?(current_user) %>
-          <%= link_to shop_favorite_shops_path(@shop), class: "btn btn-outline-primary", method: :delete do %>
-            <i class="fas fa-thumbs-up"></i> お気に入り解除
-          <% end %>
-        <% else %>
-          <%= link_to shop_favorite_shops_path(@shop), class: "btn btn-primary", method: :post do %>
-            <i class="far fa-thumbs-up"></i> お気に入り登録
-          <% end %>
-      <% end %>
-    <% end %>
+  <div id="favorite_shop_buttons_<%= @shop.id %>">
+    <%= render 'public/favorite_shops/favorite_shop', shop: @shop %>
   </div>
 
   <h1 class="border-bottom p-2">

@@ -1,11 +1,15 @@
-<% if user_signed_in? %>
-  <% if food.food_favorited_by?(current_user) %>
-      <%= link_to food_favorite_foods_path(food), method: :delete, remote: true, class: "btn btn-outline-primary float-right" do %>
-        <i class="fas fa-heart"></i> お気に入り解除
-      <% end %>
-  <% else %>
-      <%= link_to food_favorite_foods_path(food), method: :post, remote: true, class: "btn btn-outline-primary float-right" do %>
-        <i class="far fa-heart"></i> お気に入り登録
-      <% end %>
+    <i class="fas fa-heart"></i> お気に入り/ <%= food.favorite_foods.count %>
+
+<div class="float-right">
+  <% if user_signed_in? %>
+    <% if food.food_favorited_by?(current_user) %>
+        <%= link_to food_favorite_foods_path(food), method: :delete, remote: true, class: "btn btn-outline-primary" do %>
+          <i class="fas fa-heart"></i> お気に入り解除
+        <% end %>
+    <% else %>
+        <%= link_to food_favorite_foods_path(food), method: :post, remote: true, class: "btn btn-outline-primary" do %>
+          <i class="far fa-heart"></i> お気に入り登録
+        <% end %>
+    <% end %>
   <% end %>
-<% end %>
+</div>
