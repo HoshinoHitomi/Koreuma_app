@@ -1,4 +1,4 @@
-<div class="border rounded p-3">
+<div class="border rounded p-3 mb-5">
 
   <div id="favorite_shop_buttons_<%= @shop.id %>">
     <%= render 'public/favorite_shops/favorite_shop', shop: @shop %>
@@ -36,7 +36,7 @@
 <h2><%= @shop.name %>の新着食べ物一覧</h2>
 
 <% if @foods.empty? %>
-  <p>食べ物が登録されていません。</p>
+  <p class="text-center p-3">食べ物が登録されていません。</p>
 <% else %>
 
 <div class="card-deck mt-3">
@@ -55,6 +55,7 @@
       </div>
   <% end %>
 </div>
+
 <p class="text-right">
   <%= link_to "食べ物一覧へ", foods_path(shop: 'shop') %>
 </p>

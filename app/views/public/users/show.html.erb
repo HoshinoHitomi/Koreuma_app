@@ -77,7 +77,7 @@
 <h2><%= @user.name %>の最新レビュー</h2>
 
 <% if @review.nil? %>
-  <p>レビューがありません。</p>
+  <p class="text-center p-3">レビューがありません。</p>
 <% else %>
 
 <%= link_to 'レビュー一覧へ', user_reviews_path(@user), class: "btn btn-primary float-right" %>

@@ -54,10 +54,9 @@
             <% if @shops.empty? %>
               <p>「<%= @search %>」に該当するお店は見つかりませんでした。</p>
             <% else %>
-              <% @shops.each do |shop| %>
-                <%= attachment_image_tag shop, :shop_image, :fill, 60, 60 %>
-                <%= link_to shop.name, shop_path(shop.id) %>
-              <% end %>
+              <div class="d-flex flex-wrap mt-3 align-items-center">
+                <%= render 'layouts/shop/shops', shops: @shops %>
+              </div>
             <% end %>
           </div>
 
@@ -65,10 +64,14 @@
             <% if @users.empty? %>
               <p>「<%= @search %>」に該当するユーザーは見つかりませんでした。</p>
             <% else %>
-              <% @users.each do |user| %>
-                <%= attachment_image_tag user, :profile_image, :fill, 60, 60 %>
-                <%= link_to user.name, user_path(user.id) %>
-              <% end %>
+              <table class="table">
+                <% @users.each do |user| %>
+                  <tr>
+                    <td><%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", class: "rounded-circle" %></td>
+                    <td><%= link_to user.name, user_path(user.id) %></td>
+                  </tr>
+                <% end %>
+              </table>
             <% end %>
           </div>
         </div>

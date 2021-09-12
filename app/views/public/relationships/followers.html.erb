@@ -6,24 +6,28 @@
           <tr>
             <td><%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: 'no_image.jpg', class: "rounded-circle" %></td>
             <td>
-              <% if current_user.following?(user) %>
-                <p><i class="fas fa-user"></i> フォローしています。</p>
-              <% else %>
-                <p></p>
+              <% if user_signed_in? %>
+                  <% if current_user.following?(user) %>
+                    <p><i class="fas fa-user"></i> フォローしています。</p>
+                  <% else %>
+                    <p></p>
+                  <% end %>
               <% end %>
               <%= link_to user.name, user_path(user) %>
             </td>
             <td><%= user.introduction %></td>
-            <% if user.id != current_user.id %>
-              <td>
-                <div id="relationship_buttons_<%= user.id %>">
-                    <%= render 'public/relationships/relationship', user: user %>
-                </div>
-              </td>
-            <% end %>
+              <% if user_signed_in? %>
+                  <% if user.id != current_user.id %>
+                    <td>
+                      <div id="relationship_buttons_<%= user.id %>">
+                          <%= render 'public/relationships/relationship', user: user %>
+                      </div>
+                    </td>
+                  <% end %>
+              <% end %>
           </tr>
     <% end %>
   </table>
 <% else %>
-  <p>まだフォローいません。</p>
+  <p class="text-center p-3">まだフォローがいません。</p>
 <% end %>
