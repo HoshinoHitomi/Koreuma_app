@@ -24,25 +24,25 @@
                 </ul>
             </div>
 
-            <% if user_signed_in? %>
+              <% if user_signed_in? %>
 
-              <div class="bg-light p-2 rounded">
-                  <div class="dropdown">
-                    <span class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <%= attachment_image_tag current_user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg", size: '50x50', class: "rounded-circle" %>
-                      <%= current_user.name %>
-                    </span>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <li class="dropdown-item"><%= link_to 'マイページ', user_path(current_user.id) %></li>
-                      <li class="dropdown-item"><%= link_to 'お気に入り食べ物', user_favorite_foods_path(current_user.id) %></li>
-                      <li class="dropdown-item"><%= link_to 'お気に入りお店', user_favorite_shops_path(current_user.id) %></li>
-                      <li class="dropdown-item"><%= link_to '投稿したレビュー', user_reviews_path(current_user.id) %></li>
-                      <div class="dropdown-divider"></div>
-                      <li class="dropdown-item"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+                <div class="bg-light p-2 rounded">
+                    <div class="dropdown">
+                      <span class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <%= attachment_image_tag current_user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg", size: '50x50', class: "rounded-circle" %>
+                        <%= current_user.name %>
+                      </span>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li class="dropdown-item"><%= link_to 'マイページ', user_path(current_user.id) %></li>
+                        <li class="dropdown-item"><%= link_to 'お気に入り食べ物', user_favorite_foods_path(current_user.id) %></li>
+                        <li class="dropdown-item"><%= link_to 'お気に入りお店', user_favorite_shops_path(current_user.id) %></li>
+                        <li class="dropdown-item"><%= link_to '投稿したレビュー', user_reviews_path(current_user.id) %></li>
+                        <div class="dropdown-divider"></div>
+                        <li class="dropdown-item"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+                      </div>
                     </div>
-                  </div>
-              </div>
-            <% end %>
+                </div>
+              <% end %>
         </div>
       </nav>
     </header>
@@ -55,9 +55,9 @@
       </div>
     </div>
 
-    <footer>
-      <%= link_to 'お知らせ', informations_path %>
-      <p>©コレうま！</p>
+    <footer class="p-3">
+      <p><%= link_to 'お知らせ', informations_path %></p>
+      ©コレうま！
     </footer>
   </body>
 </html>
