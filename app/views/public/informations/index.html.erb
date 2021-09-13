@@ -14,7 +14,7 @@
 
       <% @informations.each do |information| %>
         <tr>
-          <td><%= information.created_at %></td>
+          <td><%= l information.created_at %></td>
           <td><%= link_to information.title, information_path(information) %></td>
           <td><%= information.body.truncate(25) %></td>
         </tr>

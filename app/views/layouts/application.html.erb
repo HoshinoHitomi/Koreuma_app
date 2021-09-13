@@ -48,8 +48,11 @@
     </header>
 
     <div class="<%= controller.controller_name %>">
-        <%= flash[:notice] %>
-        <%= flash[:alert] %>
+      <% if notice %>
+        <div class="alert alert-success"><%= flash[:notice] %></div>
+      <% elsif alert %>
+        <div class="alert alert-danger"><%= flash[:alert] %></div>
+      <% end %>
       <div class="container-fluid">
         <div class="p-3">
           <%= yield %>

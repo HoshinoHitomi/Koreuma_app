@@ -1,12 +1,13 @@
 <h2>お店情報編集</h2>
 
-<%= render 'layouts/error_messages', model: @shop %>
-
 <div class="float-right">
   <%= link_to '退会する', shop_confirm_path, class: "btn btn-danger" %>
 </div>
 
 <div class="form-forizontal col-md-6 offset-md-3">
+
+<%= render 'layouts/error_messages', model: @shop %>
+
   <%= form_with model: @shop, url: shop_homes_path(@shop), local: true do |f| %>
 
     <div class="form-group">

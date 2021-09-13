@@ -31,11 +31,11 @@ class Shops::SessionsController < Devise::SessionsController
     @shop = Shop.find_by(email: params[:shop][:email].downcase)
     if @shop
       if (@shop.valid_password?(params[:shop][:password]) && (@shop.active_for_authentication? == false))
-        flash[:error] = "退会済みです。"
+        flash[:alert] = "退会済みです。"
         redirect_to new_shop_session_path
       end
     else
-      flash[:error] = "必要項目を入力してください。"
+      flash[:alert] = "必要項目を入力してください。"
     end
   end
 
