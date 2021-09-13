@@ -89,7 +89,7 @@
     <h4 class="ml-3">投稿したレビュー</h4>
         <div class="border rounded m-3 p-2">
           <span>
-            <%= attachment_image_tag @your_review.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", class: "rounded-circle" %>
+            <%= attachment_image_tag @your_review.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", size: '60x60', class: "rounded-circle" %>
             <%= @your_review.user.name %>
             <%= link_to '編集する', edit_food_reviews_path(@food.id), class: "btn btn-success float-right" %>
           </span>

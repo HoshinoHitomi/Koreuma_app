@@ -1,35 +1,39 @@
 <% if admin_signed_in? %>
-  <li>
+  <li class="nav-item">
     <%= link_to 'お知らせ', admin_informations_path, class: 'btn btn-outline-success mr-3' %>
   </li>
-  <li>
+  <li class="nav-item">
     <%= link_to 'ジャンル管理', admin_genres_path, class: 'btn btn-outline-success mr-3' %>
   </li>
-  <li>
+  <li class="nav-item">
     <%= link_to 'お店管理', admin_shops_path, class: 'btn btn-outline-success mr-3' %>
   </li>
-  <li>
+  <li class="nav-item">
     <%= link_to 'ユーザー管理', admin_users_path, class: 'btn btn-outline-success mr-3' %>
   </li>
-  <li>
+  <li class="nav-item">
     <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'btn btn-outline-success mr-3' %>
   </li>
 <% elsif shop_signed_in? %>
-  <li>
+  <li class="nav-item">
     <%= link_to 'マイページ', shop_root_path, class: 'btn btn-outline-success mr-3' %>
   </li>
-  <li>
+  <li class="nav-item">
     <%= link_to '食べ物管理', shop_foods_path, class: 'btn btn-outline-success mr-3' %>
   </li>
-  <li>
+  <li class="nav-item">
     <%= link_to 'ログアウト', destroy_shop_session_path, method: :delete, class: 'btn btn-outline-success mr-3' %>
   </li>
 <% elsif user_signed_in? %>
-  <li><%= link_to 'マイページ', user_path(current_user.id), class: 'btn btn-outline-success mr-3' %></li>
-  <li><%= link_to '食べ物', foods_path, class: 'btn btn-outline-success mr-3' %></li>
-  <li><%= link_to 'お店', shops_path, class: 'btn btn-outline-success mr-3' %></li>
-  <li><%= link_to '全レビュー', all_reviews_path, class: 'btn btn-outline-success mr-3' %></li>
-  <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn btn-outline-success mr-3' %></li>
+  <li class="nav-item">
+    <%= link_to '食べ物', foods_path, class: 'btn btn-outline-success mr-3' %>
+  </li>
+  <li class="nav-item">
+    <%= link_to 'お店', shops_path, class: 'btn btn-outline-success mr-3' %>
+  </li>
+  <li class="nav-item">
+    <%= link_to '全レビュー', all_reviews_path, class: 'btn btn-outline-success mr-3' %>
+  </li>
 <% else %>
   <li class="nav-item">
     <%= link_to 'コレうまって？', about_path, class: 'btn btn-outline-success mr-3' %>

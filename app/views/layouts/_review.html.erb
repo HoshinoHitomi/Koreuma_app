@@ -26,7 +26,7 @@
     <% reviews.each do |review| %>
       <div class="border rounded m-3 p-2">
           <span>
-            <%= attachment_image_tag review.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", class: "rounded-circle" %>
+            <%= attachment_image_tag review.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", size: '60x60', class: "rounded-circle" %>
             <%= link_to review.user.name, user_path(review.user.id) %>
           </span>
           <p><%= review.body %></p>

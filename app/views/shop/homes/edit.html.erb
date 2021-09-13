@@ -7,10 +7,10 @@
 </div>
 
 <div class="form-forizontal col-md-6 offset-md-3">
-  <%= form_with model: @shop, url: shop_homes_path(@shop), local:true do |f| %>
+  <%= form_with model: @shop, url: shop_homes_path(@shop), local: true do |f| %>
 
     <div class="form-group">
-      <%= attachment_image_tag @shop, :shop_image, :fill, 80, 80, fallback: "no_image.jpg", class: "rounded-circle" %>
+      <%= attachment_image_tag @shop, :shop_image, :fill, 80, 80, fallback: "no_image.jpg", size: '80x80', class: "rounded-circle" %>
       <%= f.attachment_field :shop_image %>
     </div>
 
