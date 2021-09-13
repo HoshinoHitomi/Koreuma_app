@@ -2,7 +2,7 @@
   <p><%= food.introduction %></p>
 </div>
 
-<div class="col-md-6 p-3">
+<div class="col-md-6 p-3 border rounded">
   <table class="borderless">
     <tr>
       <td>ジャンル</td>
@@ -14,7 +14,7 @@
     </tr>
     <tr>
       <td>価格</td>
-      <td>: <%= food.tax_price.to_s(:delimited) %>円(税込) (<%= food.price.to_s(:delimited) %>)</td>
+      <td>: <strong><%= food.tax_price.to_s(:delimited) %></strong>円(税込) (税抜き <%= food.price.to_s(:delimited) %>円)</td>
     </tr>
     <tr>
       <td>カロリー</td>
@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <td>販売日</td>
-      <td>: <%= food.sale_dates %></td>
+      <td>: <%= l food.sale_dates %></td>
     </tr>
   </table>
 </div>

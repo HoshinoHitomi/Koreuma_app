@@ -15,7 +15,7 @@
                       <p><i class="fas fa-heart"></i> お気に入り/ <%= review.food.favorite_foods.count %></p>
                       <p><i class="far fa-comments"></i> レビュー数/ <%= review.food.reviews.count %></p>
                       <p><%= review.food.status_i18n %></p>
-                      <p>販売日 <%= review.food.sale_dates %></p>
+                      <p>販売日 <%= l review.food.sale_dates %></p>
                     </div>
                 </div>
 
@@ -31,8 +31,8 @@
                          おいしさ評価<br>
                          <%= review.taste_score %>
                       </div>
-                    <p><%= review.repeat %></p>
-                    <p><%= review.updated_at %></p>
+                    <p><%= review.repeat ? "また食べたい！" : "リピートなし"%></p>
+                    <p><%= l review.updated_at, format: :date %></p>
                 </div>
             </div>
       </div>

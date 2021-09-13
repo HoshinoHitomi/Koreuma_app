@@ -1,26 +1,50 @@
-<%= form_with model: @review, url: food_reviews_path, local:true do |f| %>
+<h2>レビュー編集</h2>
+
+<div class="form-horizontal col-md-6 offset-md-3">
+  <%= form_with model: @review, url: food_reviews_path, local:true do |f| %>
     <%= f.hidden_field :user_id, :value => current_user.id %>
     <%= f.hidden_field :food_id, :value => params[:food_id] %>
+    <%= f.hidden_field :sweet_like, :value => current_user.sweet_like_before_type_cast %>
+    <%= f.hidden_field :salty_like, :value => current_user.salty_like_before_type_cast %>
+    <%= f.hidden_field :bitter_like, :value => current_user.bitter_like_before_type_cast %>
+    <%= f.hidden_field :sour_like, :value => current_user.sour_like_before_type_cast %>
+    <%= f.hidden_field :spicy_like, :value => current_user.spicy_like_before_type_cast %>
 
-    <%= f.text_area :body %>
+    <div class="form-group">
+      <%= f.label :smell_strong %>
+      弱い<%= f.range_field :smell_strong, in: 0..10 %>強い
+    </div>
 
-    <%= f.range_field :smell_strong, in: 0..10 %>
-    <%= f.range_field :taste_strong, in: 0..10 %>
-
-    <%= f.label :repeat %>
-
-    <%= f.radio_button :repeat, true, :chacked => true %>
-    <%= f.radio_button :repeat, false %>
+    <div class="form-group">
+      <%= f.label :taste_strong %>
+      弱い<%= f.range_field :taste_strong, in: 0..10 %>強い
+    </div>
 
     <div class="field" id="star-rating">
       <%= f.label :taste_score %>
       <%= f.hidden_field :taste_score, id: :review_star %>
     </div>
 
-    <%= f.submit 'レビューを投稿する' %>
-<% end %>
+    <div class="form-group">
+      <%= f.label :repeat %><br>
 
-<%= link_to 'レビューを削除する', food_reviews_path(params[:food_id]), method: :delete %>
+      <%= f.radio_button :repeat, true, :chacked => true %>
+      <%= f.label :true, 'また食べたい！' %>
+      <%= f.radio_button :repeat, false %>
+      <%= f.label :false, 'リピートなし' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.text_area :body, placeholder: "レビューを書き込んでください(任意)", rows: 4, class: "form-control" %>
+    </div>
+
+    <%= f.submit 'レビューを編集する', class: "btn btn-success" %>
+  <% end %>
+</div>
+
+<div class="float-right">
+  <%= link_to 'レビューを削除する', food_reviews_path(params[:food_id]), method: :delete, "data-confirm" => "削除しますか？", class: "btn btn-danger" %>
+</div>
 
 <script>
   $('#star-rating').raty({

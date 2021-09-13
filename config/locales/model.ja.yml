@@ -17,6 +17,7 @@ ja:
         password: パスワード
       food:
         name: 食べ物名
+        genre: ジャンル
         taste: 大まかな味
         introduction: 食べ物紹介文
         price: 価格
@@ -47,6 +48,7 @@ ja:
         bitter_like: 苦味好み度
         sour_like: 酸味好み度
         spicy_like: 辛味好み度
+        repeat: また食べたい？
       user:
         name: ニックネーム
         password: パスワード

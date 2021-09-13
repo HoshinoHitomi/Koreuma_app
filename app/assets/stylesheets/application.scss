@@ -21,6 +21,12 @@ header {
   background-color: #EBAD75;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 footer {
   margin-top: auto;
   height: 100%;

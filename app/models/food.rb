@@ -51,7 +51,8 @@ class Food < ApplicationRecord
   end
 
   def sweet_like_average
-    sweet_like = reviews.pluck(:sweet_like)
+    true_flags = reviews.where(repeat: true)
+    sweet_like = true_flags.pluck(:sweet_like)
     if sweet_like == []
      2.5
     else
@@ -60,7 +61,8 @@ class Food < ApplicationRecord
   end
 
   def salty_like_average
-    salty_like = reviews.pluck(:salty_like)
+    true_flags = reviews.where(repeat: true)
+    salty_like = true_flags.pluck(:salty_like)
     if salty_like == []
      2.5
     else
@@ -69,7 +71,8 @@ class Food < ApplicationRecord
   end
 
   def bitter_like_average
-    bitter_like = reviews.pluck(:bitter_like)
+    true_flags = reviews.where(repeat: true)
+    bitter_like = true_flags.pluck(:bitter_like)
     if bitter_like == []
      2.5
     else
@@ -78,7 +81,8 @@ class Food < ApplicationRecord
   end
 
   def sour_like_average
-    sour_like = reviews.pluck(:sour_like)
+    true_flags = reviews.where(repeat: true)
+    sour_like = true_flags.pluck(:sour_like)
     if sour_like == []
      2.5
     else
@@ -87,14 +91,14 @@ class Food < ApplicationRecord
   end
 
   def spicy_like_average
-    spicy_like = reviews.pluck(:spicy_like)
+    true_flags = reviews.where(repeat: true)
+    spicy_like = true_flags.pluck(:spicy_like)
     if spicy_like == []
      2.5
     else
      spicy_like.sum.fdiv(spicy_like.length)
     end
   end
-
 
   validates :name, presence: true
   validates :image, presence: true

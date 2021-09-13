@@ -9,7 +9,7 @@
 
     <% @shops.each do |shop| %>
       <tr>
-        <td><%= shop.created_at %></td>
+        <td><%= l shop.created_at %></td>
         <td><%= shop.id %></td>
         <td><%= link_to shop.name, admin_shop_path(shop) %></td>
         <td><%= shop.email %></td>
