@@ -31,9 +31,15 @@ class Shop < ApplicationRecord
     Shop.where(['name LIKE ?', "%#{search}%"])
   end
 
-  validates :name, presence: true, uniqueness: true
-  validates :email, presence: true, uniqueness: true
-  validates :address, presence: true
-  validates :working_time, presence: true
-  validates :phone_number, presence: true
+  with_options presence: true do
+    validates :name
+    validates :email
+    validates :address
+    validates :working_time
+    validates :phone_number
+  end
+
+  validates :name,uniqueness: true
+  validates :email, uniqueness: true
+  validates :phone_number, numericality: true
 end

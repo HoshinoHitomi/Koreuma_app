@@ -1,68 +1,94 @@
-<h2>「コレうま！」お気に入り数ランキング(食べ物)</h2>
+<div class="bg-light rounded p-3 shadow">
+  <div class="text-center mb-5">
+    <h2>
+      「コレうま！」へようこそ！
+    </h2>
 
-<div class="card-deck mt-3 mb-5">
-  <% @food_ranks.each.with_index(1) do |food, i| %>
-    <div class="card m-1">
-      <div class="card-header text-center">
-        <i class="fas fa-star"></i> <%=  i  %>位 <i class="fas fa-star"></i>
-      </div>
-        <%= link_to food_path(food) do %>
-          <%= attachment_image_tag food, :image, class: "card-img-top" %>
-        <% end %>
-        <div class="card-body">
-          <h6 class="card-title"><%= link_to food.name, food_path(food) %></h6>
-          <p><i class="fas fa-heart"></i> お気に入り/ <%= food.favorite_foods.count %></p>
-          <p><i class="far fa-comments"></i> レビュー数/ <%= food.reviews.count %></p>
-          <p><%= food.status_i18n %></p>
-          <p><%= l food.sale_dates %></p>
+    <p>
+      味で語ろう、「コレうま!」
+      味を、香りを、食感を…想像しながらおいしいものを探そう。
+    </p>
+    <div class="col-md-4 offset-md-4">
+      <%= form_with url: searches_path, method: :get, local: true do |f| %>
+        <div class="input-group">
+
+          <%= f.text_field :search, placeholder: 'おいしいものをさがそう', class: "form-control" %>
+
+          <span class="input-btn-group">
+            <%= button_tag type: "submit", class: 'btn btn-success' do %>
+              <i class="fas fa-search"></i>
+            <% end %>
+          </span>
         </div>
-    </div>
-  <% end %>
-</div>
-
-<h2>「コレうま！」お気に入り数ランキング(お店)</h2>
-
-<div class="card-deck mt-3 mb-5">
-  <% @shop_ranks.each.with_index(1) do |shop, i| %>
-     <div class="card m-1">
-      <div class="card-header text-center">
-        <i class="fas fa-star"></i> <%=  i  %>位 <i class="fas fa-star"></i>
-      </div>
-        <%= link_to shop_path(shop) do %>
-          <%= attachment_image_tag shop, :shop_image, fallback: 'no_image.jpg', class: "card-img-top" %>
-        <% end %>
-        <div class="card-body">
-          <h6 class="card-title"><%= link_to shop.name, shop_path(shop) %></h6>
-          <p><i class="fas fa-thumbs-up"></i> 店お気に入り/ <%= shop.favorite_shops.count %></p>
-        </div>
-    </div>
-  <% end %>
-</div>
-
-<div class="row mb-5">
-  <div class="col-md-12">
-    <h2>新着食べ物</h2>
-
-    <div class="float-right">
-      <%= link_to '食べ物をもっと見る', foods_path, class: "btn btn-primary" %>
-    </div>
-
-    <div class="card-deck mt-3">
-      <%= render 'layouts/food/foods', foods: @foods %>
+      <% end %>
     </div>
   </div>
-</div>
+  <h2>「コレうま！」お気に入り数ランキング(食べ物)</h2>
 
-<div class="row mb-5">
-  <div class="col-md-12">
-    <h2>新着お店</h2>
+  <div class="card-deck mt-3 mb-5">
+    <% @food_ranks.each.with_index(1) do |food, i| %>
+      <div class="card m-1">
+        <div class="card-header text-center">
+          <i class="fas fa-star"></i> <%=  i  %>位 <i class="fas fa-star"></i>
+        </div>
+          <%= link_to food_path(food) do %>
+            <%= attachment_image_tag food, :image, class: "card-img-top" %>
+          <% end %>
+          <div class="card-body">
+            <h6 class="card-title"><%= link_to food.name, food_path(food) %></h6>
+            <p><i class="fas fa-heart"></i> お気に入り/ <%= food.favorite_foods.count %></p>
+            <p><i class="far fa-comments"></i> レビュー数/ <%= food.reviews.count %></p>
+            <p><%= food.status_i18n %></p>
+            <p><%= l food.sale_dates %></p>
+          </div>
+      </div>
+    <% end %>
+  </div>
 
-    <div class="float-right">
-      <%= link_to 'お店をもっと見る', shops_path, class: "btn btn-primary" %>
+  <h2>「コレうま！」お気に入り数ランキング(お店)</h2>
+
+  <div class="card-deck mt-3 mb-5">
+    <% @shop_ranks.each.with_index(1) do |shop, i| %>
+       <div class="card m-1">
+        <div class="card-header text-center">
+          <i class="fas fa-star"></i> <%=  i  %>位 <i class="fas fa-star"></i>
+        </div>
+          <%= link_to shop_path(shop) do %>
+            <%= attachment_image_tag shop, :shop_image, fallback: 'no_image.jpg', class: "card-img-top" %>
+          <% end %>
+          <div class="card-body">
+            <h6 class="card-title"><%= link_to shop.name, shop_path(shop) %></h6>
+            <p><i class="fas fa-thumbs-up"></i> 店お気に入り/ <%= shop.favorite_shops.count %></p>
+          </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col-md-12">
+      <h2>新着食べ物</h2>
+
+      <div class="float-right">
+        <%= link_to '食べ物をもっと見る', foods_path, class: "btn btn-primary" %>
+      </div>
+
+      <div class="card-deck mt-3">
+        <%= render 'layouts/food/foods', foods: @foods %>
+      </div>
     </div>
+  </div>
 
-    <div class="card-deck mt-3">
-      <%= render 'layouts/shop/shops', shops: @shops %>
+  <div class="row mb-5">
+    <div class="col-md-12">
+      <h2>新着お店</h2>
+
+      <div class="float-right">
+        <%= link_to 'お店をもっと見る', shops_path, class: "btn btn-primary" %>
+      </div>
+
+      <div class="card-deck mt-3">
+        <%= render 'layouts/shop/shops', shops: @shops %>
+      </div>
     </div>
   </div>
 </div>

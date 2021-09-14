@@ -1,70 +1,64 @@
-<h2>食べ物編集</h2>
+<div class="bg-light border rounded p-3 shadow">
+  <h2>食べ物登録</h2>
 
-<%= render 'layouts/error_messages', model: @food %>
+  <%= render 'layouts/error_messages', model: @food %>
 
-<div class="float-right">
-  <%= link_to shop_food_path, method: :delete, 'data-confirm' => '本当に削除しますか？', class: "btn btn-danger" do %>
-   「<%= @food.name %>」を削除する
-  <% end %>
-</div>
+  <div class="form-horizontal mt-3">
+    <%= form_with model: @food, url: shop_food_path(@food), local:true do |f| %>
 
-<div class="form-horizontal mt-3">
-  <%= form_with model: @food, url: shop_food_path(@food), local:true do |f| %>
+      <%= f.hidden_field :shop_id, :value => current_shop.id %>
 
-    <%= f.hidden_field :shop_id, :value => current_shop.id %>
+      <%= f.attachment_field :image %>
 
-    <div class="form-group">
-      <%= f.attachment_field :image, class: "form-control-file" %>
-    </div>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, placeholder: '食べ物名', class: "form-control col-md-6" %>
+      </div>
 
-    <div class="form-group">
-      <%= f.label :name %>
-      <%= f.text_field :name, placeholder: '食べ物名', class: "form-control" %>
-    </div>
+      <div class="form-group">
+        <%= f.label :introduction %>
+        <%= f.text_area :introduction, placeholder: '食べ物の魅力が伝わる紹介文を書いてください&#13;&#10;・こだわった食材や調理法など&#13;&#10;・おすすめの食べ方など'.html_safe, rows: 6, class: "form-control" %>
+      </div>
 
-    <div class="form-group">
-      <%= f.label :introduction %>
-      <%= f.text_area :introduction, placeholder: '食べ物の魅力が伝わる紹介文を書いてください&#13;&#10;・こだわった食材や調理法など&#13;&#10;・おすすめの食べ方など'.html_safe, rows: 6, class: "form-control" %>
-    </div>
+      <div class="form-group">
+        <%= f.label :genre %>
+        <%= f.collection_select :genre_id, Genre.all, :id, :name, {}, class: "form-control col-md-3" %>
+      </div>
 
-    <div class="form-group">
-      <%= f.label :genre %>
-      <%= f.collection_select :genre_id, Genre.all, :id, :name, class: "form-control" %>
-    </div>
+      <div class="form-group">
+        <%= f.label :taste %>
+        <%= f.select :taste, Food.tastes_i18n.invert, {prompt: false}, class: "form-control col-md-3" %>
+      </div>
 
-    <div class="form-group">
-      <%= f.label :taste %>
-      <%= f.select :taste, Food.tastes.keys.to_a, class: "form-control" %>
-    </div>
+      <div class="form-group">
+        <%= f.label :price %>
+        <%= f.text_field :price, placeholder: '1000', class: "form-control col-md-3" %>
+      </div>
 
-    <div class="form-group">
-      <%= f.label :price %>
-      <%= f.text_field :price, placeholder: '1000', class: "form-control" %>
-    </div>
+      <div class="form-group">
+        <%= f.label :calorie %>
+        <%= f.text_field :calorie, placeholder: '1000　未設定も可', class: "form-control col-md-3" %>
+      </div>
 
-    <div class="form-group">
-      <%= f.label :calorie %>
-      <%= f.text_field :calorie, placeholder: '1000　未設定も可', class: "form-control" %>
-    </div>
+      <div class="form-group">
+        <%= f.label :food_temperature %>
+        <%= f.select :food_temperature, Food.food_temperatures_i18n.invert, {prompt: false}, class: "form-control col-md-3" %>
+      </div>
 
-    <div class="form-group">
-      <%= f.label :food_temperature %>
-      <%= f.select :food_temperature, Food.food_temperatures.keys.to_a, class: "form-control" %>
-    </div>
+      <div class="form-group">
+        <%= f.label :status %>
+        <%= f.select :status, Food.statuses_i18n.invert, {prompt: false}, class: "form-control" %>
+      </div>
 
-    <div class="form-group">
-      <%= f.label :status %>
-      <%= f.select :status, Food.statuses.keys.to_a, class: "form-control" %>
-    </div>
+      <div class="form-group">
+        <%= f.label :sale_dates %>
+        <%= f.date_select :sale_dates, {}, class: "form-control col-md-3" %>
+      </div>
 
-    <div class="form-group">
-      <%= f.label :sale_dates %>
-      <%= f.date_select :sale_dates, class: "form-control" %>
-    </div>
+      <div class="d-flex align-items-center justify-content-center">
+        <%= f.submit '登録する', class: "btn btn-success" %>
+      </div>
 
-    <div class="d-flex align-items-center justify-content-center">
-      <%= f.submit '編集する', class: "btn btn-success" %>
-    </div>
-
-  <% end %>
+    <% end %>
+  </div>
 </div>

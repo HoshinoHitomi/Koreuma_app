@@ -56,6 +56,11 @@ class User < ApplicationRecord
     end
   end
 
-  validates :name, presence: true
-  validates :email, presence: true
+  with_options presence: true do
+    validates :name
+    validates :email
+  end
+
+  validates :name, length: { in: 1..20 }
+  validates :introduction, length: { in: 1..300 }
 end

@@ -1,53 +1,56 @@
 <% if admin_signed_in? %>
   <li class="nav-item">
-    <%= link_to 'お知らせ', admin_informations_path, class: 'btn btn-outline-success mr-3' %>
+    <%= link_to 'お知らせ', admin_informations_path, class: 'btn btn-success mr-3' %>
   </li>
   <li class="nav-item">
-    <%= link_to 'ジャンル管理', admin_genres_path, class: 'btn btn-outline-success mr-3' %>
+    <%= link_to 'ジャンル管理', admin_genres_path, class: 'btn btn-success mr-3' %>
   </li>
   <li class="nav-item">
-    <%= link_to 'お店管理', admin_shops_path, class: 'btn btn-outline-success mr-3' %>
+    <%= link_to 'お店管理', admin_shops_path, class: 'btn btn-success mr-3' %>
   </li>
   <li class="nav-item">
-    <%= link_to 'ユーザー管理', admin_users_path, class: 'btn btn-outline-success mr-3' %>
+    <%= link_to 'ユーザー管理', admin_users_path, class: 'btn btn-success mr-3' %>
   </li>
   <li class="nav-item">
-    <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'btn btn-outline-success mr-3' %>
+    <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'btn btn-success mr-3' %>
   </li>
 <% elsif shop_signed_in? %>
   <li class="nav-item">
-    <%= link_to 'マイページ', shop_root_path, class: 'btn btn-outline-success mr-3' %>
+    <%= link_to 'マイページ', shop_root_path, class: 'btn btn-success mr-3' %>
   </li>
   <li class="nav-item">
-    <%= link_to '食べ物管理', shop_foods_path, class: 'btn btn-outline-success mr-3' %>
+    <%= link_to '食べ物管理', shop_foods_path, class: 'btn btn-success mr-3' %>
   </li>
   <li class="nav-item">
-    <%= link_to 'ログアウト', destroy_shop_session_path, method: :delete, class: 'btn btn-outline-success mr-3' %>
+    <%= link_to 'ログアウト', destroy_shop_session_path, method: :delete, class: 'btn btn-success mr-3' %>
   </li>
 <% elsif user_signed_in? %>
   <li class="nav-item">
-    <%= link_to '食べ物', foods_path, class: 'btn btn-outline-success mr-3' %>
+    <%= link_to '食べ物', foods_path, class: 'btn btn-success mr-3' %>
   </li>
   <li class="nav-item">
-    <%= link_to 'お店', shops_path, class: 'btn btn-outline-success mr-3' %>
+    <%= link_to 'お店', shops_path, class: 'btn btn-success mr-3' %>
   </li>
   <li class="nav-item">
-    <%= link_to '全レビュー', all_reviews_path, class: 'btn btn-outline-success mr-3' %>
+    <%= link_to '全レビュー', all_reviews_path, class: 'btn btn-success mr-3' %>
   </li>
 <% else %>
   <li class="nav-item">
-    <%= link_to 'コレうまって？', about_path, class: 'btn btn-outline-success mr-3' %>
+    <%= link_to 'コレうまって？', about_path, class: 'btn btn-success mr-3' %>
   </li>
   <li class="nav-item">
-    <%= link_to '食べ物', foods_path, class: 'btn btn-outline-success mr-3' %>
+    <%= link_to '食べ物', foods_path, class: 'btn btn-success mr-3' %>
   </li>
   <li class="nav-item">
-    <%= link_to 'お店', shops_path, class: 'btn btn-outline-success mr-3' %>
+    <%= link_to 'お店', shops_path, class: 'btn btn-success mr-3' %>
   </li>
   <li class="nav-item">
-    <%= link_to '新規登録', which_sign_up_path, class: 'btn btn-outline-success mr-3' %>
+    <%= link_to '全レビュー', all_reviews_path, class: 'btn btn-success mr-3' %>
   </li>
   <li class="nav-item">
-    <%= link_to 'ログイン', which_sign_in_path, class: 'btn btn-outline-success mr-3' %>
+    <%= link_to '新規登録', which_sign_up_path, class: 'btn btn-success mr-3' %>
+  </li>
+  <li class="nav-item">
+    <%= link_to 'ログイン', which_sign_in_path, class: 'btn btn-success mr-3' %>
   </li>
 <% end %>

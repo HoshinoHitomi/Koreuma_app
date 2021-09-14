@@ -1,3 +1,5 @@
-<h2><%= @user.name %>のレビュー (<%= @reviews.count %>件)</h2>
+<div class="bg-light rounded p-3 shadow">
+  <h2><%= @user.name %>のレビュー (<%= @reviews.count %>件)</h2>
 
-<%= render 'layouts/review/reviews', reviews: @reviews %>
+  <%= render 'layouts/review/reviews', reviews: @reviews %>
+</div>

@@ -1,4 +1,4 @@
-<div class="border rounded p-3 mb-5">
+<div class="bg-light rounded p-3 mb-5">
 
   <div id="favorite_shop_buttons_<%= @shop.id %>">
     <%= render 'public/favorite_shops/favorite_shop', shop: @shop %>
@@ -12,51 +12,58 @@
 
     <div class="row">
       <div class="col-md-6">
-        <p><%= @shop.introduction %></p>
+        <% if @shop.is_active == false %>
+          <p>※このお店は退会済みです。</p>
+          <p><%= @shop.introduction %></p>
+        <% else %>
+          <p><%= @shop.introduction %></p>
+        <% end %>
       </div>
       <div class="col-md-6">
         <table>
           <tr>
             <td>住所</td>
-            <td> <%= @shop.address %></td>
+            <td>: <%= @shop.address %></td>
           </tr>
           <tr>
             <td>電話番号</td>
-            <td> <%= @shop.phone_number %></td>
+            <td>: <%= @shop.phone_number %></td>
           </tr>
           <tr>
             <td>営業時間</td>
-            <td> <%= @shop.working_time %></td>
+            <td>: <%= @shop.working_time %></td>
           </tr>
         </table>
       </div>
     </div>
 </div>
 
-<h2><%= @shop.name %>の新着食べ物一覧</h2>
+<div class="bg-light rounded p-3 shadow">
+  <h2><%= @shop.name %>の新着食べ物一覧</h2>
 
-<% if @foods.empty? %>
-  <p class="text-center p-3">食べ物が登録されていません。</p>
-<% else %>
+  <% if @foods.empty? %>
+    <p class="text-center p-3">食べ物が登録されていません。</p>
+  <% else %>
+  <div class="float-right">
+    <%= link_to "食べ物一覧へ", foods_path(shop: 'shop'), class: 'btn btn-primary' %>
+  </div>
 
-<div class="card-deck mt-3">
-  <% @foods.each do |food| %>
-      <div class="card">
-          <%= link_to food_path(food) do %>
-            <%= attachment_image_tag food, :image, class: "card-img-top" %>
-          <% end %>
-          <div class="card-body">
-            <h6 class="card-title"><%= link_to food.name, shop_food_path(food) %></h6>
-            <p><i class="fas fa-heart"></i> お気に入り/ <%= food.favorite_foods.count %></p>
-            <p><i class="far fa-comments"></i> レビュー数/ <%= food.reviews.count %></p>
-            <p><%= food.status_i18n %></p>
-            <p><%= l food.sale_dates %></p>
-          </div>
-      </div>
+  <div class="card-deck mt-3">
+    <% @foods.each do |food| %>
+        <div class="card">
+            <%= link_to food_path(food) do %>
+              <%= attachment_image_tag food, :image, class: "card-img-top" %>
+            <% end %>
+            <div class="card-body">
+              <h6 class="card-title"><%= link_to food.name, shop_food_path(food) %></h6>
+              <p><i class="fas fa-heart"></i> お気に入り/ <%= food.favorite_foods.count %></p>
+              <p><i class="far fa-comments"></i> レビュー数/ <%= food.reviews.count %></p>
+              <p><%= food.status_i18n %></p>
+              <p><%= l food.sale_dates %></p>
+            </div>
+        </div>
+    <% end %>
+  </div>
+
   <% end %>
 </div>
-
-<p class="text-right">
-  <%= link_to "食べ物一覧へ", foods_path(shop: 'shop') %>
-</p>
-<% end %>

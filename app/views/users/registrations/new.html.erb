@@ -1,83 +1,86 @@
-<h2>ユーザー新規登録</h2>
+<div class="bg-light rounded p-3 shadow">
+  <h2>ユーザー新規登録</h2>
 
-<div class="form-horizontal col-md-6 offset-md-2">
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "users/shared/error_messages", resource: resource %>
+  <div class="form-horizontal col-md-6 offset-md-2">
 
-    <div class="form-group">
-      <%= f.label :name %>
-      <%= f.text_field :name, autofocus: true, class: "form-control" %>
-    </div>
+  <%= render "users/shared/error_messages", resource: resource %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
-    <div class="form-group">
-      <%= f.label :email %>
-      <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :password %>
-      <% if @minimum_password_length %>
-      (<%= @minimum_password_length %> 文字以上)
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :sweet_like %>
-      <div class="form-check form-check-inline">
-        <%= f.collection_radio_buttons :sweet_like, User.sweet_likes_i18n, :first, :last do |b| %>
-          <%= b.label(class: "radio_button mr-5") { b.radio_button(class: "radio_button m-2") + b.text } %><br>
-        <% end %>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, autofocus: true, placeholder: 'ラーメン好き子', class: "form-control" %>
       </div>
-    </div>
 
-    <div class="form-group">
-      <%= f.label :salty_like %>
-      <div class="form-check form-check-inline">
-        <%= f.collection_radio_buttons :salty_like, User.salty_likes_i18n, :first, :last do |b| %>
-          <%= b.label(class: "radio_button mr-5") { b.radio_button(class: "radio_button m-2") + b.text } %><br>
-        <% end %>
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, autocomplete: "email", placeholder: 'sample@sample', class: "form-control" %>
       </div>
-    </div>
 
-    <div class="form-group">
-      <%= f.label :bitter_like %>
-      <div class="form-check form-check-inline">
-        <%= f.collection_radio_buttons :bitter_like, User.bitter_likes_i18n, :first, :last do |b| %>
-          <%= b.label(class: "radio_button mr-5") { b.radio_button(class: "radio_button m-2") + b.text } %><br>
-        <% end %>
+      <div class="form-group">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        (<%= @minimum_password_length %> 文字以上)
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
       </div>
-    </div>
 
-    <div class="form-group">
-      <%= f.label :sour_like %>
-      <div class="form-check form-check-inline">
-        <%= f.collection_radio_buttons :sour_like, User.sour_likes_i18n, :first, :last do |b| %>
-          <%= b.label(class: "radio_button mr-5") { b.radio_button(class: "radio_button m-2") + b.text } %><br>
-        <% end %>
+      <div class="form-group">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
       </div>
-    </div>
 
-    <div class="form-group">
-      <%= f.label :spicy_like %>
-      <div class="form-check form-check-inline">
-        <%= f.collection_radio_buttons :spicy_like, User.spicy_likes_i18n, :first, :last do |b| %>
-          <%= b.label(class: "radio_button mr-5") { b.radio_button(class: "radio_button m-2") + b.text } %><br>
-        <% end %>
+      <div class="form-group">
+        <%= f.label :sweet_like %>
+        <div class="form-check form-check-inline">
+          <%= f.collection_radio_buttons :sweet_like, User.sweet_likes_i18n, :first, :last do |b| %>
+            <%= b.label(class: "radio_button mr-5") { b.radio_button(class: "radio_button m-2") + b.text } %><br>
+          <% end %>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <%= f.submit "新規登録", class: "btn btn-success" %>
-    </div>
-  <% end %>
-</div>
+      <div class="form-group">
+        <%= f.label :salty_like %>
+        <div class="form-check form-check-inline">
+          <%= f.collection_radio_buttons :salty_like, User.salty_likes_i18n, :first, :last do |b| %>
+            <%= b.label(class: "radio_button mr-5") { b.radio_button(class: "radio_button m-2") + b.text } %><br>
+          <% end %>
+        </div>
+      </div>
 
-<div class="offset-md-2">
-  <p><%= render "users/shared/links" %></p>
+      <div class="form-group">
+        <%= f.label :bitter_like %>
+        <div class="form-check form-check-inline">
+          <%= f.collection_radio_buttons :bitter_like, User.bitter_likes_i18n, :first, :last do |b| %>
+            <%= b.label(class: "radio_button mr-5") { b.radio_button(class: "radio_button m-2") + b.text } %><br>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :sour_like %>
+        <div class="form-check form-check-inline">
+          <%= f.collection_radio_buttons :sour_like, User.sour_likes_i18n, :first, :last do |b| %>
+            <%= b.label(class: "radio_button mr-5") { b.radio_button(class: "radio_button m-2") + b.text } %><br>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :spicy_like %>
+        <div class="form-check form-check-inline">
+          <%= f.collection_radio_buttons :spicy_like, User.spicy_likes_i18n, :first, :last do |b| %>
+            <%= b.label(class: "radio_button mr-5") { b.radio_button(class: "radio_button m-2") + b.text } %><br>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.submit "新規登録", class: "btn btn-success" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="offset-md-2">
+    <p><%= render "users/shared/links" %></p>
+  </div>
 </div>

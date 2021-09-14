@@ -1,10 +1,12 @@
-<p class="text-center">
-  退会すると<strong>店舗情報や投稿した食べ物情報</strong>が削除されます。
-  本当に退会しますか?
-</p>
+<div class="bg-light border rounded p-3 shadow">
+  <p class="text-center">
+    退会すると<strong>店舗情報の管理や食べ物登録</strong>ができなくなります。
+    本当に退会しますか?
+  </p>
 
-<div class="d-flex align-items-center justify-content-center">
-  <%= link_to '退会しない', shop_root_path, class: "btn btn-primary mr-5 col-md-2" %>
+  <div class="d-flex align-items-center justify-content-center">
+    <%= link_to '退会しない', shop_root_path, class: "btn btn-primary mr-5 col-md-2" %>
 
-  <%= link_to '退会する', shop_withdrawl_path, method: :patch, class: "btn btn-danger ml-5 col-md-2" %>
+    <%= link_to '退会する', shop_withdrawl_path, method: :patch, class: "btn btn-danger ml-5 col-md-2" %>
+  </div>
 </div>

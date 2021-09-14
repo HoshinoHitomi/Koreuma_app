@@ -1,25 +1,25 @@
-<%= flash[:error] %>
+<div class="bg-light rounded p-3 shadow">
+  <h2>ユーザーログイン</h2>
 
-<h2>ユーザーログイン</h2>
+  <div class="form-horizontal">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="form-group col-md-6 offset-md-2">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+      </div>
 
-<div class="form-horizontal">
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="form-group col-md-6 offset-md-2">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
-    </div>
+      <div class="form-group col-md-6 offset-md-2">
+        <%= f.label :password %><br />
+        <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+      </div>
 
-    <div class="form-group col-md-6 offset-md-2">
-      <%= f.label :password %><br />
-      <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
-    </div>
+      <div class="form-group col-md-6 offset-md-2">
+        <%= f.submit "ログイン", class: "btn btn-success" %>
+      </div>
+    <% end %>
+  </div>
 
-    <div class="form-group col-md-6 offset-md-2">
-      <%= f.submit "ログイン", class: "btn btn-success" %>
-    </div>
-  <% end %>
-</div>
-
-<div class="offset-md-2">
-  <%= render "users/shared/links" %>
+  <div class="offset-md-2">
+    <%= render "users/shared/links" %>
+  </div>
 </div>

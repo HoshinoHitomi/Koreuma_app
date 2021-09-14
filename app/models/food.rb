@@ -100,9 +100,12 @@ class Food < ApplicationRecord
     end
   end
 
-  validates :name, presence: true
-  validates :image, presence: true
-  validates :introduction, presence: true
-  validates :sale_dates, presence: true
-  validates :taste, presence: true
+  with_options presence: true do
+    validates :image
+    validates :price
+  end
+    validates :name, length: { in: 1..50 }
+    validates :introduction, length: { in: 1..300 }
+    validates :price, numericality: true
+    validates :calorie, numericality: true
 end

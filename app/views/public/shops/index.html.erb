@@ -1,9 +1,11 @@
-<h2>お店一覧</h2>
+<div class="bg-light rounded p-3 shadow">
+  <h2>お店一覧</h2>
 
-<% if @shops.empty? %>
-  <p class="text-center p-3">まだお店が登録されていません。</p>
-<% else %>
-  <div class="d-flex flex-wrap mt-3 align-items-center">
-    <%= render 'layouts/shop/shops', shops: @shops %>
-  </div>
-<% end %>
+  <% if @shops.empty? %>
+    <p class="text-center p-3">まだお店が登録されていません。</p>
+  <% else %>
+    <div class="d-flex flex-wrap mt-3 align-items-center">
+      <%= render 'layouts/shop/shops', shops: @shops %>
+    </div>
+  <% end %>
+</div>

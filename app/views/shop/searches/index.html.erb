@@ -1,9 +1,11 @@
-<h2>「<%= @search %>」の検索結果</h2>
+<div class="bg-light rounded p-3 shadow">
+  <h2>「<%= @search %>」の検索結果</h2>
 
-<% if @foods.empty? %>
-  <p>「<%= @search %>」に該当する食べ物は見つかりませんでした。</p>
-<% else %>
-  <div class="d-flex flex-wrap mt-3 align-items-center">
-    <%= render 'layouts/shop_foods', foods: @foods %>
-  </div>
-<% end %>
+  <% if @foods.empty? %>
+    <p>「<%= @search %>」に該当する食べ物は見つかりませんでした。</p>
+  <% else %>
+    <div class="d-flex flex-wrap mt-3 align-items-center">
+      <%= render 'layouts/shop_foods', foods: @foods %>
+    </div>
+  <% end %>
+</div>

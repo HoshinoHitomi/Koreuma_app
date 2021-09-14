@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Koreuma</title>
+    <title>コレうま！</title>
+    <%= favicon_link_tag('favicon.ico') %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -14,7 +15,9 @@
       <nav class="navbar navbar-expand-md">
         <div class="container-fluid">
               <h1 class="navbar-brand">
-                <%= link_to 'コレうま！', root_path %>
+                <%= link_to root_path do %>
+                  <%= image_tag('Logo.jpg') %>
+                <% end %>
               </h1>
                 <%= render 'layouts/search_form' %>
 
@@ -53,11 +56,13 @@
       <% elsif alert %>
         <div class="alert alert-danger"><%= flash[:alert] %></div>
       <% end %>
-      <div class="container-fluid">
-        <div class="p-3">
-          <%= yield %>
+      <main>
+        <div class="container-fluid">
+          <div class="p-3">
+            <%= yield %>
+          </div>
         </div>
-      </div>
+      </main>
     </div>
 
     <footer class="p-3">

@@ -1,40 +1,42 @@
-<h2>お店登録情報編集</h2>
+<div class="bg-light border rounded p-3 shadow">
+  <h2>お店登録情報編集</h2>
 
-<%= render 'layouts/error_messages', model: @shop %>
+  <div class="form-forizontal col-md-6 offset-md-3">
 
-<div class="form-forizontal col-md-6 offset-md-3">
-  <%= form_with model: @shop, url: admin_shop_path(@shop), local:true do |f| %>
+  <%= render 'layouts/error_messages', model: @shop %>
+    <%= form_with model: @shop, url: admin_shop_path(@shop), local:true do |f| %>
 
-    <div class="form-group">
-      <%= f.label :name %>
-      <%= f.text_field :name, class: "form-control" %>
-    </div>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
 
-    <div class="form-group">
-      <%= f.label :email %>
-      <%= f.email_field :email, class: "form-control" %>
-    </div>
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, class: "form-control" %>
+      </div>
 
-    <div class="form-group">
-      <%= f.label :address %>
-      <%= f.text_field :address, class: "form-control" %>
-    </div>
+      <div class="form-group">
+        <%= f.label :address %>
+        <%= f.text_field :address, class: "form-control" %>
+      </div>
 
-    <div class="form-group">
-      <%= f.label :phone_number %>
-      <%= f.text_field :phone_number, class: "form-control" %>
-    </div>
+      <div class="form-group">
+        <%= f.label :phone_number %>
+        <%= f.text_field :phone_number, class: "form-control" %>
+      </div>
 
-    <div class="form-group">
-      <%= f.radio_button :is_active, :true %>
-      <%= f.label :true, '有効' %>
+      <div class="form-group">
+        <%= f.radio_button :is_active, :true %>
+        <%= f.label :true, '有効' %>
 
-      <%= f.radio_button :is_active, :false %>
-      <%= f.label :false, '退会済み' %>
-    </div>
+        <%= f.radio_button :is_active, :false %>
+        <%= f.label :false, '退会済み' %>
+      </div>
 
-    <div class="d-flex align-items-center justify-content-center">
-      <%= f.submit '編集する', class: "btn btn-success" %>
-    </div>
-  <% end %>
+      <div class="d-flex align-items-center justify-content-center">
+        <%= f.submit '編集する', class: "btn btn-success" %>
+      </div>
+    <% end %>
+  </div>
 </div>

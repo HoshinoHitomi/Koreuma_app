@@ -1,53 +1,55 @@
-<h2>お店情報編集</h2>
+<div class="bg-light border rounded p-3 shadow">
+  <h2>お店情報編集</h2>
 
-<div class="float-right">
-  <%= link_to '退会する', shop_confirm_path, class: "btn btn-danger" %>
-</div>
+  <div class="float-right">
+    <%= link_to '退会する', shop_confirm_path, class: "btn btn-danger" %>
+  </div>
 
-<div class="form-forizontal col-md-6 offset-md-3">
+  <div class="form-forizontal col-md-6 offset-md-3">
 
-<%= render 'layouts/error_messages', model: @shop %>
+  <%= render 'layouts/error_messages', model: @shop %>
 
-  <%= form_with model: @shop, url: shop_homes_path(@shop), local: true do |f| %>
+    <%= form_with model: @shop, url: shop_homes_path(@shop), local: true do |f| %>
 
-    <div class="form-group">
-      <%= attachment_image_tag @shop, :shop_image, :fill, 80, 80, fallback: "no_image.jpg", size: '80x80', class: "rounded-circle" %>
-      <%= f.attachment_field :shop_image %>
-    </div>
+      <div class="form-group">
+        <%= attachment_image_tag @shop, :shop_image, :fill, 80, 80, fallback: "no_image.jpg", size: '80x80', class: "rounded-circle" %>
+        <%= f.attachment_field :shop_image %>
+      </div>
 
-    <div class="form-group">
-      <%= f.label :name %>
-      <%= f.text_field :name, class: "form-control" %>
-    </div>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
 
-    <div class="form-group">
-      <%= f.label :introduction %>
-      <%= f.text_area :introduction, rows: 7, class: "form-control" %>
-    </div>
+      <div class="form-group">
+        <%= f.label :introduction %>
+        <%= f.text_area :introduction, rows: 7, class: "form-control" %>
+      </div>
 
-    <div class="form-group">
-      <%= f.label :email %>
-      <%= f.email_field :email, class: "form-control" %>
-    </div>
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, class: "form-control" %>
+      </div>
 
-    <div class="form-group">
-      <%= f.label :address %>
-      <%= f.text_field :address, class: "form-control" %>
-    </div>
+      <div class="form-group">
+        <%= f.label :address %>
+        <%= f.text_field :address, class: "form-control" %>
+      </div>
 
-    <div class="form-group">
-      <%= f.label :phone_number%>
-      <%= f.text_field :phone_number, class: "form-control" %>
-    </div>
+      <div class="form-group">
+        <%= f.label :phone_number%>
+        <%= f.text_field :phone_number, class: "form-control" %>
+      </div>
 
-    <div class="form-group">
-      <%= f.label :working_time %>
-      <%= f.text_field :working_time, class: "form-control" %>
-    </div>
+      <div class="form-group">
+        <%= f.label :working_time %>
+        <%= f.text_field :working_time, class: "form-control" %>
+      </div>
 
-    <div class="d-flex align-items-center justify-content-center">
-      <%= f.submit '編集する', class: "btn btn-success" %>
-    </div>
-  <% end %>
+      <div class="d-flex align-items-center justify-content-center">
+        <%= f.submit '編集する', class: "btn btn-success" %>
+      </div>
+    <% end %>
 
+  </div>
 </div>

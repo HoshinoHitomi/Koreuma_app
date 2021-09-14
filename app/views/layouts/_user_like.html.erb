@@ -1,37 +1,91 @@
 <div class="col-md-4">
-  <table class="table mt-3">
-    <tr>
-      <td width=30><i class="fas fa-ice-cream"></i></td>
-      <td>甘味</td>
-      <td><%= sweet_like_average %></td>
-    </tr>
+  <% if user_signed_in? %>
+    <table class="table border mt-3">
+      <tr>
+        <th></th>
+        <th>味</th>
+        <th>平均</th>
+        <th>あなたの好み度</th>
+      </tr>
 
-    <tr>
-      <td><i class="fas fa-bacon"></i></td>
-      <td>塩味</td>
-      <td><%= salty_like_average %></td>
-    </tr>
+      <tr>
+        <td width=30><i class="fas fa-ice-cream"></i></td>
+        <td>甘味</td>
+        <td><%= sweet_like_average %></td>
+        <td><%= current_user.sweet_like_i18n %> (<%= current_user.sweet_like_before_type_cast %>)</td>
+      </tr>
 
-    <tr>
-      <td><i class="fas fa-seedling"></i></td>
-      <td>苦味</td>
-      <td><%= bitter_like_average %></td>
-    </tr>
+      <tr>
+        <td><i class="fas fa-bacon"></i></td>
+        <td>塩味</td>
+        <td><%= salty_like_average %></td>
+        <td><%= current_user.salty_like_i18n %> (<%= current_user.salty_like_before_type_cast %>)</td>
+      </tr>
 
-    <tr>
-      <td><i class="fas fa-lemon"></i></td>
-      <td>酸味</td>
-      <td><%= sour_like_average %></td>
-    </tr>
+      <tr>
+        <td><i class="fas fa-seedling"></i></td>
+        <td>苦味</td>
+        <td><%= bitter_like_average %></td>
+        <td><%= current_user.bitter_like_i18n %> (<%= current_user.bitter_like_before_type_cast %>)</td>
+      </tr>
 
-    <tr>
-      <td><i class="fas fa-pepper-hot"></i></td>
-      <td>辛味</td>
-      <td><%= spicy_like_average %></td>
-    </tr>
-  </table>
+      <tr>
+        <td><i class="fas fa-lemon"></i></td>
+        <td>酸味</td>
+        <td><%= sour_like_average %></td>
+        <td><%= current_user.sour_like_i18n %> (<%= current_user.sour_like_before_type_cast %>)</td>
+      </tr>
+
+      <tr>
+        <td><i class="fas fa-pepper-hot"></i></td>
+        <td>辛味</td>
+        <td><%= spicy_like_average %></td>
+        <td><%= current_user.spicy_like_i18n %> (<%= current_user.spicy_like_before_type_cast %>)</td>
+      </tr>
+    </table>
+
+  <p>平均とあなたの好み度が近いほど口に合う味かも？</p>
+    <% else %>
+    <table class="table border mt-3">
+      <tr>
+        <th></th>
+        <th>味</th>
+        <th>平均</th>
+      </tr>
+
+      <tr>
+        <td width=30><i class="fas fa-ice-cream"></i></td>
+        <td>甘味</td>
+        <td><%= sweet_like_average %></td>
+      </tr>
+
+      <tr>
+        <td><i class="fas fa-bacon"></i></td>
+        <td>塩味</td>
+        <td><%= salty_like_average %></td>
+      </tr>
+
+      <tr>
+        <td><i class="fas fa-seedling"></i></td>
+        <td>苦味</td>
+        <td><%= bitter_like_average %></td>
+      </tr>
+
+      <tr>
+        <td><i class="fas fa-lemon"></i></td>
+        <td>酸味</td>
+        <td><%= sour_like_average %></td>
+      </tr>
+
+      <tr>
+        <td><i class="fas fa-pepper-hot"></i></td>
+        <td>辛味</td>
+        <td><%= spicy_like_average %></td>
+      </tr>
+    </table>
+  <% end %>
 </div>
 
-<div class="col-md-8">
-  <%= bar_chart data, min: 1, max: 4, colors: ["pink", "orange", "green", "yellow", "red"] %>
+<div class="col-md-8 mt-5">
+  <%= bar_chart data, min: 1, max: 4, colors: ["#ee869a", "#f9bb00", "#6ebe76", "#f3e300", "#ed6d22"] %>
 </div>

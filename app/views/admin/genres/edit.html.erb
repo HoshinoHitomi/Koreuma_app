@@ -1,16 +1,18 @@
-<h2>ジャンル編集</h2>
+<div class="bg-light border rounded p-3 shadow">
+  <h2>ジャンル編集</h2>
 
-<%= render 'layouts/error_messages', model: @genre %>
+  <%= render 'layouts/error_messages', model: @genre %>
 
-<div class="form-horizontal col-md-4 mt-3">
-  <%= form_with model: @genre, url: admin_genre_path(@genre), local:true do |f| %>
+  <div class="form-horizontal col-md-4 mt-3">
+    <%= form_with model: @genre, url: admin_genre_path(@genre), local:true do |f| %>
 
-      <%= f.label :name %>
+        <%= f.label :name %>
 
-    <div class="input-group">
-      <%= f.text_field :name, placeholder: 'ジャンル名', class: "form-control" %>
-      <%= f.submit '登録する', class: "input-btn-group btn btn-success" %>
-    </div>
+      <div class="input-group">
+        <%= f.text_field :name, placeholder: 'ジャンル名', class: "form-control" %>
+        <%= f.submit '登録する', class: "input-btn-group btn btn-success" %>
+      </div>
 
-  <% end %>
+    <% end %>
+  </div>
 </div>

@@ -1,32 +1,34 @@
-<h2><%= @shop.name %>のお店登録情報</h2>
+<div class="bg-light border rounded p-3 shadow">
+  <h2><%= @shop.name %>のお店登録情報</h2>
 
-<div class="row mt-3 p-3 border rounded">
-  <div class="col-md-3">
-    <p>ID</p>
+  <div class="row mt-3 p-3">
+    <div class="col-md-3">
+      <p>ID</p>
 
-    <p>店名</p>
+      <p>店名</p>
 
-    <p>店メールアドレス</p>
+      <p>店メールアドレス</p>
 
-    <p>店住所</p>
+      <p>店住所</p>
 
-    <p>店電話番号</p>
+      <p>店電話番号</p>
 
-    <p>ステータス</p>
-  </div>
-  <div class="col-md-9">
-    <p><%= @shop.id %></p>
+      <p>ステータス</p>
+    </div>
+    <div class="col-md-9">
+      <p><%= @shop.id %></p>
 
-    <p><%= @shop.name %></p>
+      <p><%= @shop.name %></p>
 
-    <p><%= @shop.email %></p>
+      <p><%= @shop.email %></p>
 
-    <p><%= @shop.address %></p>
+      <p><%= @shop.address %></p>
 
-    <p><%= @shop.phone_number %></p>
+      <p><%= @shop.phone_number %></p>
 
-    <p><%= @shop.is_active ? '有効' : '退会済み' %></p>
+      <p><%= @shop.is_active ? '有効' : '退会済み' %></p>
 
-    <%= link_to '編集する', edit_admin_shop_path(@shop), class: "btn btn-success" %>
+      <%= link_to '編集する', edit_admin_shop_path(@shop), class: "btn btn-success" %>
+    </div>
   </div>
 </div>

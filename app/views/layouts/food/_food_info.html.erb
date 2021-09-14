@@ -18,7 +18,11 @@
     </tr>
     <tr>
       <td>カロリー</td>
+    <% if food.calorie.nil? %>
+      <td>: 設定なし</td>
+    <% else %>
       <td>: <%= food.calorie %>kcal</td>
+    <% end %>
     </tr>
     <tr>
       <td>温度</td>

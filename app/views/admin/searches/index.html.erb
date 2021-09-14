@@ -1,24 +1,26 @@
-<h2>「<%= @search %>」の検索結果</h2>
+<div class="bg-light border rounded p-3 shadow">
+  <h2>「<%= @search %>」の検索結果</h2>
 
-<ul class="tab-list">
-  <li class="tab box-active">ユーザー <%= @users.count %></li>
-  <li class="tab">お店 <%= @shops.count %></li>
-</ul>
+  <ul class="tab-list mt-3">
+    <li class="tab box-active">ユーザー <%= @users.count %></li>
+    <li class="tab">お店 <%= @shops.count %></li>
+  </ul>
 
-<div class="tabbox-contents">
-  <div class="tabbox box-show">
-    <% if @users.empty? %>
-      <p>「<%= @search %>」に該当するユーザーは見つかりませんでした。</p>
-    <% else %>
-      <%= render 'admin/users', users: @users %>
-    <% end %>
-  </div>
+  <div class="tabbox-contents">
+    <div class="tabbox box-show">
+      <% if @users.empty? %>
+        <p>「<%= @search %>」に該当するユーザーは見つかりませんでした。</p>
+      <% else %>
+        <%= render 'admin/users', users: @users %>
+      <% end %>
+    </div>
 
-  <div class="tabbox">
-    <% if @shops.empty? %>
-      <p>「<%= @search %>」に該当するお店は見つかりませんでした。</p>
-    <% else %>
-      <%= render 'admin/shops', shops: @shops %>
-    <% end %>
+    <div class="tabbox">
+      <% if @shops.empty? %>
+        <p>「<%= @search %>」に該当するお店は見つかりませんでした。</p>
+      <% else %>
+        <%= render 'admin/shops', shops: @shops %>
+      <% end %>
+    </div>
   </div>
 </div>

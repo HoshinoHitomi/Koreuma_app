@@ -1,55 +1,57 @@
-<h2>お店新規登録</h2>
+<div class="bg-light rounded p-3 shadow">
+  <h2>お店新規登録</h2>
 
-<%= render "shops/shared/error_messages", resource: resource %>
+  <div class="form-horizontal col-md-6 offset-md-2">
 
-<div class="form-horizontal col-md-6 offset-md-2">
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "shops/shared/error_messages", resource: resource %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
-    <div class="form-group">
-      <%= f.label :name %>
-      <%= f.text_field :name, autofocus: true, placeholder: 'ラーメン田中', class: "form-control" %>
-    </div>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, autofocus: true, placeholder: 'ラーメン田中', class: "form-control" %>
+      </div>
 
-    <div class="form-group">
-      <%= f.label :email %>
-      <%= f.email_field :email, autocomplete: "email", placeholder: 'sample@sample', class: "form-control" %>
-    </div>
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, autocomplete: "email", placeholder: 'sample@sample', class: "form-control" %>
+      </div>
 
-    <div class="form-group">
-      <%= f.label :address %>
-      <%= f.text_field :address, placeholder: '東京都 千代田区 丸の内 〇丁目〇-〇', class: "form-control" %>
-    </div>
+      <div class="form-group">
+        <%= f.label :address %>
+        <%= f.text_field :address, placeholder: '東京都 千代田区 丸の内 〇丁目〇-〇', class: "form-control" %>
+      </div>
 
-    <div class="form-group">
-      <%= f.label :phone_number %>
-      <%= f.text_field :phone_number, placeholder: '0000000000', class: "form-control" %>
-    </div>
+      <div class="form-group">
+        <%= f.label :phone_number %>
+        <%= f.text_field :phone_number, placeholder: '0000000000', class: "form-control" %>
+      </div>
 
-    <div class="form-group">
-      <%= f.label :working_time %>
-      <%= f.text_field :working_time, placeholder: '月～金 11:00～20:00、土日祝 11:00～23:00', class: "form-control" %>
-    </div>
+      <div class="form-group">
+        <%= f.label :working_time %>
+        <%= f.text_field :working_time, placeholder: '月～金 11:00～20:00、土日祝 11:00～23:00', class: "form-control" %>
+      </div>
 
-    <div class="form-group">
-      <%= f.label :password %>
-      <% if @minimum_password_length %>
-      (<%= @minimum_password_length %> 文字以上)
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
-    </div>
+      <div class="form-group">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        (<%= @minimum_password_length %> 文字以上)
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+      </div>
 
-    <div class="form-group">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
-    </div>
+      <div class="form-group">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+      </div>
 
-    <div class="form-group">
-      <%= f.submit "新規登録", class: "btn btn-success" %>
-    </div>
-  <% end %>
+      <div class="form-group">
+        <%= f.submit "新規登録", class: "btn btn-success" %>
+      </div>
+    <% end %>
 
-</div>
+  </div>
 
-<div class="offset-md-2">
-  <p><%= render "shops/shared/links" %></p>
+  <div class="offset-md-2">
+    <p><%= render "shops/shared/links" %></p>
+  </div>
 </div>

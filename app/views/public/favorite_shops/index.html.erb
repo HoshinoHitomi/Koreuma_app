@@ -1,9 +1,11 @@
-<h2><%= @user.name %>のお気に入りお店一覧</h2>
+<div class="bg-light rounded p-3 shadow">
+  <h2><%= @user.name %>のお気に入りお店一覧</h2>
 
-<% if @favorite_shops.present? %>
-  <div class="d-flex flex-wrap mt-3 align-items-center">
-    <%= render 'layouts/shop/shops', shops: @favorite_shops %>
-  </div>
-<% else %>
-  <p>お気に入り登録したお店がありません。</p>
-<% end %>
+  <% if @favorite_shops.present? %>
+    <div class="d-flex flex-wrap mt-3 align-items-center">
+      <%= render 'layouts/shop/shops', shops: @favorite_shops %>
+    </div>
+  <% else %>
+    <p>お気に入り登録したお店がありません。</p>
+  <% end %>
+</div>

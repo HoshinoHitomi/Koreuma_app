@@ -1,15 +1,17 @@
-<h2>食べ物一覧</h2>
+<div class="bg-light border rounded p-3 shadow">
+  <h2>食べ物一覧</h2>
 
-<%= link_to '食べ物登録をする', new_shop_food_path, class: "btn btn-primary float-right" %>
+  <%= link_to '食べ物登録をする', new_shop_food_path, class: "btn btn-primary float-right" %>
 
-<% if @foods.empty? %>
-  <p>最初の食べ物を登録しましょう!</p>
-<% else %>
+  <% if @foods.empty? %>
+    <p>最初の食べ物を登録しましょう!</p>
+  <% else %>
 
-<div class="d-flex flex-wrap mt-3 align-items-center">
-  <%= render 'layouts/shop_foods', foods: @foods %>
+  <div class="d-flex flex-wrap mt-3 align-items-center">
+    <%= render 'layouts/shop_foods', foods: @foods %>
+  </div>
+
+  <%= paginate @foods %>
+
+  <% end %>
 </div>
-
-<%= paginate @foods %>
-
-<% end %>

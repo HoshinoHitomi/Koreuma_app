@@ -17,6 +17,7 @@ ja:
         password: パスワード
       food:
         name: 食べ物名
+        image: 画像
         genre: ジャンル
         taste: 大まかな味
         introduction: 食べ物紹介文
