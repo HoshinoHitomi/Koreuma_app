@@ -2,9 +2,13 @@
   <h2>どちらでログインしますか？</h2>
 
   <div class="d-flex align-items-center justify-content-center mt-5">
-    <%= link_to 'ユーザー', new_user_session_path, class: 'btn btn-primary mr-5 col-md-2' %>
+    <%= link_to new_user_session_path, class: 'btn btn-primary mr-5 col-md-2' do %>
+     <i class="fas fa-user"></i> ユーザー
+    <% end %>
 
-    <%= link_to 'お店', new_shop_session_path, class: 'btn btn-primary ml-5 col-md-2' %>
+    <%= link_to new_shop_session_path, class: 'btn btn-primary ml-5 col-md-2' do %>
+      <i class="fas fa-store"></i> お店
+    <% end %>
   </div>
 
   <p class="text-right">
