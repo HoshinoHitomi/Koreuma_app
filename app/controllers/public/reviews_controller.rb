@@ -59,7 +59,6 @@ class Public::ReviewsController < ApplicationController
       :bitter_like,
       :sour_like,
       :spicy_like,
-      )
+    )
   end
-
 end

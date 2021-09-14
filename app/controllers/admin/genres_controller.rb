@@ -9,8 +9,8 @@ class Admin::GenresController < Admin::ApplicationController
       Information.create!(
         title: "ジャンル追加のお知らせ",
         body: "新しく「#{@genre.name}」を追加しました。",
-        )
-        flash[:notice] = "ジャンルを作成しました。"
+      )
+      flash[:notice] = "ジャンルを作成しました。"
       redirect_to admin_genres_path
     else
       render :index

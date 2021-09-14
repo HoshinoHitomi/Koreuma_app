@@ -26,27 +26,27 @@ class Food < ApplicationRecord
   def taste_score_average
     taste_score = reviews.pluck(:taste_score)
     if taste_score == []
-     "- -"
+      "- -"
     else
-     taste_score.sum.fdiv(taste_score.length)
+      taste_score.sum.fdiv(taste_score.length)
     end
   end
 
   def taste_strong_average
     taste_strong = reviews.pluck(:taste_strong)
     if taste_strong == []
-     5.0
+      5.0
     else
-     taste_strong.sum.fdiv(taste_strong.length)
+      taste_strong.sum.fdiv(taste_strong.length)
     end
   end
 
   def smell_strong_average
     smell_strong = reviews.pluck(:smell_strong)
     if smell_strong == []
-     5.0
+      5.0
     else
-     smell_strong.sum.fdiv(smell_strong.length)
+      smell_strong.sum.fdiv(smell_strong.length)
     end
   end
 
@@ -54,9 +54,9 @@ class Food < ApplicationRecord
     true_flags = reviews.where(repeat: true)
     sweet_like = true_flags.pluck(:sweet_like)
     if sweet_like == []
-     2.5
+      2.5
     else
-     sweet_like.sum.fdiv(sweet_like.length)
+      sweet_like.sum.fdiv(sweet_like.length)
     end
   end
 
@@ -64,9 +64,9 @@ class Food < ApplicationRecord
     true_flags = reviews.where(repeat: true)
     salty_like = true_flags.pluck(:salty_like)
     if salty_like == []
-     2.5
+      2.5
     else
-     salty_like.sum.fdiv(salty_like.length)
+      salty_like.sum.fdiv(salty_like.length)
     end
   end
 
@@ -74,9 +74,9 @@ class Food < ApplicationRecord
     true_flags = reviews.where(repeat: true)
     bitter_like = true_flags.pluck(:bitter_like)
     if bitter_like == []
-     2.5
+      2.5
     else
-     bitter_like.sum.fdiv(bitter_like.length)
+      bitter_like.sum.fdiv(bitter_like.length)
     end
   end
 
@@ -84,9 +84,9 @@ class Food < ApplicationRecord
     true_flags = reviews.where(repeat: true)
     sour_like = true_flags.pluck(:sour_like)
     if sour_like == []
-     2.5
+      2.5
     else
-     sour_like.sum.fdiv(sour_like.length)
+      sour_like.sum.fdiv(sour_like.length)
     end
   end
 
@@ -94,9 +94,9 @@ class Food < ApplicationRecord
     true_flags = reviews.where(repeat: true)
     spicy_like = true_flags.pluck(:spicy_like)
     if spicy_like == []
-     2.5
+      2.5
     else
-     spicy_like.sum.fdiv(spicy_like.length)
+      spicy_like.sum.fdiv(spicy_like.length)
     end
   end
 
@@ -104,8 +104,9 @@ class Food < ApplicationRecord
     validates :image
     validates :price
   end
-    validates :name, length: { in: 1..50 }
-    validates :introduction, length: { in: 1..300 }
-    validates :price, numericality: true
-    validates :calorie, numericality: true
+
+  validates :name, length: { in: 1..50 }
+  validates :introduction, length: { in: 1..300 }
+  validates :price, numericality: true
+  validates :calorie, numericality: true
 end

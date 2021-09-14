@@ -39,6 +39,6 @@ class Admin::UsersController < Admin::ApplicationController
       :name,
       :email,
       :is_active
-      )
+    )
   end
 end

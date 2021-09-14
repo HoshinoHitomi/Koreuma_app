@@ -39,7 +39,6 @@ class Shop::FoodsController < Shop::ApplicationController
       ['香りの強さ', @food.smell_strong_average],
       ['味の強さ', @food.taste_strong_average],
     ]
-
   end
 
   def edit

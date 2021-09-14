@@ -19,11 +19,11 @@ class Shop < ApplicationRecord
 
   def self.guest
     find_or_create_by!(email: 'guest@shop') do |shop|
-        shop.password = SecureRandom.urlsafe_base64
-        shop.name = 'ゲストさんのお店'
-        shop.address = '東京'
-        shop.phone_number = '1234567'
-        shop.working_time = '年中無休'
+      shop.password = SecureRandom.urlsafe_base64
+      shop.name = 'ゲストさんのお店'
+      shop.address = '東京'
+      shop.phone_number = '1234567'
+      shop.working_time = '年中無休'
     end
   end
 
@@ -39,7 +39,7 @@ class Shop < ApplicationRecord
     validates :phone_number
   end
 
-  validates :name,uniqueness: true
+  validates :name, uniqueness: true
   validates :email, uniqueness: true
   validates :phone_number, numericality: true
 end
