@@ -43,4 +43,4 @@ https://docs.google.com/spreadsheets/d/18RmAkhidbinMLtjSqjmjhknYSV4tmokbhE6Tt_GM
 
 ## 使用素材
 - 背景画像 https://free-texture.net/
-- 
+- フリー素材ぱくたそ（www.pakutaso.com）
