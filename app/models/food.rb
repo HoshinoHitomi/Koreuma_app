@@ -28,7 +28,7 @@ class Food < ApplicationRecord
     if taste_score == []
       "- -"
     else
-      taste_score.sum.fdiv(taste_score.length)
+      taste_score.sum.fdiv(taste_score.length).round(2)
     end
   end
 
@@ -37,7 +37,7 @@ class Food < ApplicationRecord
     if taste_strong == []
       5.0
     else
-      taste_strong.sum.fdiv(taste_strong.length)
+      taste_strong.sum.fdiv(taste_strong.length).round(1)
     end
   end
 
@@ -46,7 +46,7 @@ class Food < ApplicationRecord
     if smell_strong == []
       5.0
     else
-      smell_strong.sum.fdiv(smell_strong.length)
+      smell_strong.sum.fdiv(smell_strong.length).round(1)
     end
   end
 
@@ -56,7 +56,7 @@ class Food < ApplicationRecord
     if sweet_like == []
       2.5
     else
-      sweet_like.sum.fdiv(sweet_like.length)
+      sweet_like.sum.fdiv(sweet_like.length).round(1)
     end
   end
 
@@ -66,7 +66,7 @@ class Food < ApplicationRecord
     if salty_like == []
       2.5
     else
-      salty_like.sum.fdiv(salty_like.length)
+      salty_like.sum.fdiv(salty_like.length).round(1)
     end
   end
 
@@ -76,7 +76,7 @@ class Food < ApplicationRecord
     if bitter_like == []
       2.5
     else
-      bitter_like.sum.fdiv(bitter_like.length)
+      bitter_like.sum.fdiv(bitter_like.length).round(1)
     end
   end
 
@@ -86,7 +86,7 @@ class Food < ApplicationRecord
     if sour_like == []
       2.5
     else
-      sour_like.sum.fdiv(sour_like.length)
+      sour_like.sum.fdiv(sour_like.length).round(1)
     end
   end
 
@@ -96,7 +96,7 @@ class Food < ApplicationRecord
     if spicy_like == []
       2.5
     else
-      spicy_like.sum.fdiv(spicy_like.length)
+      spicy_like.sum.fdiv(spicy_like.length).round(1)
     end
   end
 

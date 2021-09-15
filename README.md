@@ -42,4 +42,5 @@ https://docs.google.com/spreadsheets/d/18RmAkhidbinMLtjSqjmjhknYSV4tmokbhE6Tt_GM
 - IDE：Cloud9
 
 ## 使用素材
-- 画像素材を使用する予定です。
+- 背景画像 https://free-texture.net/
+- 
