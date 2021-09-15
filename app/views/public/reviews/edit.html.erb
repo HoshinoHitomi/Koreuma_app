@@ -1,6 +1,10 @@
 <div class="bg-light rounded p-3 shadow">
   <h2>レビュー編集</h2>
 
+  <div class="float-right">
+    <%= link_to 'レビューを削除する', food_reviews_path(params[:food_id]), method: :delete, "data-confirm" => "削除しますか？", class: "btn btn-danger" %>
+  </div>
+
   <div class="form-horizontal col-md-6 offset-md-3">
     <%= form_with model: @review, url: food_reviews_path, local:true do |f| %>
       <%= f.hidden_field :user_id, :value => current_user.id %>
@@ -41,10 +45,6 @@
 
       <%= f.submit 'レビューを編集する', class: "btn btn-success" %>
     <% end %>
-  </div>
-
-  <div class="float-right">
-    <%= link_to 'レビューを削除する', food_reviews_path(params[:food_id]), method: :delete, "data-confirm" => "削除しますか？", class: "btn btn-danger" %>
   </div>
 
   <script>
