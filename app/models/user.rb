@@ -62,5 +62,5 @@ class User < ApplicationRecord
   end
 
   validates :name, length: { in: 1..20 }
-  validates :introduction, length: { in: 1..300 }
+  # validates :introduction, length: { in: 1..300 }
 end
