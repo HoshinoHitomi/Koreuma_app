@@ -5,7 +5,7 @@ class Public::ReviewsController < ApplicationController
       flash[:alert] = "ユーザーが見つかりませんでした。"
       redirect_to root_path
     else
-      @reviews = @user.reviews.page(params[:pade]).per(10).order(updated_at: :DESC)
+      @reviews = @user.reviews.page(params[:page]).per(10).order(updated_at: :DESC)
     end
   end
 

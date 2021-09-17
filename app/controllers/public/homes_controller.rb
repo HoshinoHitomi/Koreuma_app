@@ -20,6 +20,6 @@ class Public::HomesController < ApplicationController
   end
 
   def all_reviews
-    @reviews = Review.page(params[:pade]).per(10).order(updated_at: :DESC)
+    @reviews = Review.page(params[:page]).per(3).order(updated_at: :DESC)
   end
 end
