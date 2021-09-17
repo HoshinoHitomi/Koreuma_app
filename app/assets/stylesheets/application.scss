@@ -45,6 +45,20 @@ th {
   background-color: #ead3ac;
 }
 
+.status {
+  &_onsale {
+    color: green;
+  }
+
+  &_finish {
+    color: red;
+  }
+
+  &_stop {
+    color: gray;
+  }
+}
+
 .foods, .searches, .shops, .favorite_foods, .favorite_shops {
 
   .card {

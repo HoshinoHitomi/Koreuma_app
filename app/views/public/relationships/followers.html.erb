@@ -5,7 +5,7 @@
     <table class="table mt-3">
       <% @users.each do |user| %>
             <tr>
-              <td><%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: 'no_image.jpg', class: "rounded-circle" %></td>
+              <td><%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: 'no_image.jpg', size: '80x80', class: "rounded-circle" %></td>
               <td>
                 <% if user_signed_in? %>
                     <% if current_user.following?(user) %>

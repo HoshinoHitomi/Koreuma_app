@@ -32,5 +32,9 @@
       <td>販売日</td>
       <td>: <%= l food.sale_dates %></td>
     </tr>
+    <tr>
+      <td></td>
+      <td class="<%= status_color(food.status) %>"><%= food.status_i18n %></td>
+    </tr>
   </table>
 </div>

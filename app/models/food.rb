@@ -108,5 +108,4 @@ class Food < ApplicationRecord
   validates :name, length: { in: 1..50 }
   validates :introduction, length: { in: 1..300 }
   validates :price, numericality: true
-  validates :calorie, numericality: true
 end

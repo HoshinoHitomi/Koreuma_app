@@ -1,5 +1,5 @@
 <div class="bg-light border rounded p-3 shadow">
-  <p><i class="fas fa-heart"></i> 店お気に入り/ <%= @shop.favorite_shops.count %></p>
+  <p><i class="fas fa-thumbs-up"></i> 店お気に入り/ <%= @shop.favorite_shops.count %></p>
 
   <h1 class="border-bottom p-2">
     <%= attachment_image_tag @shop, :shop_image, :fill, 100, 100, fallback: "no_image.jpg", size: '100x100', class: "rounded-circle" %>
@@ -50,10 +50,11 @@
             <% end %>
             <div class="card-body">
               <h6 class="card-title"><%= link_to food.name, shop_food_path(food) %></h6>
+              <p><i class="fas fa-star"></i> <%= food.taste_score_average %></p>
               <p><i class="fas fa-heart"></i> お気に入り/ <%= food.favorite_foods.count %></p>
               <p><i class="far fa-comments"></i> レビュー数/ <%= food.reviews.count %></p>
-              <p><%= food.status_i18n %></p>
-              <p><%= l food.sale_dates %></p>
+              <p class="<%= status_color(food.status) %>"><%= food.status_i18n %></p>
+              <p>販売日 <%= l food.sale_dates %></p>
             </div>
         </div>
     <% end %>
