@@ -17,6 +17,10 @@ class Shop < ApplicationRecord
     super && (self.is_active == true)
   end
 
+  def self.shop_ranking
+    Shop.find(FavoriteShop.group(:shop_id).order('count(shop_id) desc').limit(3).pluck(:shop_id))
+  end
+
   def self.guest
     find_or_create_by!(email: 'guest@shop') do |shop|
       shop.password = SecureRandom.urlsafe_base64

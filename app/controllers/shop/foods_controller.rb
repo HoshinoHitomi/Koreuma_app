@@ -43,7 +43,9 @@ class Shop::FoodsController < Shop::ApplicationController
 
   def edit
     @food = Food.find_by(id: params[:id])
-    if @food.nil?
+    if @food.shop_id != current_shop.id
+      redirect_to shop_foods_path
+    elsif @food.nil?
       flash[:alert] = "食べ物が見つかりませんでした。"
       redirect_to shop_foods_path
     end

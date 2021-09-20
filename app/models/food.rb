@@ -14,6 +14,10 @@ class Food < ApplicationRecord
     favorite_foods.where(user_id: user.id).exists?
   end
 
+  def self.food_ranking
+    Food.find(FavoriteFood.group(:food_id).order('count(food_id) desc').limit(3).pluck(:food_id))
+  end
+
   def self.search(search)
     Food.where(['name LIKE ?', "%#{search}%"])
     Food.where(['introduction LIKE ?', "%#{search}%"])
