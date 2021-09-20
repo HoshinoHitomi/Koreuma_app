@@ -36,8 +36,9 @@
 
   <div class="col-md-12 mt-3">
     <% if user_signed_in? %>
-
-      <% if @your_review.nil? %>
+      <% if @food.status == 'before' %>
+        <p class="text-center border rounded">販売前はレビュー投稿できません。</p>
+      <% elsif @your_review.nil? %>
       <button class="btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#review-form" aria-controls="review-form" aria-expanded="false">
         <span><i class="far fa-comment"></i> レビューする</span>
       </button>
